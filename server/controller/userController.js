@@ -15,10 +15,10 @@ router.post("/login",async (req,res)=>{
         console.log('got here!')
         const request = new sql.Request(conn)
         request.execute('libros_select', (err, result) =>{
-        console.log(result.recordset);
+        //console.log(result.recordset);
         res.send(result.recordset);
-        console.log(result.returnValue);
-        console.log(result.output);
+        //console.log(result.returnValue);
+        //console.log(result.output);
         })
     });
     //res.send("hello world");
