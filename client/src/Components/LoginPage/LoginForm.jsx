@@ -8,7 +8,7 @@ export  function LoginForm() {
     let navigate = useNavigate()
     const loggedIn = (userLogged,userType) =>{
         let adminPath
-        (userType==='client') ? (adminPath='/ClientPage') : (adminPath='/') 
+        (userType===3) ? (adminPath='/ClientMenu') : (adminPath='/AdmiMenu') 
         navigate(adminPath,{state:{user:userLogged}})
     }
 
@@ -17,7 +17,8 @@ export  function LoginForm() {
         console.log(data)
         try{
             const response = await axios.post('http://localhost:3001/users/login', data);
-            const userLogged = response.data.email
+            alert(response)
+            const userLogged = response.data.identification
             const userType = response.data.type
             loggedIn(userLogged,userType)
             
