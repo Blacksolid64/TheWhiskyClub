@@ -1,4 +1,5 @@
 //connection
+
 const express = require("express")
 const app = express()
 const PORT = 3001
@@ -13,6 +14,7 @@ app.listen(PORT, () =>{
 })
 
 
+
 /*
 app.post("/api/clients",(req,res)=>{
 	console.log("dummy endPoint")
@@ -22,7 +24,7 @@ app.get("/",(req,res)=>{
 	res.send("hello world");
 })
 
-*/
+
 
 /*const express = require("express")
 const app = express()

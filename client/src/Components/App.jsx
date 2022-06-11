@@ -5,10 +5,13 @@ import {
     Routes,
     Route
   } from "react-router-dom";
-//import { Test } from './test/test';
 import { LoginPage } from './LoginPage/LoginPage';
 import { ExternalPage } from './ExternalPage/ExternalPage';
-
+import { ClientMenu } from './ClientMenu/ClientTarget';
+import { AdmiMenu } from './AdmiMenu/AdmiMenu';
+import { OrderMenu } from './OrdersMenu/OrderMenu';
+import { SubscriptionPage } from './Subscription/Subscription';
+import { Order } from './OrdersMenu/Order';
 
 export function App() {
   return (
@@ -19,7 +22,17 @@ export function App() {
 
                 <Route exact path="/" element={<ExternalPage />}/>
 
-                  <Route exact path="/LoginPage" element={<LoginPage />}/>
+                <Route exact path="/LoginPage" element={<LoginPage />}/>
+
+                <Route exact path="/ClientMenu" element={<ClientMenu />}/>
+
+                <Route exact path="/AdmiMenu" element={<AdmiMenu />}/>
+
+                <Route exact path="/OrderMenu" element={<OrderMenu />}/>
+
+                <Route exact path="/SubscriptionPage" element={<SubscriptionPage />}/>
+
+                <Route exact path="/Order" element={<Order />}/>
               
               </Routes>
                 
