@@ -14,6 +14,7 @@ export  function LoginForm() {
 
 
     const onSubmit = async(data) =>{
+        console.log(data)
         try{
             const response = await axios.post('http://localhost:3001/users/login', data);
             const userLogged = response.data.email
