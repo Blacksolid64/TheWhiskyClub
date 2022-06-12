@@ -13,6 +13,8 @@ import { OrderMenu } from './OrdersMenu/OrderMenu';
 import { SubscriptionPage } from './Subscription/Subscription';
 import { Order } from './OrdersMenu/Order';
 import { ReadWhiskeys } from './Whiskeys/ReadWhiskeys';
+import { WhiskyDetail } from './Whiskeys/WhiskyDetail';
+
 
 export function App() {
   return (
@@ -36,6 +38,8 @@ export function App() {
                 <Route exact path="/Order" element={<Order />}/>
 
                 <Route exact path="/ReadWhiskeys" element={<ReadWhiskeys/>}/>
+
+                <Route exact path="/WhiskyDetail" element={<WhiskyDetail />}/>
               
               </Routes>
                 
