@@ -7,7 +7,7 @@ export  function ReadWhiskeys() {
         <Fragment>
             <header className="App-header">
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
-                <Table style={{backgroundColor: '#FFF';}}>
+                <Table style={{backgroundColor: '#FFF'}}>
 				  <thead >
 				    <tr>
 				      <th>
