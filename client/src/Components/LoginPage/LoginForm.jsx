@@ -14,12 +14,11 @@ export  function LoginForm() {
 
 
     const onSubmit = async(data) =>{
-        console.log(data)
         try{
             const response = await axios.post('http://localhost:3001/users/login', data);
-            alert(response)
-            const userLogged = response.data.identification
-            const userType = response.data.type
+            //alert(JSON.stringify(response.data[0].identification))
+            const userLogged = response.data[0].identification
+            const userType = response.data[0].userType
             loggedIn(userLogged,userType)
             
         } catch(err){

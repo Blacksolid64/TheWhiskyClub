@@ -12,6 +12,7 @@ import { AdmiMenu } from './AdmiMenu/AdmiMenu';
 import { OrderMenu } from './OrdersMenu/OrderMenu';
 import { SubscriptionPage } from './Subscription/Subscription';
 import { Order } from './OrdersMenu/Order';
+import { ReadWhiskeys } from './Whiskeys/ReadWhiskeys';
 
 export function App() {
   return (
@@ -33,6 +34,8 @@ export function App() {
                 <Route exact path="/SubscriptionPage" element={<SubscriptionPage />}/>
 
                 <Route exact path="/Order" element={<Order />}/>
+
+                <Route exact path="/ReadWhiskeys" element={<ReadWhiskeys/>}/>
               
               </Routes>
                 
