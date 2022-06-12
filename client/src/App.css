@@ -14,6 +14,18 @@
   font-size: calc(10px + 2vmin);
   color: rgb(255, 255, 255);
 }
+
+.App-header2 {
+  background-image: url('./images/background.jpg');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+
 .App-header .img{
   align-items: left;
 }
