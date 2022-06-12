@@ -4,11 +4,13 @@ const express = require("express")
 const app = express()
 const PORT = 3001
 const userControllerRoute = require('./controller/userController')
+const whiskeyControllerRoute = require('./controller/whiskeyController')
 const cors = require('cors')
 app.use(cors())
 
 app.use(express.json({limit: "50mb"}))
 app.use('/users',userControllerRoute)
+app.use('/whisky',whiskeyControllerRoute)
 app.listen(PORT, () =>{
 	console.log(`Server is listening at http://localhost:${PORT}`)
 })
