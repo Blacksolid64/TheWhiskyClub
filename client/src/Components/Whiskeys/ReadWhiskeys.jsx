@@ -1,26 +1,27 @@
 import React, { Fragment } from 'react'
-import { Table } from 'reactstrap';
+import { Table,Button } from 'reactstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 
 export  function ReadWhiskeys() {
     return (
         <Fragment>
-            <header className="App-header">
+            <header className="App-header2" style={{textAlign: 'right'}}>
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
-                <Table style={{backgroundColor: '#FFF';}}>
+                <Table style={{backgroundColor: '#FFF'}}>
 				  <thead >
 				    <tr>
 				      <th>
 				        #
 				      </th>
 				      <th>
-				        First Name
+				        Whisky Name
 				      </th>
 				      <th>
-				        Last Name
+				        Whisky Type
 				      </th>
 				      <th>
-				        Username
+				        Whisky Price
 				      </th>
 				    </tr>
 				  </thead>
@@ -30,23 +31,21 @@ export  function ReadWhiskeys() {
 				        1
 				      </th>
 				      <td>
-				        Mark
+				        Straight Bourbon
 				      </td>
 				      <td>
-				        Otto
+				       Straight Bourbon
 				      </td>
 				      <td>
-				        @mdo
+				       100000
 				      </td>
 				      <td>
-				        BOTON
+				      	<button type="button" class="btn btn-dark">View</button>
 				      </td>
 				    </tr>
 				  </tbody>
 				</Table>
-                    
-                </div>
-                           
+                </div>   
             </header>
         </Fragment>
       )
