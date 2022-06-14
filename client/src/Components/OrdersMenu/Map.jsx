@@ -5,7 +5,7 @@ import {Marker,Popup,useMapEvents} from 'react-leaflet'
 import React, { useState } from 'react';
 
 
-export function LocationMarker(props) {
+export function LocationMarker({getLatitude,getLength}) {
     const [position, setPosition] = useState(null)
     const [lat, setLat] = useState(null)
     const [lng, setLng] = useState(null)
@@ -15,6 +15,10 @@ export function LocationMarker(props) {
   
         setLat(e.latlng.lat)
         setLng(e.latlng.lng)
+
+        getLatitude(e.latlng.lat)
+        getLength(e.latlng.lng)
+
       }
       
     })
@@ -22,8 +26,6 @@ export function LocationMarker(props) {
     return position === null ? null : (
       <Marker position={position}>
         <Popup>{lat+"//"+lng}</Popup>
-      {props.lati} = {lat},
-      {props.long} = {lng}
       </Marker>
     )
   }

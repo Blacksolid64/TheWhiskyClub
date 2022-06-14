@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function ClientMenu() {
     const {state} = useLocation();
     const userLogged = state.user
+
     return (
         <Fragment>
             <header className="App-header">
@@ -16,13 +17,15 @@ export  function ClientMenu() {
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys"}} />
+                            <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys",userLogged:userLogged}} />
                             
-                            <PrincipalCard props={{title:"Orders",buttonTitle:"See",redirectLink:"/OrderMenu"}} />
+                            <PrincipalCard props={{title:"Orders",buttonTitle:"See",redirectLink:"/OrderMenu",userLogged:userLogged}} />
                             
                             <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/"}} />
                             
                             <PrincipalCard props={{title:"Query",buttonTitle:"See",redirectLink:"/"}} />
+
+                            <a1>User loggerd: {userLogged}</a1>
   
                         </div>
                         

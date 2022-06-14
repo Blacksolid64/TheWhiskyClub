@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
+import { useLocation } from 'react-router-dom';
 
 export  function OrderMenu() {
+    const {state} = useLocation();
+    const userLogged = state.user
     return (
         <Fragment>
             <header className="App-header">
@@ -15,10 +18,11 @@ export  function OrderMenu() {
   
                             <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/"}} />
                             
-                            <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage"}} />
+                            <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged:userLogged}} />
                             
                             <PrincipalCard props={{title:"History",buttonTitle:"See",redirectLink:"/"}} />
 
+                            <h1>User logged: {userLogged}</h1>
                         </div>
                         
                     </div>
