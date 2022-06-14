@@ -2,8 +2,10 @@ import React, { Fragment, useState, useEffect }from 'react'
 import { Table,Button,Dropdown,DropdownMenu,DropdownToggle,DropdownItem,Input} from 'reactstrap';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
+import {useNavigate} from "react-router-dom"
 
 export  function ReadWhiskeys() {
+	let navigate = useNavigate()
     const [whiskys, setwhiskys] = useState([]);
     const [dropdownOpen1,setDropdownOpen1] = useState(false);
     const [dropdownOpen2,setDropdownOpen2] = useState(false);
@@ -37,7 +39,7 @@ export  function ReadWhiskeys() {
     return (
     	<Fragment>
             <header className="App-header2" style={{textAlign: 'right'}}>
-                <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
+                <div style={{ textAlign:'center', backgroundImage: 'url(require("./images/background.png"))' }}>
                 <div className="d-flex justify-content-center p-5">
                 <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
 				    <DropdownToggle caret style={{backgroundColor: '#262626'}}>
@@ -135,8 +137,12 @@ export  function ReadWhiskeys() {
 	                        <td>{item.Name}</td>
 	                        <td>{item["Whiskey Type"]}</td>
 	                        <td>{item.Price}</td>
-	                        <td>{item.Quantity}</td>
-	                        <td><button type="button" className="btn btn-dark">see more</button></td>
+	                        <td>{item.Available}</td>
+	                        <td><button type="button" className="btn btn-dark" 
+	                        onClick={(e) => (async () => {
+							    navigate("/WhiskyDetail", { state: { id: 10 } })
+							  })()} 
+	                    	>see more</button></td>
 	                    </tr>
 	                ))}
 				  </tbody>
