@@ -14,6 +14,7 @@ import { SubscriptionPage } from './Subscription/Subscription';
 import { Order } from './OrdersMenu/Order';
 import { ReadWhiskeys } from './Whiskeys/ReadWhiskeys';
 import { WhiskyDetail } from './Whiskeys/WhiskyDetail';
+import { WhiskysManage } from './WhiskysManage/WhiskysManage';
 
 
 export function App() {
@@ -40,6 +41,8 @@ export function App() {
                 <Route exact path="/ReadWhiskeys" element={<ReadWhiskeys/>}/>
 
                 <Route exact path="/WhiskyDetail" element={<WhiskyDetail />}/>
+
+                <Route exact path="/WhiskysManage" element={<WhiskysManage />}/>
               
               </Routes>
                 
