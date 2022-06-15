@@ -45,8 +45,8 @@ export function SubscriptionTier({props}) {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="card border-dark text-center text-dark h-100">
                 <h2 className="card-title">{props.title}</h2>
-                <p className="card-text">{props.body ? props.text : ""}</p>
-                <p className="card-title">{userLogged}</p>
+                <h4>Benefits: </h4>
+                <p className="card-text">{props.body}</p>
             </div>
             <center><input type="submit" className="btn btn-dark btn-block" value = {props.buttonTitle} /></center> 
         </form>

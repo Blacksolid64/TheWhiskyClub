@@ -18,7 +18,9 @@ import { WhiskysManage } from './WhiskysManage/WhiskysManage';
 import { WhiskySee } from './WhiskysManage/WhiskySee';
 import { ModifyWhisky } from './WhiskysManage/ModifyWhisky';
 import { CreateWhisky } from './WhiskysManage/CreateWhisky';
-import { StoreManage } from './StoreManage/StoreManage';
+import { ReportsManage } from './ReportsManage/ReportsManage';
+
+
 
 
 export function App() {
@@ -54,7 +56,7 @@ export function App() {
 
                 <Route exact path="/CreateWhisky" element={<CreateWhisky />}/>
 
-                <Route exact path="/StoreManage" element={<StoreManage />}/>
+                <Route exact path="/ReportsManage" element={<ReportsManage />}/>
               
               </Routes>
                 
