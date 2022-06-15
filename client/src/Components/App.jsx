@@ -15,6 +15,10 @@ import { Order } from './OrdersMenu/Order';
 import { ReadWhiskeys } from './Whiskeys/ReadWhiskeys';
 import { WhiskyDetail } from './Whiskeys/WhiskyDetail';
 import { WhiskysManage } from './WhiskysManage/WhiskysManage';
+import { WhiskySee } from './WhiskysManage/WhiskySee';
+import { ModifyWhisky } from './WhiskysManage/ModifyWhisky';
+import { CreateWhisky } from './WhiskysManage/CreateWhisky';
+import { StoreManage } from './StoreManage/StoreManage';
 
 
 export function App() {
@@ -43,6 +47,14 @@ export function App() {
                 <Route exact path="/WhiskyDetail" element={<WhiskyDetail />}/>
 
                 <Route exact path="/WhiskysManage" element={<WhiskysManage />}/>
+
+                <Route exact path="/WhiskySee" element={<WhiskySee />}/>
+
+                <Route exact path="/ModifyWhisky" element={<ModifyWhisky />}/>
+
+                <Route exact path="/CreateWhisky" element={<CreateWhisky />}/>
+
+                <Route exact path="/StoreManage" element={<StoreManage />}/>
               
               </Routes>
                 

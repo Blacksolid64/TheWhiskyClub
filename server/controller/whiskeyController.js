@@ -50,4 +50,19 @@ router.get("/getWhisky",async (req,res)=>{
     //res.send("hello world");
 })
 
+router.get("/createWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.execute('Wiskey_get', (err, result) =>{
+        console.log(err);
+        console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
 module.exports = router;

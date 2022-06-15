@@ -15,7 +15,7 @@ export function CardList({props}) {
         if(props.action === 'Eliminar'){
             path = "/AdmiMenu"
         }else if(props.action === 'Consultar'){
-            path = "/ConsultParking"
+            path = "/WhiskySee"
         }else{
             path = "/ModifyParking"
         }
