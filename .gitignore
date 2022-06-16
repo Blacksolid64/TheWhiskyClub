@@ -104,4 +104,4 @@ dist
 .tern-port
 server/package-lock.json
 server/package.json
-server/node_modules
+server/node_modules/
