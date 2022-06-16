@@ -6,21 +6,18 @@ import { Link } from 'react-router-dom'
 export function WhiskyDetail() {
     const {state} = useLocation();
     const Whiskyid = state.id
-    console.log(`Debe imprimir 10: ${Whiskyid}`)  
-    //const whisky = "state.whisky"
+    console.log(Whiskyid);
     const [whisky, setwhisky] = useState([]);
     async function getWhisky(){
-        const response  = await axios.post('http://localhost:3001/whisky/selectWhiskeyDetailed');
-        if(whisky.length===0){
+        const response  = await axios.post('http://localhost:3001/whisky/selectWhiskeyDetailed',state);
+        if(whisky.length===0)
             setwhisky(response.data)
-        }
     }
     useEffect(() => {
         //Runs only on the first render
         getWhisky()
     }, []);
-    console.log(JSON.stringify(whisky))
-
+    
   return (
     <Fragment>
         <header className="App-header">

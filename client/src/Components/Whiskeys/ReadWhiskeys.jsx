@@ -1,24 +1,16 @@
 import React, { Fragment, useState, useEffect }from 'react'
-import { Table,Button,Dropdown,DropdownMenu,DropdownToggle,DropdownItem,Input} from 'reactstrap';
+import { Table,Button,Dropdown,DropdownMenu,DropdownToggle,DropdownItem,Input,Select,label} from 'reactstrap';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {useNavigate} from "react-router-dom"
+import {useForm} from 'react-hook-form';
 
 export  function ReadWhiskeys() {
 	let navigate = useNavigate()
+	const {register,handleSubmit} = useForm();
     const [whiskys, setwhiskys] = useState([]);
-    const [dropdownOpen1,setDropdownOpen1] = useState(false);
-    const [dropdownOpen2,setDropdownOpen2] = useState(false);
-    const [dropdownOpen3,setDropdownOpen3] = useState(false);
-    const [dropdownOpen4,setDropdownOpen4] = useState(false);
-    const toggle1 = () => setDropdownOpen1(prevState => !prevState);
-    const toggle2 = () => setDropdownOpen2(prevState => !prevState);
-    const toggle3 = () => setDropdownOpen3(prevState => !prevState);
-    const toggle4 = () => setDropdownOpen4(prevState => !prevState);
-
-    const [name, setName] = useState('');
     async function getWhiskys(){
-    	const response  = await axios.get('http://localhost:3001/whisky/whiskysSelectAll');
+    	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
     	if(whiskys.length===0)
     		setwhiskys(response.data)
     }
@@ -27,87 +19,56 @@ export  function ReadWhiskeys() {
 	    getWhiskys()
 	}, []);
 
-	const handleSubmit = (e) => {
-    
-        e.preventDefault();
-
-        console.log(`Form submitted, ${name}`);    
-
+    const onSubmit = async(data) =>{
+        try{
+        	if(data.type === "null"){
+        		data.type = null;
+        	}
+        	if(data.distance === "null"){
+        		data.distance = null;
+        	}
+        	if(data.price === "null"){
+        		data.price = null;
+        	}
+        	if(data.popularity === "null"){
+        		data.popularity = null;
+        	}
+        	const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
+        	setwhiskys(response.data);
+        } catch(err){
+            alert('Error to search whisky');
+        }       
     }
-
-
     return (
     	<Fragment>
             <header className="App-header2" style={{textAlign: 'right'}}>
                 <div style={{ textAlign:'center', backgroundImage: 'url(require("./images/background.png"))' }}>
                 <div className="d-flex justify-content-center p-5">
-                <Dropdown isOpen={dropdownOpen1} toggle={toggle1}>
-				    <DropdownToggle caret style={{backgroundColor: '#262626'}}>
-				      Any Whiskey type
-				    </DropdownToggle>
-				    <DropdownMenu>
-				      <DropdownItem>
-				        Whiskey type3
-				      </DropdownItem>
-				      <DropdownItem>
-				        Whiskey type2
-				      </DropdownItem>
-				      <DropdownItem>
-				      	Any Whiskey type
-				      </DropdownItem>
-				    </DropdownMenu>
-				  </Dropdown>
-				  <Dropdown isOpen={dropdownOpen2} toggle={toggle2}>
-				    <DropdownToggle caret style={{backgroundColor: '#262626'}}>
-				      Any Price
-				    </DropdownToggle>
-				    <DropdownMenu>
-				      <DropdownItem>
-				        Min Price
-				      </DropdownItem>
-				      <DropdownItem>
-				        Max Price
-				      </DropdownItem>
-				      <DropdownItem>
-				      	Any Price
-				      </DropdownItem>
-				    </DropdownMenu>
-				  </Dropdown>
-				  <Dropdown isOpen={dropdownOpen3} toggle={toggle3}>
-				    <DropdownToggle caret style={{backgroundColor: '#262626'}}>
-				      Any Popular
-				    </DropdownToggle>
-				    <DropdownMenu>
-				      <DropdownItem>
-				        Min Popular
-				      </DropdownItem>
-				      <DropdownItem>
-				        Max Popular
-				      </DropdownItem>
-				      <DropdownItem>
-				      	Any Popular
-				      </DropdownItem>
-				    </DropdownMenu>
-				  </Dropdown>
-				  <Dropdown isOpen={dropdownOpen4} toggle={toggle4}>
-				    <DropdownToggle caret style={{backgroundColor: '#262626'}}>
-				      Any Distance
-				    </DropdownToggle>
-				    <DropdownMenu>
-				      <DropdownItem>
-				        Min Distance
-				      </DropdownItem>
-				      <DropdownItem>
-				        Max Distance
-				      </DropdownItem>
-				      <DropdownItem>
-				      	Any Distance
-				      </DropdownItem>
-				    </DropdownMenu>
-				  </Dropdown>
-                <form onSubmit = {handleSubmit}>
-		            <input onChange = {(e) => setName(e.target.value)} value = {name}></input>
-		            <button type = 'submit' className="btn btn-dark btn-lg">Buscar</button>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                	<select {...register("type",{required:false})}>
+			          <option value="null" id="d0">Any type</option>
+			          <option value="type1" id="d1">type1</option>
+			          <option value="type2" id="d2">type2</option>
+			        </select>
+			        <select {...register("price",{required:false})}>
+			          <option value="null" id="d0">Any price</option>
+			          <option value="false" id="d1">Min price</option>
+			          <option value="true" id="d2">Max price</option>
+			        </select>
+			        <select {...register("popularity",{required:false})}>
+			          <option value="null" id="d0">Any Popularity</option>
+			          <option value="false" id="d1">Min Popularity</option>
+			          <option value="true" id="d2">Max Popularity</option>
+			        </select>
+			        <select {...register("distance",{required:false})}>
+			          <option value="null" id="d0">Any distance</option>
+			          <option value="false" id="d1">Min distance</option>
+			          <option value="true" id="d2">Max distance</option>
+			        </select>
+                    <input type="text" className="form-control" id="name" placeholder="Whisky name"
+                    {...register('name',{required:false})}
+                    />
+		            <button type ='submit' className="btn btn-dark btn-lg">Buscar</button>
 		        </form>
 				</div>
                 <Table striped bordered style={{backgroundColor: '#FFF'}}>
@@ -134,13 +95,13 @@ export  function ReadWhiskeys() {
 	                {whiskys.map((item, i) => (
 	                    <tr key={i}>
 	                    	<td>{i}</td>
-	                        <td>{item.Name}</td>
-	                        <td>{item["Whiskey Type"]}</td>
-	                        <td>{item.Price}</td>
-	                        <td>{item.Available}</td>
+	                        <td>{item.name}</td>
+	                        <td>{item.Type}</td>
+	                        <td>{item.priceByUnit}</td>
+	                        <td>{item.quantity}</td>
 	                        <td><button type="button" className="btn btn-dark" 
 	                        onClick={(e) => (async () => {
-							    navigate("/WhiskyDetail", { state: { id: 10 } })
+							    navigate("/WhiskyDetail", { state: { id: item.Whiskey_id } })
 							  })()} 
 	                    	>see more</button></td>
 	                    </tr>
