@@ -14,7 +14,7 @@ export  function WhiskysManage() {
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Create Whisky",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"Create Whisky",buttonTitle:"See",redirectLink:"/CreateWhisky"}} />
                             
                             <WhiskysManageForm props={{title:"Consult whisky",buttonTitle:"See",action:"Consultar"}} />
                             

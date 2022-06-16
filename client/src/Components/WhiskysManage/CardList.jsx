@@ -48,7 +48,6 @@ export function CardList({props}) {
     }
 
 
-//{...register('name',{required:true})}>
   return (
     <Fragment>
         <form onSubmit={handleSubmit(onSubmit)}>

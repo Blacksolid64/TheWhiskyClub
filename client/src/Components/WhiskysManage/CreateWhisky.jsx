@@ -1,15 +1,17 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,useRef } from 'react'
 //import image from '../../images/tecSanJose.jpg'
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
-
+import emailjs from '@emailjs/browser';
 
 export function CreateWhisky() {
 
     const {register,handleSubmit} = useForm();
+
+    const form = useRef();
 
     let navigate = useNavigate()
     const moveTo = () =>{
@@ -22,7 +24,9 @@ export function CreateWhisky() {
         try{
             axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
             })
+            //send_email('data')
             moveTo()
+            
         }catch(err){
             alert(err)
         }
@@ -45,10 +49,6 @@ export function CreateWhisky() {
                                     <br></br>
                                     <form onSubmit={handleSubmit(onSubmit)} >
                                     <div className="row">
-                                    <div className="col">
-                                            <label htmlFor="text" className="form-label">Id del Whisky</label>
-                                            <input type="text" className="form-control" placeholder="Whiskey id" aria-label="Whiskey id" {...register('Whiskey_id',{required:true})}/>
-                                        </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Name</label>
