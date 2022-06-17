@@ -38,6 +38,7 @@ router.post("/selectWhiskeyDetailed",async (req,res)=>{
 
 router.post("/getFilteredWhisky",async (req,res)=>{
     var whisky = {
+        "user_id":req.body.userLogged,
         "name":req.body.name,
         "type":req.body.type,
         "price":req.body.price,
@@ -46,6 +47,7 @@ router.post("/getFilteredWhisky",async (req,res)=>{
     }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
+        request.input('User_ID',whisky.user_id)
         request.input('Name_IN', whisky.name)
         request.input('Type_IN', whisky.type)
         request.input('Popularity_IN', whisky.popularity)
