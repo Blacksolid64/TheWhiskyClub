@@ -187,7 +187,7 @@ router.get("/DestileryWhisky",async (req,res)=>{
 router.get("/PresentationWhisky",async (req,res)=>{
     conn.connect().then(() =>{
     const request = new sql.Request(conn)
-    request.execute('TypeWiskey_get', (err, result) =>{
+    request.execute('PresentationWiskey_get', (err, result) =>{
     //console.log(err);
     //console.log(result.recordset);
     res.send(result.recordset);
