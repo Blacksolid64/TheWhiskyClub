@@ -43,7 +43,7 @@ export function CardList({props}) {
               } 
             
         } catch(err){
-            alert('Se produjo un error')
+            alert('An error occurred')
         }
     }
 

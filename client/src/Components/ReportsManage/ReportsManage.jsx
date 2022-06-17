@@ -15,7 +15,7 @@ export  function ReportsManage() {
   
                             <PrincipalCard props={{title:"Products Consultation",buttonTitle:"See",redirectLink:"/"}} />
                             
-                            <PrincipalCard props={{title:"Employe Consultation",buttonTitle:"See",action:"Consultar"}} />
+                            <PrincipalCard props={{title:"Employee Consultation",buttonTitle:"See",action:"Consultar"}} />
                             
                             <PrincipalCard props={{title:"Client Consultation",buttonTitle:"Delete",action:"Eliminar"}} />
                             

@@ -36,12 +36,12 @@ export function WhiskyDetail() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Type</label>
-                                            <input type="text" className="form-control" placeholder="Type Whisky" aria-label="Type Whisky" value = {item["Whiskey Type"]} readOnly/>
+                                            <input type="text" className="form-control" placeholder="Whiskey Type" aria-label="Type Whisky" value = {item.Type} readOnly/>
                                         </div>
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Aged</label>
-                                            <textarea type="text" style={{resize:'none'}} className="form-control" placeholder="Aged Whisky" aria-label="Aged Whisky" value = {item["Age in years"]} readOnly/>
+                                            <label htmlFor="text" className="form-label">Age</label>
+                                            <textarea type="text" style={{resize:'none'}} className="form-control" placeholder="Whiskey Age" aria-label="Aged Whisky" value = {item.Age_in_years} readOnly/>
                                         </div>
 
                                     </div>
@@ -59,7 +59,7 @@ export function WhiskyDetail() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Price</label>
-                                            <input type="text" className="form-control" placeholder="Price" aria-label="Price" value = {item.Price}readOnly/>
+                                            <input type="text" className="form-control" placeholder="Price" aria-label="Price" value = {item.priceByUnit}readOnly/>
                                         </div>
                                         
                                     </div>
@@ -68,13 +68,13 @@ export function WhiskyDetail() {
                                     <div className="row">
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">In inventary</label>
-                                            <input type="text" className="form-control" placeholder="In inventary" aria-label="In inventary" value = {item.Available} readOnly/>
+                                            <label htmlFor="text" className="form-label">In inventory</label>
+                                            <input type="text" className="form-control" placeholder="In inventory" aria-label="In inventory" value = {item.quantity} readOnly/>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Description</label>
-                                            <input type="text" className="form-control" placeholder="Description" aria-label="Description" value = {item.Description} readOnly/>
+                                            <input type="text" className="form-control" placeholder="Description" aria-label="Description" value = {item.description} readOnly/>
                                         </div>
 
                                     </div>

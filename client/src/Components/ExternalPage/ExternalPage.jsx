@@ -8,7 +8,7 @@ export function ExternalPage() {
                   
               <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
                   <div className='container mx-auto'>
-                      <h1 className='text-center'>Whiskys Club</h1>
+                      <h1 className='text-center'>The Whiskey Club</h1>
                       <br/>
                       <div className="row row-cols-1 row-cols-md-2 g-2">
 

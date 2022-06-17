@@ -34,9 +34,9 @@ export  function ReadWhiskeys() {
         		data.popularity = null;
         	}
         	const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
-        	setwhiskys(response.data);
+			setwhiskys(response.data);
         } catch(err){
-            alert('Error to search whisky');
+            alert('Error searching for whisky');
         }       
     }
     return (
@@ -68,7 +68,7 @@ export  function ReadWhiskeys() {
                     <input type="text" className="form-control" id="name" placeholder="Whisky name"
                     {...register('name',{required:false})}
                     />
-		            <button type ='submit' className="btn btn-dark btn-lg">Buscar</button>
+		            <button type ='submit' className="btn btn-dark btn-lg">Search</button>
 		        </form>
 				</div>
                 <Table striped bordered style={{backgroundColor: '#FFF'}}>
@@ -103,7 +103,7 @@ export  function ReadWhiskeys() {
 	                        onClick={(e) => (async () => {
 							    navigate("/WhiskyDetail", { state: { id: item.Whiskey_id } })
 							  })()} 
-	                    	>see more</button></td>
+	                    	>Details</button></td>
 	                    </tr>
 	                ))}
 				  </tbody>
