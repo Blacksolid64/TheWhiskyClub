@@ -8,15 +8,22 @@ import {useForm} from 'react-hook-form';
 export  function ReadWhiskeys() {
 	let navigate = useNavigate()
 	const {register,handleSubmit} = useForm();
-    const [whiskys, setwhiskys] = useState([]);
+    const [whiskys,setwhiskys] = useState([]);
+	const [whiskyTypes,setwhiskyTypes] = useState([]);
     async function getWhiskys(){
     	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
     	if(whiskys.length===0)
     		setwhiskys(response.data)
     }
+	async function getWhiskyType(){
+		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes');
+		if (whiskyTypes.length===0)
+			setwhiskyTypes(responseTypes.data)
+	}
     useEffect(() => {
     	//Runs only on the first render
 	    getWhiskys()
+		getWhiskyType()
 	}, []);
 
     const onSubmit = async(data) =>{
@@ -34,6 +41,7 @@ export  function ReadWhiskeys() {
         		data.popularity = null;
         	}
         	const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
+			console.log(response.data)
 			setwhiskys(response.data);
         } catch(err){
             alert('Error searching for whisky');
@@ -46,9 +54,11 @@ export  function ReadWhiskeys() {
                 <div className="d-flex justify-content-center p-5">
                 <form onSubmit={handleSubmit(onSubmit)}>
                 	<select {...register("type",{required:false})}>
-			          <option value="null" id="d0">Any type</option>
-			          <option value="type1" id="d1">type1</option>
-			          <option value="type2" id="d2">type2</option>
+			          <option value="null" id="d0">Any</option>
+					  {/* Mapping through each Whiskey type object in our Whiskey type array
+          				and returning an option element with the appropriate attributes / values.
+         			*/}
+     				 {whiskyTypes.map((WhiskeyType) => <option value={WhiskeyType.name}>{WhiskeyType.name}</option>)}
 			        </select>
 			        <select {...register("price",{required:false})}>
 			          <option value="null" id="d0">Any price</option>
