@@ -16,11 +16,11 @@ export  function WhiskysManage() {
   
                             <PrincipalCard props={{title:"Create Whisky",buttonTitle:"See",redirectLink:"/CreateWhisky"}} />
                             
-                            <WhiskysManageForm props={{title:"Consult whisky",buttonTitle:"See",action:"Consultar"}} />
+                            <WhiskysManageForm props={{title:"Consult whisky",buttonTitle:"See",action:"consult"}} />
                             
-                            <WhiskysManageForm props={{title:"Delete Whisky",buttonTitle:"Delete",action:"Eliminar"}} />
+                            <WhiskysManageForm props={{title:"Delete Whisky",buttonTitle:"Delete",action:"delete"}} />
                             
-                            <WhiskysManageForm props={{title:"Update Whisky",buttonTitle:"Update",action:"Actualizar"}} />
+                            <WhiskysManageForm props={{title:"Update Whisky",buttonTitle:"Update",action:"modify"}} />
   
                         </div>
                         

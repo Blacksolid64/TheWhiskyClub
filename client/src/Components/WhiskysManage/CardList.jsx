@@ -12,14 +12,13 @@ export function CardList({props}) {
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
-        if(props.action === 'Eliminar'){
+        if(props.action === 'delete'){
             path = "/AdmiMenu"
-        }else if(props.action === 'Consultar'){
+        }else if(props.action === 'consult'){
             path = "/WhiskySee"
         }else{
-            path = "/ModifyParking"
+            path = "/ModifyWhisky"
         }
-
         navigate(path, {state:{whiskyInfo:whiskyInfo}})
     }
     
@@ -32,12 +31,13 @@ export function CardList({props}) {
 
     const onSubmit = async(data) =>{
         try{
-            if(props.action === 'Eliminar'){
+            if(props.action === 'delete'){
                 axios.post('http://localhost:3001/whisky/deleteWhisky',data).then((response) => {
                 moveTo(response.data)
                 })
             }else{
-                axios.post('http://localhost:3001/whisky/getWhisky',data).then((response) => {
+                console.log(data)
+                axios.post('http://localhost:3001/whisky/getOneWhisky',data).then((response) => {
                 moveTo(response.data)
                 })
               } 

@@ -33,7 +33,7 @@ export  function LoginForm() {
           <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username</label>
-                    <input type="username" className="form-control" id="username" placeholder="Your Username"
+                    <input type="email" className="form-control" id="username" placeholder="Your Username"
                     {...register('username',{required:true})}/>
                 </div>
 
