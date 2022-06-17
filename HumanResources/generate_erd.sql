@@ -44,7 +44,7 @@ CREATE TABLE "employee_scotland" (
       REFERENCES "schedule"("id")
 );
 
-CREATE TABLE "employee_evaluation_escocia" (
+CREATE TABLE "employee_evaluation_scotland" (
   "id" int,
   "qualification" int,
   "commentary" varchar(200),
@@ -52,7 +52,7 @@ CREATE TABLE "employee_evaluation_escocia" (
   "identification_client" varchar(50),
   "id_employee_fk" int,
   PRIMARY KEY ("id"),
-  CONSTRAINT "FK_employee_evaluation_escocia.id_employee_fk"
+  CONSTRAINT "FK_employee_evaluation_scotland.id_employee_fk"
     FOREIGN KEY ("id_employee_fk")
       REFERENCES "employee_scotland"("id")
 );
