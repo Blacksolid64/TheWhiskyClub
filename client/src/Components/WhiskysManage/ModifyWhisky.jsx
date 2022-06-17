@@ -1,29 +1,14 @@
-import React,{Fragment} from 'react'
-//import image from '../../images/tecSanJose.jpg'
+import React,{Fragment,useState,useEffect} from 'react'
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom"
+import axios from 'axios'
 
 export function ModifyWhisky() {
 
     const {state} = useLocation();
-    const whiskyInfo =
-        {
-          Whiskey_id: 11,
-          name: 'The Macallan',
-          description: 'Ahoy irish mate',
-          Age_in_years: null,
-          Distillery: null,
-          Image: null,
-          Presentation: null,
-          Type: 'Blended Scotch',
-          quantity: 20,
-          priceByUnit: 90,
-          Store_id: 1,
-          Store: 'Alabama'
-        }
-    //state.whiskyInfo;
+    const whiskyInfo = state.whiskyInfo[0];
+    
     const {register,handleSubmit} = useForm();
 
     let navigate = useNavigate()
@@ -32,9 +17,35 @@ export function ModifyWhisky() {
         navigate(path)
     }
 
+    const [TypeList,setTypeList] = useState([]);
+    const [DistilleryList,setDistillery] = useState([]);
+    const [PresentationList,setPresentationList] = useState([]);
 
+    useEffect(() => {
+        axios.get('http://localhost:3001/whisky/typeWhisky').then((response) => {
+            setTypeList(response.data)
+        })
+        axios.get('http://localhost:3001/whisky/DestileryWhisky').then((response) => {
+            setDistillery(response.data)
+        })
+        axios.get('http://localhost:3001/whisky/PresentationWhisky').then((response) => {
+            setPresentationList(response.data)
+        })
+      },[]);
 
-//<img src={image} className="img-fluid rounded-start" alt="..."/>
+      const onSubmit = async(data) =>{
+
+        const typegInfo = {}
+        console.log("parkingInfo")
+        try{
+            axios.post('http://localhost:3001/parkings/updateByName',typegInfo).then((response) => {
+            })
+            moveTo()
+        }catch(err){
+                alert('Usuario invalido')
+        }
+    }
+
   return (
     <Fragment>
         <header className="App-header">
@@ -50,10 +61,11 @@ export function ModifyWhisky() {
                                     <h1 className="card-title text-center text-dark">{whiskyInfo.name}</h1>
                                     <br></br>
                                     
+                                    <form onSubmit={handleSubmit(onSubmit)} >
                                     <div className="row">
                                     <div className="col">
                                             <label htmlFor="text" className="form-label">Id del Whisky</label>
-                                            <input type="text" className="form-control" Value = {whiskyInfo.Whiskey_id}readOnly {...register('Whiskey_id',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.whiskey_id}readOnly {...register('Whiskey_id',{required:true})}/>
                                         </div>
 
                                         <div className="col">
@@ -63,7 +75,7 @@ export function ModifyWhisky() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Description</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.description} {...register('description',{required:true})}/>
+                                            <textarea type="text" className="form-control" defaultValue = {whiskyInfo.description} {...register('description',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -73,12 +85,19 @@ export function ModifyWhisky() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Age in years</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.Age_in_years} {...register('Age_in_years',{required:true})}/>
+                                            <input type="number" className="form-control" defaultValue = {whiskyInfo.Age_in_years} {...register('Age_in_years',{required:true})}/>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Distillery</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.Distillery} {...register('Distillery',{required:true})}/>
+                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Distillery',{required:true})}> 
+                                                <option value="DEFAULT" disabled>{whiskyInfo.Distillery}</option>
+                                                {DistilleryList.map((whisky) =>{
+                                                    return (
+                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name+" in store: "+whisky.Store}</option>
+                                                    );
+                                                    })}
+                                            </select>
                                         </div>
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Image</label>
@@ -91,18 +110,32 @@ export function ModifyWhisky() {
                                     <div className="row">
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Presentation</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.Presentation}{...register('Presentation',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Presentation</label>                                        
+                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Presentation',{required:true})}> 
+                                                <option value="DEFAULT" disabled> {whiskyInfo.Presentation} </option>
+                                                {PresentationList.map((whisky) =>{
+                                                    return (
+                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name+" in store: "+whisky.Store}</option>
+                                                    );
+                                                    })}
+                                            </select>
                                         </div>
-                                        
+
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Type</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.Type} {...register('Type',{required:true})}/>
+                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Type',{required:true})}> 
+                                                <option value="DEFAULT" disabled> {whiskyInfo.Type} </option>
+                                                {TypeList.map((whisky) =>{
+                                                    return (
+                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name}</option>
+                                                    );
+                                                    })}
+                                            </select>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Quantity</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.quantity} {...register('quantity',{required:true})}/>
+                                            <input type="number" className="form-control" defaultValue = {whiskyInfo.quantity} {...register('quantity',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -113,7 +146,7 @@ export function ModifyWhisky() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Price by unit</label>
-                                            <input type="text" className="form-control" defaultValue = {whiskyInfo.priceByUnit} {...register('priceByUnit',{required:true})}/>
+                                            <input type="money" className="form-control" defaultValue = {whiskyInfo.priceByUnit} {...register('priceByUnit',{required:true})}/>
                                         </div>
                                         
                                         <div className="col">
@@ -131,9 +164,9 @@ export function ModifyWhisky() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/WhiskysManage' className="btn btn-dark">Regresar</Link>    
+                                            <button type="submit" className= "btn btn-dark text-center" >Modificar información</button>    
                                     </center>
-                                    
+                                    </form>
                                 </div>
                             </div>
                         </div>
