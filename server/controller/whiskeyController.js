@@ -3,8 +3,22 @@ const router = require('express').Router();
 
 
 const sql = config.sql
-const conn = config.conn
-
+//const conn = config.conn
+var conn
+switch (1){
+    case 1:
+        conn = config.conn[0];
+        break;
+    case 2:
+        conn = config.conn[1];
+        break;
+    case 3:
+        conn = config.conn[2];
+        break;
+    default:
+        conn = config.conn[0];
+        break;
+}
 
 router.get("/whiskysSelectAll",async (req,res)=>{
     conn.connect().then(() =>{

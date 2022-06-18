@@ -89,7 +89,7 @@ export function WhiskyDetail() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/ReadWhiskeys' className="btn btn-light">Regresar</Link>    
+                                        <Link to= '/ReadWhiskeys' className="btn btn-light">Return</Link>    
                                     </center>
                                     
                                 </div>

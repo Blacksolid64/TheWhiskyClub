@@ -10,6 +10,7 @@ export  function ReadWhiskeys() {
 	const {register,handleSubmit} = useForm();
     const [whiskys,setwhiskys] = useState([]);
 	const [whiskyTypes,setwhiskyTypes] = useState([]);
+	
     async function getWhiskys(){
     	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
     	if(whiskys.length===0)

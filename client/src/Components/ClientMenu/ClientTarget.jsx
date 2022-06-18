@@ -25,7 +25,7 @@ export  function ClientMenu() {
                             
                             <PrincipalCard props={{title:"Query",buttonTitle:"See",redirectLink:"/"}} />
 
-                            <a1>User loggerd: {userLogged}</a1>
+                            <a1>User logged: {userLogged}</a1>
   
                         </div>
                         
