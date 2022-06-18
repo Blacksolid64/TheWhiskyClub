@@ -31,6 +31,10 @@ import { DistilleryManage } from './DistilleryManage/DistilleryManage';
 import { CreateDistillery } from './DistilleryManage/CreateDistillery';
 import { ModifyDistillery } from './DistilleryManage/ModifyDistillery';
 import { SeeDistillery } from './DistilleryManage/SeeDistillery';
+import { ManageMoney } from './ManageMoney/ManageMoney';
+import { MoneyCreate } from './ManageMoney/MoneyCreate';
+import { MoneyModify } from './ManageMoney/MoneyModify';
+import { MoneySee } from './ManageMoney/MoneySee';
 
 
 
@@ -92,6 +96,14 @@ export function App() {
                 <Route exact path="/ModifyDistillery" element={<ModifyDistillery />}/>
                 
                 <Route exact path="/SeeDistillery" element={<SeeDistillery />}/>
+
+                <Route exact path="/ManageMoney" element={<ManageMoney />}/>
+
+                <Route exact path="/MoneyCreate" element={<MoneyCreate />}/>
+
+                <Route exact path="/MoneyModify" element={<MoneyModify />}/>
+                
+                <Route exact path="/MoneySee" element={<MoneySee />}/>
                 
               </Routes>
                 

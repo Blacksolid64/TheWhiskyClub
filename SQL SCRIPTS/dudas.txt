@@ -1,0 +1,1 @@
+que pasa cuando borro un FK en los clients & whisky

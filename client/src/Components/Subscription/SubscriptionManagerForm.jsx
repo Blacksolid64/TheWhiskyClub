@@ -1,8 +1,8 @@
 import React, { Fragment} from 'react'
-import { CardList } from './CardList'
+import { SubscriptionCard } from './SubscriptionCard'
 
-export function StoreManageForm({props}) {
-
+export function SubscriptionManagerForm({props}) {
+//
     return (
         <Fragment>
             <div className="col">
@@ -10,7 +10,7 @@ export function StoreManageForm({props}) {
                     <div className="card-body">
                         <h2 className="card-title text-dark">{props.title}</h2>
                         <p className="card-text">{props.body ? props.text : ""}</p>
-                        <CardList props={{action:props.action, buttonTitle:props.buttonTitle}} />
+                        <SubscriptionCard props={{action:props.action, buttonTitle:props.buttonTitle}} />
                     </div>                                                       
                 </div>
             </div>

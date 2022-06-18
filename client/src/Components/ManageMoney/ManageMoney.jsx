@@ -1,28 +1,29 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import { StoreManageForm } from './StoreManageForm'
+import { ManageMoneyForm } from './ManageMoneyForm'
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
 
-export  function StoreManage() {
+export  function ManageMoney() {
     return (
         <Fragment>
             <header className="App-header">
                     
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
                     <div className='container mx-auto'>
-                        <h1 className='text-center'>Menu</h1>
+                        <h1 className='text-center'>Type Manage</h1>
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Create Store",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"Create Money",buttonTitle:"See",redirectLink:"/MoneyCreate"}} />
                             
-                            <StoreManageForm props={{title:"Consult Store",buttonTitle:"See",action:"Consultar"}} />
+                            <ManageMoneyForm props={{title:"Consult Money",buttonTitle:"See",action:"consult"}} />
                             
-                            <StoreManageForm props={{title:"Delete Store",buttonTitle:"Delete",action:"Eliminar"}} />
+                            <ManageMoneyForm props={{title:"Delete Money",buttonTitle:"Delete",action:"delete"}} />
                             
-                            <StoreManageForm props={{title:"Update Store",buttonTitle:"Update",action:"Actualizar"}} />
+                            <ManageMoneyForm props={{title:"Update Money",buttonTitle:"Update",action:"modify"}} />
   
                         </div>
+                        
                     </div>
                 </div>
                            
