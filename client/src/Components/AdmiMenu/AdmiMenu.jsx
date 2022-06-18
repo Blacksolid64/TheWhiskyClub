@@ -24,6 +24,9 @@ export  function AdmiMenu() {
                             <PrincipalCard props={{title:"Manage type whisky",buttonTitle:"See",redirectLink:"/TypeMenu"}} />
 
                             <PrincipalCard props={{title:"Manage presentation whisky",buttonTitle:"See",redirectLink:"/PresentationMenu"}} />
+
+                            <PrincipalCard props={{title:"Manage Distellery whisky",buttonTitle:"See",redirectLink:"/DistilleryManage"}} />
+                            
                             
                         </div>
                         

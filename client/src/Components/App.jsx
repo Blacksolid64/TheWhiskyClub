@@ -27,6 +27,10 @@ import { PresentationWhiskyModify } from './WhiskyPresentation/PresentationWhisk
 import { PresentationMenu } from './WhiskyPresentation/PresentationMenu';
 import { CreatePresentation } from './WhiskyPresentation/CreatePresentation';
 import { PresentationWhiskySee } from './WhiskyPresentation/PresentationWhiskySee';
+import { DistilleryManage } from './DistilleryManage/DistilleryManage';
+import { CreateDistillery } from './DistilleryManage/CreateDistillery';
+import { ModifyDistillery } from './DistilleryManage/ModifyDistillery';
+import { SeeDistillery } from './DistilleryManage/SeeDistillery';
 
 
 
@@ -81,6 +85,13 @@ export function App() {
                 
                 <Route exact path="/PresentationWhiskySee" element={<PresentationWhiskySee />}/>
 
+                <Route exact path="/DistilleryManage" element={<DistilleryManage />}/>
+
+                <Route exact path="/CreateDistillery" element={<CreateDistillery />}/>
+
+                <Route exact path="/ModifyDistillery" element={<ModifyDistillery />}/>
+                
+                <Route exact path="/SeeDistillery" element={<SeeDistillery />}/>
                 
               </Routes>
                 
