@@ -64,6 +64,8 @@ router.post("/getFilteredWhisky",async (req,res)=>{
     });
 })
 
+// CRUD Whisky
+
 router.get("/getWhisky",async (req,res)=>{
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
@@ -142,39 +144,12 @@ router.post("/deleteWhisky",async (req,res)=>{
     //res.send("hello world");
 })
 
+//CRUD Type whisky
 
 router.get("/typeWhisky",async (req,res)=>{
     conn.connect().then(() =>{
     const request = new sql.Request(conn)
     request.execute('TypeWiskey_get', (err, result) =>{
-    //console.log(err);
-    //console.log(result.recordset);
-    res.send(result.recordset);
-    //console.log(result.returnValue);
-    //console.log(result.output);
-    })
-});
-//res.send("hello world");
-})
-
-router.get("/DestileryWhisky",async (req,res)=>{
-    conn.connect().then(() =>{
-    const request = new sql.Request(conn)
-    request.execute('Distillery_select_all', (err, result) =>{
-    //console.log(err);
-    //console.log(result.recordset);
-    res.send(result.recordset);
-    //console.log(result.returnValue);
-    //console.log(result.output);
-    })
-});
-//res.send("hello world");
-})
-
-router.get("/PresentationWhisky",async (req,res)=>{
-    conn.connect().then(() =>{
-    const request = new sql.Request(conn)
-    request.execute('PresentationWiskey_get', (err, result) =>{
     //console.log(err);
     //console.log(result.recordset);
     res.send(result.recordset);
@@ -245,7 +220,7 @@ router.post("/deleteTypeWhisky",async (req,res)=>{
 router.post("/createTypeWhisky",async (req,res)=>{
     conn.connect().then(() =>{
         var whisky ={
-            'name':req.body.name,
+            'name':req.body.name
         }
         const request = new sql.Request(conn)
         request.input('name_IN', whisky.name)
@@ -260,5 +235,112 @@ router.post("/createTypeWhisky",async (req,res)=>{
     //res.send("hello world");
 })
 
+
+// CRUD Presentation
+
+
+router.post("/getOnePresentationWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+        var whisky ={
+            'id':req.body.id
+        }
+        const request = new sql.Request(conn)
+        request.input('id_IN', whisky.id)
+        request.execute('PresentationOneWiskey_get', (err, result) =>{
+        //console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+router.post("/deletePresentationWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+        var whisky ={
+            'id':req.body.id,
+        }
+        const request = new sql.Request(conn)
+        request.input('id_IN', whisky.id)
+        request.execute('Presentation_delete', (err, result) =>{
+        //console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+router.get("/PresentationWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+    const request = new sql.Request(conn)
+    request.execute('PresentationWiskey_get', (err, result) =>{
+    //console.log(err);
+    //console.log(result.recordset);
+    res.send(result.recordset);
+    //console.log(result.returnValue);
+    //console.log(result.output);
+    })
+});
+//res.send("hello world");
+})
+
+router.post("/createPresentarionWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+        var whisky ={
+            'name':req.body.name
+        }
+        const request = new sql.Request(conn)
+        request.input('name_IN', whisky.name)
+        request.execute('Presentation_insert', (err, result) =>{
+        //console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+router.post("/ModifyPresentationWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+        var whisky ={
+            'id':req.body.id,
+            'name':req.body.name
+        }
+        const request = new sql.Request(conn)
+        request.input('id_IN', whisky.id)
+        request.input('name_IN', whisky.name)
+        request.execute('Presentation_update', (err, result) =>{
+        //console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+// CRUD Destiller
+
+router.get("/DestileryWhisky",async (req,res)=>{
+    conn.connect().then(() =>{
+    const request = new sql.Request(conn)
+    request.execute('Distillery_select_all', (err, result) =>{
+    //console.log(err);
+    //console.log(result.recordset);
+    res.send(result.recordset);
+    //console.log(result.returnValue);
+    //console.log(result.output);
+    })
+});
+//res.send("hello world");
+})
 
 module.exports = router;

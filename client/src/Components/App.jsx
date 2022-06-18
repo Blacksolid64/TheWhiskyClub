@@ -23,6 +23,10 @@ import { TypeMenu } from './WhiskyTypes/TypeMenu';
 import { TypeWhiskySee } from './WhiskyTypes/TypeWhiskySee';
 import { TypeWhiskyModify } from './WhiskyTypes/TypeWhiskyModify';
 import { CreateWhiskytype } from './WhiskyTypes/CreateWhiskytype';
+import { PresentationWhiskyModify } from './WhiskyPresentation/PresentationWhiskyModify';
+import { PresentationMenu } from './WhiskyPresentation/PresentationMenu';
+import { CreatePresentation } from './WhiskyPresentation/CreatePresentation';
+import { PresentationWhiskySee } from './WhiskyPresentation/PresentationWhiskySee';
 
 
 
@@ -68,6 +72,14 @@ export function App() {
                 <Route exact path="/TypeWhiskyModify" element={<TypeWhiskyModify />}/>
 
                 <Route exact path="/CreateWhiskytype" element={<CreateWhiskytype />}/>
+
+                <Route exact path="/PresentationWhiskyModify" element={<PresentationWhiskyModify />}/>
+
+                <Route exact path="/PresentationMenu" element={<PresentationMenu />}/>
+
+                <Route exact path="/CreatePresentation" element={<CreatePresentation />}/>
+                
+                <Route exact path="/PresentationWhiskySee" element={<PresentationWhiskySee />}/>
 
                 
               </Routes>
