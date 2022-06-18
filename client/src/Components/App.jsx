@@ -19,7 +19,10 @@ import { WhiskySee } from './WhiskysManage/WhiskySee';
 import { ModifyWhisky } from './WhiskysManage/ModifyWhisky';
 import { CreateWhisky } from './WhiskysManage/CreateWhisky';
 import { ReportsManage } from './ReportsManage/ReportsManage';
-
+import { TypeMenu } from './WhiskyTypes/TypeMenu';
+import { TypeWhiskySee } from './WhiskyTypes/TypeWhiskySee';
+import { TypeWhiskyModify } from './WhiskyTypes/TypeWhiskyModify';
+import { CreateWhiskytype } from './WhiskyTypes/CreateWhiskytype';
 
 
 
@@ -57,7 +60,16 @@ export function App() {
                 <Route exact path="/CreateWhisky" element={<CreateWhisky />}/>
 
                 <Route exact path="/ReportsManage" element={<ReportsManage />}/>
+
+                <Route exact path="/TypeMenu" element={<TypeMenu />}/>
+
+                <Route exact path="/TypeWhiskySee" element={<TypeWhiskySee />}/>
               
+                <Route exact path="/TypeWhiskyModify" element={<TypeWhiskyModify />}/>
+
+                <Route exact path="/CreateWhiskytype" element={<CreateWhiskytype />}/>
+
+                
               </Routes>
                 
             </div>

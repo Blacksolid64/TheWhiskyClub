@@ -4,20 +4,20 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 
-export function CardList({props}) {
+export function TypeCardList({props}) {
 
     const {register,handleSubmit} = useForm();
-    const [WhiskysList,setWhiskysList] = useState([]);
+    const [TypeList,setTypeList] = useState([]);
 
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
         if(props.action === 'delete'){
-            path = "/AdmiMenu"
+            path = "/TypeMenu"
         }else if(props.action === 'consult'){
-            path = "/WhiskySee"
+            path = "/TypeWhiskySee"
         }else{
-            path = "/ModifyWhisky"
+            path = "/TypeWhiskyModify"
         }
         console.log('Aqui recibo')
         console.log(whiskyInfo)
@@ -25,8 +25,8 @@ export function CardList({props}) {
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/getWhisky').then((response) => {
-            setWhiskysList(response.data)
+        axios.get('http://localhost:3001/whisky/typeWhisky').then((response) => {
+            setTypeList(response.data)
         })
       },[]);
 
@@ -34,12 +34,13 @@ export function CardList({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                axios.post('http://localhost:3001/whisky/deleteWhisky',data).then((response) => {
+                console.log(data)
+                axios.post('http://localhost:3001/whisky/deleteTypeWhisky',data).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOneTypeWhisky',data).then((response) => {
                 moveTo(response.data)
                 })
               } 
@@ -54,10 +55,10 @@ export function CardList({props}) {
     <Fragment>
         <form onSubmit={handleSubmit(onSubmit)}>
             <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('id',{required:true})}> 
-            <option value="DEFAULT" disabled>Whiskys</option>
-            {WhiskysList.map((whisky) =>{
+            <option value="DEFAULT" disabled>Type Whiskys</option>
+            {TypeList.map((whisky) =>{
                 return (
-                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name+" in store: "+whisky.Store}</option>
+                        <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
                     );
             })}
             </select>

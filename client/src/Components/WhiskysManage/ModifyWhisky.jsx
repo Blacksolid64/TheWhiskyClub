@@ -34,13 +34,11 @@ export function ModifyWhisky() {
       },[]);
 
       const onSubmit = async(data) =>{
-
-        const typegInfo = {}
-        console.log("parkingInfo")
         try{
-            axios.post('http://localhost:3001/parkings/updateByName',typegInfo).then((response) => {
+            axios.post('http://localhost:3001/parkings/updateByName',data).then((response) => {
             })
-            moveTo()
+            console.log(data)
+            //moveTo()
         }catch(err){
                 alert('Usuario invalido')
         }
@@ -90,11 +88,11 @@ export function ModifyWhisky() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Distillery</label>
-                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Distillery',{required:true})}> 
-                                                <option value="DEFAULT" disabled>{whiskyInfo.Distillery}</option>
+                                            <select className="form-select" defaultValue={whiskyInfo.distillery_id} aria-label="Whiskys"{...register('Distillery',{required:true})}> 
+                                                <option value={whiskyInfo.distillery_id}  disabled>{whiskyInfo.Distillery}</option>
                                                 {DistilleryList.map((whisky) =>{
                                                     return (
-                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name+" in store: "+whisky.Store}</option>
+                                                        <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
                                                     );
                                                     })}
                                             </select>
@@ -111,11 +109,11 @@ export function ModifyWhisky() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Presentation</label>                                        
-                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Presentation',{required:true})}> 
-                                                <option value="DEFAULT" disabled> {whiskyInfo.Presentation} </option>
+                                            <select className="form-select" defaultValue={whiskyInfo.presentation_id} aria-label="Whiskys"{...register('Presentation',{required:true})}> 
+                                                <option value={whiskyInfo.presentation_id} disabled> {whiskyInfo.Presentation} </option>
                                                 {PresentationList.map((whisky) =>{
                                                     return (
-                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name+" in store: "+whisky.Store}</option>
+                                                        <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
                                                     );
                                                     })}
                                             </select>
@@ -123,11 +121,11 @@ export function ModifyWhisky() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Type</label>
-                                            <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('Type',{required:true})}> 
-                                                <option value="DEFAULT" disabled> {whiskyInfo.Type} </option>
+                                            <select className="form-select" defaultValue={whiskyInfo.whiskey_type_id}  aria-label="Whiskys"{...register('Type',{required:true})}> 
+                                                <option value={whiskyInfo.whiskey_type_id}  disabled> {whiskyInfo.Type} </option>
                                                 {TypeList.map((whisky) =>{
                                                     return (
-                                                        <option key={whisky.Whiskey_id} value={whisky.Whiskey_id}> {whisky.name}</option>
+                                                        <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
                                                     );
                                                     })}
                                             </select>

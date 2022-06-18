@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
+import { TypeMenuForm } from './TypeMenuForm'
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
 
-export  function AdmiMenu() {
+export  function TypeMenu() {
     return (
         <Fragment>
             <header className="App-header">
@@ -13,16 +14,14 @@ export  function AdmiMenu() {
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Manage whiskys",buttonTitle:"See",redirectLink:"/WhiskysManage"}} />
+                            <PrincipalCard props={{title:"Create Type Whisky",buttonTitle:"See",redirectLink:"/CreateWhiskytype"}} />
                             
-                            <PrincipalCard props={{title:"Manage store",buttonTitle:"See",redirectLink:"/"}} />
+                            <TypeMenuForm props={{title:"Consult Type whisky",buttonTitle:"See",action:"consult"}} />
                             
-                            <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/"}} />
+                            <TypeMenuForm props={{title:"Delete Type Whisky",buttonTitle:"Delete",action:"delete"}} />
                             
-                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/"}} />
+                            <TypeMenuForm props={{title:"Update Type Whisky",buttonTitle:"Update",action:"modify"}} />
   
-                            <PrincipalCard props={{title:"Manage type whisky",buttonTitle:"See",redirectLink:"/TypeMenu"}} />
-                            
                         </div>
                         
                     </div>
