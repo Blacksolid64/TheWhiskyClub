@@ -38,16 +38,32 @@ router.post("/selectWhiskeyDetailed",async (req,res)=>{
 
 
 router.post("/addProductCart",async (req,res)=>{
-    var quantity = req.body.amountCart;
-    var whiskeyId = req.body.;
-    var userId = req.body.;
+    var store = req.body.store;
+    console.log(store);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var quantity = req.body.amountCar;
+    var whiskeyId = req.body.Whiskyid;
+    var userId = req.body.Userid;
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.input('quantity_IN', quantity)
         request.input('whiskeyID_IN', whiskeyId)
         request.input('idUser_IN', userId)
         request.execute('Sale_detail_insert', (err, result) =>{
-        //console.log(err);
+        console.log(err);
         //console.log(result.recordset);
         res.send(result.recordset);
         //console.log(result.returnValue);
@@ -59,6 +75,7 @@ router.post("/addProductCart",async (req,res)=>{
 
 
 router.post("/getFilteredWhisky",async (req,res)=>{
+    
     var whisky = {
         "user_id":req.body.userLogged,
         "name":req.body.name,
