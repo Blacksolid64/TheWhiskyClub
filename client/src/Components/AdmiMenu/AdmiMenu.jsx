@@ -11,19 +11,26 @@ export  function AdmiMenu() {
                     <div className='container mx-auto'>
                         <h1 className='text-center'>Menu</h1>
                         <br/>
-                        <div className="row row-cols-2 row-cols-md-2 g-2">
+                        <div className="row row-cols-4 row-cols-md-4 g-4">
   
                             <PrincipalCard props={{title:"Manage whiskys",buttonTitle:"See",redirectLink:"/WhiskysManage"}} />
                             
-                            <PrincipalCard props={{title:"Manage store",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"Manage employee",buttonTitle:"See",redirectLink:"/"}} />
+  
+                            <PrincipalCard props={{title:"Manage type of whisky",buttonTitle:"See",redirectLink:"/TypeMenu"}} />
+
+                            <PrincipalCard props={{title:"Manage presentation of whisky",buttonTitle:"See",redirectLink:"/PresentationMenu"}} />
+
+                            <PrincipalCard props={{title:"Manage distellery",buttonTitle:"See",redirectLink:"/DistilleryManage"}} />
+
+                            <PrincipalCard props={{title:"Manage subscriptions",buttonTitle:"See",redirectLink:"/DistilleryManage"}} />
+
+                            <PrincipalCard props={{title:"Manage Money",buttonTitle:"See",redirectLink:"/ManageMoney"}} />
                             
                             <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/"}} />
                             
                             <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/"}} />
-  
-                            <PrincipalCard props={{title:"Manage type whisky",buttonTitle:"See",redirectLink:"/TypeMenu"}} />
-
-                            <PrincipalCard props={{title:"Manage presentation whisky",buttonTitle:"See",redirectLink:"/PresentationMenu"}} />
+                            
                             
                         </div>
                         
