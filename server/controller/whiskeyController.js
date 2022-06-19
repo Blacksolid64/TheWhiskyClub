@@ -73,6 +73,38 @@ router.post("/addProductCart",async (req,res)=>{
     //res.send("hello world");
 })
 
+router.post("/watchBag",async (req,res)=>{
+    var store = req.body.store;
+    console.log(store);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var userId = req.body.user;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('Userid_IN', userId)
+        request.execute('Sale_detail_select_id', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
 
 router.post("/getFilteredWhisky",async (req,res)=>{
     
