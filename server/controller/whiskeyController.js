@@ -36,6 +36,28 @@ router.post("/selectWhiskeyDetailed",async (req,res)=>{
     //res.send("hello world");
 })
 
+
+router.post("/addProductCart",async (req,res)=>{
+    var quantity = req.body.amountCart;
+    var whiskeyId = req.body.;
+    var userId = req.body.;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('quantity_IN', quantity)
+        request.input('whiskeyID_IN', whiskeyId)
+        request.input('idUser_IN', userId)
+        request.execute('Sale_detail_insert', (err, result) =>{
+        //console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
 router.post("/getFilteredWhisky",async (req,res)=>{
     var whisky = {
         "user_id":req.body.userLogged,

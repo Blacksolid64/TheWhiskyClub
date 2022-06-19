@@ -7,6 +7,7 @@ import {useForm} from 'react-hook-form';
 export function WhiskyDetail() {
     const {state} = useLocation();
     const Whiskyid = state.id
+    const Userid = state.userId
     console.log(Whiskyid);
     const [whisky, setwhisky] = useState([]);
     async function getWhisky(){
@@ -20,21 +21,9 @@ export function WhiskyDetail() {
     }, []);
     const onSubmit = async(data) =>{
         try{
-            if(data.type === "null"){
-                data.type = null;
-            }
-            if(data.distance === "null"){
-                data.distance = null;
-            }
-            if(data.price === "null"){
-                data.price = null;
-            }
-            if(data.popularity === "null"){
-                data.popularity = null;
-            }
-            const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
-            console.log(response.data)
-            setwhiskys(response.data);
+            //state
+            const response = await axios.post('http://localhost:3001/whisky/addProductCart', data);
+            alert("Whiskey added to cart");
         } catch(err){
             alert('Error searching for whisky');
         }       
@@ -114,11 +103,7 @@ export function WhiskyDetail() {
                                     <br></br>
 
                                     <center>
-<<<<<<< Updated upstream
                                         <Link to= '/ReadWhiskeys' className="btn btn-light">Return</Link>    
-=======
-                                        <Link to= '/ReadWhiskeys' className="btn btn-light">Regresar</Link>     
->>>>>>> Stashed changes
                                     </center>
                                     
                                 </div>
