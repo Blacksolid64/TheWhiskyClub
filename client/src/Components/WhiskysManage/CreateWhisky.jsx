@@ -22,6 +22,7 @@ export function CreateWhisky() {
     const onSubmit = async(data) =>{
 
         try{
+            data.image = data.image[0].name
             axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
             })
             //send_email('data')
@@ -77,7 +78,7 @@ export function CreateWhisky() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Image</label>
-                                            <input type="text" className="form-control" placeholder="Image" aria-label="Image" {...register('Image',{required:true})}/>
+                                            <input type="file" className="form-control" placeholder="Image" aria-label="Image" {...register('Image',{required:true})}/>
                                         </div>
                                         
                                     </div>
