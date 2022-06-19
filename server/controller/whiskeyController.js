@@ -106,6 +106,43 @@ router.post("/watchBag",async (req,res)=>{
 })
 
 
+router.post("/payBag",async (req,res)=>{
+    var store = req.body.store;
+    console.log(`store ${store}`);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var userId = req.body.user;
+    var lat = req.body.latitude;
+    var length = req.body.length;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('clientID_IN', userId)
+        request.input('latitude_IN', lat)
+        request.input('longitude_IN', length)
+        request.execute('Pay', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
 router.post("/getFilteredWhisky",async (req,res)=>{
     
     var whisky = {

@@ -41,9 +41,6 @@ export function TableCart() {
                     ))}
             </tbody>
           </table>
-        <center>
-            <input type='submit'  className='btn btn-dark btn-block'  value='Comprar'/>
-        </center>
         </div>
       </Fragment>  
       )
