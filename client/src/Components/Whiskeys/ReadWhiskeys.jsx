@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect }from 'react'
 import { Table,Button,Dropdown,DropdownMenu,DropdownToggle,DropdownItem,Input,Select,label} from 'reactstrap';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {useNavigate} from "react-router-dom"
+import {useLocation,useNavigate} from "react-router-dom"
 import {useForm} from 'react-hook-form';
 
 export  function ReadWhiskeys() {
@@ -10,13 +10,16 @@ export  function ReadWhiskeys() {
 	const {register,handleSubmit} = useForm();
     const [whiskys,setwhiskys] = useState([]);
 	const [whiskyTypes,setwhiskyTypes] = useState([]);
+	const {state} = useLocation(); 
+    
+
     async function getWhiskys(){
-    	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
+    	const response  = await axios.get('http://localhost:3001/whisky/getWhisky',{params: {store:state.store}});
     	if(whiskys.length===0)
     		setwhiskys(response.data)
     }
 	async function getWhiskyType(){
-		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes');
+		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes',{params: {store:state.store}});
 		if (whiskyTypes.length===0)
 			setwhiskyTypes(responseTypes.data)
 	}
@@ -99,6 +102,7 @@ export  function ReadWhiskeys() {
 				      <th>
 				        Whisky Quantity
 				      </th>
+					  
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -111,7 +115,7 @@ export  function ReadWhiskeys() {
 	                        <td>{item.quantity}</td>
 	                        <td><button type="button" className="btn btn-dark" 
 	                        onClick={(e) => (async () => {
-							    navigate("/WhiskyDetail", { state: { id: item.Whiskey_id } })
+							    navigate("/WhiskyDetail", { state: {id: item.Whiskey_id, userId: state.user}})
 							  })()} 
 	                    	>Details</button></td>
 	                    </tr>

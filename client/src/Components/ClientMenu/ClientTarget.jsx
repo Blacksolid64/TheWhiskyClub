@@ -5,8 +5,9 @@ import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function ClientMenu() {
     const {state} = useLocation();
+    console.log(state)
     const userLogged = state.user
-
+    const userStoreIDLogged = state.store
     return (
         <Fragment>
             <header className="App-header">
@@ -17,15 +18,16 @@ export  function ClientMenu() {
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys",userLogged:userLogged}} />
+                            <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys",userLogged:userLogged,store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"Orders",buttonTitle:"See",redirectLink:"/OrderMenu",userLogged:userLogged}} />
+                            <PrincipalCard props={{title:"Orders",buttonTitle:"See",redirectLink:"/OrderMenu",userLogged:userLogged,store:userStoreIDLogged}} />
                             
                             <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/"}} />
                             
                             <PrincipalCard props={{title:"Query",buttonTitle:"See",redirectLink:"/"}} />
 
-                            <a1>User loggerd: {userLogged}</a1>
+                            <a1>User logged: {userLogged}</a1>
+                            <a1>Store logged: {userStoreIDLogged}</a1>
   
                         </div>
                         

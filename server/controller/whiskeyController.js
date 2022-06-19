@@ -3,8 +3,8 @@ const router = require('express').Router();
 
 
 const sql = config.sql
-const conn = config.conn
-
+//const conn = config.conn
+var conn
 
 router.get("/whiskysSelectAll",async (req,res)=>{
     conn.connect().then(() =>{
@@ -36,7 +36,115 @@ router.post("/selectWhiskeyDetailed",async (req,res)=>{
     //res.send("hello world");
 })
 
+
+router.post("/addProductCart",async (req,res)=>{
+    var store = req.body.store;
+    console.log(store);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var quantity = req.body.amountCar;
+    var whiskeyId = req.body.Whiskyid;
+    var userId = req.body.Userid;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('quantity_IN', quantity)
+        request.input('whiskeyID_IN', whiskeyId)
+        request.input('idUser_IN', userId)
+        request.execute('Sale_detail_insert', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+router.post("/watchBag",async (req,res)=>{
+    var store = req.body.store;
+    console.log(store);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var userId = req.body.user;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('Userid_IN', userId)
+        request.execute('Sale_detail_select_id', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
+router.post("/payBag",async (req,res)=>{
+    var store = req.body.store;
+    console.log(`store ${store}`);
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var userId = req.body.user;
+    var lat = req.body.latitude;
+    var length = req.body.length;
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('clientID_IN', userId)
+        request.input('latitude_IN', lat)
+        request.input('longitude_IN', length)
+        request.execute('Pay', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
 router.post("/getFilteredWhisky",async (req,res)=>{
+    
     var whisky = {
         "user_id":req.body.userLogged,
         "name":req.body.name,
@@ -67,30 +175,73 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 // CRUD Whisky
 
 router.get("/getWhisky",async (req,res)=>{
+   
+    //(req.query.store);
+
+    switch (req.query.store.slice(0,2)){
+        case 'US':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case 'IR':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case 'SC':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Wiskey_get', (err, result) =>{
+        //console.log(conn.config.database);
         //console.log(err);
         //console.log(result.recordset);
+        //console.log(err);
         res.send(result.recordset);
         //console.log(result.returnValue);
         //console.log(result.output);
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 
 router.get("/getWhiskyTypes",async (req,res)=>{
+    
+    switch (req.query.store.slice(0,2)){
+        case 'US':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case 'IR':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case 'SC':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Whiskey_type_select', (err, result) =>{
+        //console.log(conn.config.database);
         console.log(err);
-        console.log(result.recordset);
+        //console.log(result.recordset);
         res.send(result.recordset);
-        console.log(result.returnValue);
-        console.log(result.output);
+        //console.log(result.returnValue);
+        
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 

@@ -1,14 +1,17 @@
 import React from 'react'
-import { Fragment,useState } from 'react'
+import { Fragment,useState, useEffect } from 'react'
 import { MapContainer } from 'react-leaflet/MapContainer'
 import { TileLayer } from 'react-leaflet/TileLayer'
 import { LocationMarker } from './Map'
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
  
 
 export function OrderFormulary() {
     const [lat, setLat] = useState("Latitude");
     const [lng, setLng] = useState("Length");
+    const {state} = useLocation();
 
     const getLatitude = (data) => {
         console.log(data)
@@ -18,6 +21,17 @@ export function OrderFormulary() {
         setLng(data);
     };
 
+    async function payWhiskyBag(){
+        state.latitude = lat;
+        state.length = lng;
+        console.log(state.user);
+        console.log(lat);
+        console.log(state.length);
+        const responseTypes = await axios.post('http://localhost:3001/whisky/payBag',state);
+        console.log(responseTypes) //if the response is different to empty meaning whisky is cancelled
+        alert("Whisky Cancelled")
+    }
+    
   return (
     <Fragment>
         <div className="col">
@@ -43,7 +57,11 @@ export function OrderFormulary() {
                     <input type="text" className="form-control" value = {lng} readOnly/>
                 </div>
                 <center>
-                    <input type='submit'  className='btn btn-dark btn-block'  value='Login'/>
+                    <button type="button" className="btn btn-dark" 
+                            onClick={(e) => (async () => {payWhiskyBag()}
+                              )()} 
+                            >Pay whisky
+                    </button>
                 </center>
             </div>
     </Fragment>  
