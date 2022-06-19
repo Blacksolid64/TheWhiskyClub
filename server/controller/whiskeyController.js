@@ -5,20 +5,6 @@ const router = require('express').Router();
 const sql = config.sql
 //const conn = config.conn
 var conn
-switch (1){
-    case 1:
-        conn = config.conn[0];
-        break;
-    case 2:
-        conn = config.conn[1];
-        break;
-    case 3:
-        conn = config.conn[2];
-        break;
-    default:
-        conn = config.conn[0];
-        break;
-}
 
 router.get("/whiskysSelectAll",async (req,res)=>{
     conn.connect().then(() =>{
@@ -81,30 +67,65 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 // CRUD Whisky
 
 router.get("/getWhisky",async (req,res)=>{
+    var store = req.body.store;
+    switch (store){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Wiskey_get', (err, result) =>{
+        console.log(conn.config.database);
         //console.log(err);
         //console.log(result.recordset);
+        //console.log(err);
         res.send(result.recordset);
         //console.log(result.returnValue);
         //console.log(result.output);
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 
 router.get("/getWhiskyTypes",async (req,res)=>{
+    
+    switch (1){
+        case 1:
+            conn = config.conn[0];
+            break;
+        case 2:
+            conn = config.conn[1];
+            break;
+        case 3:
+            conn = config.conn[2];
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Whiskey_type_select', (err, result) =>{
+        console.log(conn.config.database);
         console.log(err);
-        console.log(result.recordset);
+        //console.log(result.recordset);
         res.send(result.recordset);
-        console.log(result.returnValue);
-        console.log(result.output);
+        //console.log(result.returnValue);
+        
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 

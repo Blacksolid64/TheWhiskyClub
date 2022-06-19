@@ -21,8 +21,8 @@ router.post("/login",async (req,res)=>{
             connection = config.conn[2];
             break;
     } */
-    connection[0].connect().then(() =>{
-        const request = new sql.Request(connection[0])
+    config.conn[0].connect().then(() =>{
+        const request = new sql.Request(config.conn[0])
         request.input('email', user.username)
         request.input('password', user.password)
         request.execute('LogIn', (err, result) =>{
@@ -32,7 +32,8 @@ router.post("/login",async (req,res)=>{
         //console.log(result.returnValue);
         //console.log(result.output);
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 

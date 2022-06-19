@@ -6,20 +6,22 @@ export  function LoginForm() {
     const {register,handleSubmit} = useForm();
     
     let navigate = useNavigate()
-    const loggedIn = (userLogged,userType) =>{
+    const loggedIn = (userLogged,userType,userStoreID) =>{
         let adminPath
         (userType===3) ? (adminPath='/ClientMenu') : (adminPath='/AdmiMenu') 
-        navigate(adminPath,{state:{user:userLogged}})
+        navigate(adminPath,{state:{user:userLogged,store:userStoreID}})
     }
 
 
     const onSubmit = async(data) =>{
         try{
             const response = await axios.post('http://localhost:3001/users/login', data);
-            //alert(JSON.stringify(response.data[0].identification))
+            //alert(JSON.stringify(response.data[0].storeID))
             const userLogged = response.data[0].identification
             const userType = response.data[0].userType
-            loggedIn(userLogged,userType)
+            const userStoreID = response.data[0].storeID
+            
+            loggedIn(userLogged,userType,userStoreID)
             
         } catch(err){
             alert('Invalid User')

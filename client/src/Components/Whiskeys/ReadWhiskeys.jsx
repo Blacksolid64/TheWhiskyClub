@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect }from 'react'
 import { Table,Button,Dropdown,DropdownMenu,DropdownToggle,DropdownItem,Input,Select,label} from 'reactstrap';
 import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
-import {useNavigate} from "react-router-dom"
+import {useLocation,useNavigate} from "react-router-dom"
 import {useForm} from 'react-hook-form';
 
 export  function ReadWhiskeys() {
@@ -10,7 +10,8 @@ export  function ReadWhiskeys() {
 	const {register,handleSubmit} = useForm();
     const [whiskys,setwhiskys] = useState([]);
 	const [whiskyTypes,setwhiskyTypes] = useState([]);
-	
+	const {state} = useLocation();
+    console.log(state);
     async function getWhiskys(){
     	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
     	if(whiskys.length===0)
@@ -100,6 +101,7 @@ export  function ReadWhiskeys() {
 				      <th>
 				        Whisky Quantity
 				      </th>
+					  
 				    </tr>
 				  </thead>
 				  <tbody>

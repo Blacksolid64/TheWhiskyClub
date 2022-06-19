@@ -5,7 +5,9 @@ import { useLocation } from 'react-router-dom';
 
 export  function OrderMenu() {
     const {state} = useLocation();
+    console.log(state)
     const userLogged = state.user
+    const Store = state.store
     return (
         <Fragment>
             <header className="App-header">
@@ -18,11 +20,12 @@ export  function OrderMenu() {
   
                             <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/Order"}} />
                             
-                            <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged:userLogged}} />
+                            <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged}} />
                             
                             <PrincipalCard props={{title:"History",buttonTitle:"See",redirectLink:"/"}} />
 
                             <h1>User logged: {userLogged}</h1>
+                            <h1>User logged: {Store}</h1>
                         </div>
                         
                     </div>

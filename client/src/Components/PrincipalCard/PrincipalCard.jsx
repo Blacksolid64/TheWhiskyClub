@@ -7,11 +7,11 @@ export function PrincipalCard({props}) {
   const {register,handleSubmit} = useForm();
     
   let navigate = useNavigate()
-  const next = (userLogged) =>{ 
-      navigate(props.redirectLink,{state:{user:userLogged}})
+  const next = (userLogged,userStoreIDLogged) =>{ 
+      navigate(props.redirectLink,{state:{user:userLogged,store:userStoreIDLogged}})
   }
   const onSubmit = async(data) =>{
-    next(props.userLogged)   
+    next(props.userLogged,props.store) 
   }
   return (
     <Fragment>
@@ -22,6 +22,7 @@ export function PrincipalCard({props}) {
                     <h2 className="card-title">{props.title}</h2>
                     <p className="card-text">{props.body ? props.text : ""}</p>
                     <p className="card-text">{props.userLogged}</p>
+                    <p className="card-text">{props.store}</p>
                 </div>                                
                 <input type="submit" className="btn btn-dark btn-block" value = {props.buttonTitle} />                                
             </div>
