@@ -1,11 +1,14 @@
 import React,{Fragment,useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
 export function WhiskyDetail() {
+    const {register,handleSubmit} = useForm();
     const {state} = useLocation();
     const Whiskyid = state.id
+    const Userid = state.userId
     console.log(Whiskyid);
     const [whisky, setwhisky] = useState([]);
     async function getWhisky(){
@@ -17,7 +20,17 @@ export function WhiskyDetail() {
         //Runs only on the first render
         getWhisky()
     }, []);
-    
+    const onSubmit = async(data) =>{
+        try{
+            //state
+            data.Whiskyid = Whiskyid
+            data.Userid = Userid
+            const response = await axios.post('http://localhost:3001/whisky/addProductCart', data);
+            alert("Whiskey added to cart");
+        } catch(err){
+            alert('Error searching for whisky');
+        }       
+    }
   return (
     <Fragment>
         <header className="App-header">
@@ -81,16 +94,17 @@ export function WhiskyDetail() {
 
                                     <div>
                                         <div className="col">
+                                        <form onSubmit={handleSubmit(onSubmit)}>
                                             <label htmlFor="text" className="form-label">Amount to add to cart</label>
-                                            <input type="text" className="form-control" placeholder="Amount to add to cart" aria-label="Cart" value = {""}/>
+                                            <input type="number" className="form-control" id="amountCar" placeholder="Amount to add to cart" aria-label="Cart"
+                                            {...register('amountCar',{required:true})}/>
+                                            <button type ='submit' className="btn btn-dark btn-lg">add to Cart</button>
+                                        </form>
                                         </div>
                                     </div>
 
                                     <br></br>
 
-                                    <center>
-                                        <Link to= '/ReadWhiskeys' className="btn btn-light">Regresar</Link>    
-                                    </center>
                                     
                                 </div>
                             </div>

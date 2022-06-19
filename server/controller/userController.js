@@ -3,16 +3,26 @@ const router = require('express').Router();
 
 
 const sql = config.sql
-const conn = config.conn
-
+//var connection
 
 router.post("/login",async (req,res)=>{
     var user = {
         "username":req.body.username,
         "password":req.body.password
     }
-    conn.connect().then(() =>{
-        const request = new sql.Request(conn)
+    /* switch(a){
+        case a:
+            connection = config.conn[0];
+            break;
+        case b:
+            connection = config.conn[1];
+            break;
+        case c:
+            connection = config.conn[2];
+            break;
+    } */
+    config.conn[0].connect().then(() =>{
+        const request = new sql.Request(config.conn[0])
         request.input('email', user.username)
         request.input('password', user.password)
         request.execute('LogIn', (err, result) =>{
@@ -22,7 +32,8 @@ router.post("/login",async (req,res)=>{
         //console.log(result.returnValue);
         //console.log(result.output);
         })
-    });
+    })
+    //.then(() => conn.close());
     //res.send("hello world");
 })
 
