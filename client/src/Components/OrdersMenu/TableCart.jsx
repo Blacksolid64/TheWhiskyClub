@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
-
+import axios from 'axios';
 
 export function TableCart() {
     const [whiskyBag,setWhiskyBag] = useState([]);
@@ -8,6 +8,7 @@ export function TableCart() {
 
 
     async function getWhiskyBag(){
+        console.log(state.user);
         const responseTypes = await axios.post('http://localhost:3001/whisky/watchBag',state);
         if (whiskyBag.length===0)
             setWhiskyBag(responseTypes.data)
@@ -32,7 +33,6 @@ export function TableCart() {
               <tbody>
               {whiskyBag.map((item, i) => (
                         <tr key={i}>
-                            <td>{i}</td>
                             <td>{item.whiskey_id}</td>
                             <td>{}</td>
                             <td>{item.price}</td>

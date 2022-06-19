@@ -18,7 +18,7 @@ export  function OrderMenu() {
                         <br/>
                         <div className="row row-cols-1 row-cols-md-3 g-3">
   
-                            <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/Order"}} />
+                            <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/Order",userLogged,Store}} />
                             
                             <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged}} />
                             
