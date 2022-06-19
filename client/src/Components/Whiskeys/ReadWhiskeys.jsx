@@ -11,14 +11,15 @@ export  function ReadWhiskeys() {
     const [whiskys,setwhiskys] = useState([]);
 	const [whiskyTypes,setwhiskyTypes] = useState([]);
 	const {state} = useLocation(); 
-    console.log(state);
+    
+
     async function getWhiskys(){
-    	const response  = await axios.get('http://localhost:3001/whisky/getWhisky');
+    	const response  = await axios.get('http://localhost:3001/whisky/getWhisky',{params: {store:state.store}});
     	if(whiskys.length===0)
     		setwhiskys(response.data)
     }
 	async function getWhiskyType(){
-		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes');
+		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes',{params: {store:state.store}});
 		if (whiskyTypes.length===0)
 			setwhiskyTypes(responseTypes.data)
 	}

@@ -40,7 +40,7 @@ const conn_IR = new sql.ConnectionPool( {//Joshua
 const conn_SL = new sql.ConnectionPool( {//Joshua
     server:'DESKTOP-U9I8H26\\SQLEXPRESS',
     driver: 'msnodesqlv8',
-    database:'WC_SL',
+    database:'WC_SC',
     options:{
         trustedConnection: true
     }

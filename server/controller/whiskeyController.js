@@ -175,16 +175,21 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 // CRUD Whisky
 
 router.get("/getWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store){
-        case 1:
+   
+    //(req.query.store);
+
+    switch (req.query.store.slice(0,2)){
+        case 'US':
             conn = config.conn[0];
+            console.log('Logged into US');
             break;
-        case 2:
+        case 'IR':
             conn = config.conn[1];
+            console.log('Logged into Ireland');
             break;
-        case 3:
+        case 'SC':
             conn = config.conn[2];
+            console.log('Logged into Scotland');
             break;
         default:
             conn = config.conn[0];
@@ -193,7 +198,7 @@ router.get("/getWhisky",async (req,res)=>{
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Wiskey_get', (err, result) =>{
-        console.log(conn.config.database);
+        //console.log(conn.config.database);
         //console.log(err);
         //console.log(result.recordset);
         //console.log(err);
@@ -208,15 +213,18 @@ router.get("/getWhisky",async (req,res)=>{
 
 router.get("/getWhiskyTypes",async (req,res)=>{
     
-    switch (1){
-        case 1:
+    switch (req.query.store.slice(0,2)){
+        case 'US':
             conn = config.conn[0];
+            console.log('Logged into US');
             break;
-        case 2:
+        case 'IR':
             conn = config.conn[1];
+            console.log('Logged into Ireland');
             break;
-        case 3:
+        case 'SC':
             conn = config.conn[2];
+            console.log('Logged into Scotland');
             break;
         default:
             conn = config.conn[0];
@@ -225,7 +233,7 @@ router.get("/getWhiskyTypes",async (req,res)=>{
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Whiskey_type_select', (err, result) =>{
-        console.log(conn.config.database);
+        //console.log(conn.config.database);
         console.log(err);
         //console.log(result.recordset);
         res.send(result.recordset);

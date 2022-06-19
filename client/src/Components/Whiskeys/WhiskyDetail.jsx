@@ -96,7 +96,7 @@ export function WhiskyDetail() {
                                         <div className="col">
                                         <form onSubmit={handleSubmit(onSubmit)}>
                                             <label htmlFor="text" className="form-label">Amount to add to cart</label>
-                                            <input type="text" className="form-control" id="amountCar" placeholder="Amount to add to cart" aria-label="Cart"
+                                            <input type="number" className="form-control" id="amountCar" placeholder="Amount to add to cart" aria-label="Cart"
                                             {...register('amountCar',{required:true})}/>
                                             <button type ='submit' className="btn btn-dark btn-lg">add to Cart</button>
                                         </form>
