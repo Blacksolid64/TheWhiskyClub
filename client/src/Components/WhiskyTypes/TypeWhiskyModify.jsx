@@ -24,7 +24,7 @@ export function TypeWhiskyModify() {
             console.log(data)
             moveTo()
         }catch(err){
-                alert('Usuario invalido')
+                alert('Invalid user')
         }
     }
 

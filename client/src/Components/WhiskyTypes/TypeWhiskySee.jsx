@@ -6,7 +6,7 @@ export function TypeWhiskySee() {
 
     const {state} = useLocation();
     const whiskyInfo =state.whiskyInfo[0];
-    console.log('Aqui recibo')
+    //console.log('Aqui recibo')
     console.log(whiskyInfo)
 
   return (
