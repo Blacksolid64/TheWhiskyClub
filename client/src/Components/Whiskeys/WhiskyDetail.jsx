@@ -1,7 +1,8 @@
 import React,{Fragment,useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
 
 export function WhiskyDetail() {
     const {state} = useLocation();
@@ -17,7 +18,27 @@ export function WhiskyDetail() {
         //Runs only on the first render
         getWhisky()
     }, []);
-    
+    const onSubmit = async(data) =>{
+        try{
+            if(data.type === "null"){
+                data.type = null;
+            }
+            if(data.distance === "null"){
+                data.distance = null;
+            }
+            if(data.price === "null"){
+                data.price = null;
+            }
+            if(data.popularity === "null"){
+                data.popularity = null;
+            }
+            const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
+            console.log(response.data)
+            setwhiskys(response.data);
+        } catch(err){
+            alert('Error searching for whisky');
+        }       
+    }
   return (
     <Fragment>
         <header className="App-header">
@@ -81,15 +102,23 @@ export function WhiskyDetail() {
 
                                     <div>
                                         <div className="col">
+                                        <form onSubmit={handleSubmit(onSubmit)}>
                                             <label htmlFor="text" className="form-label">Amount to add to cart</label>
-                                            <input type="text" className="form-control" placeholder="Amount to add to cart" aria-label="Cart" value = {""}/>
+                                            <input type="text" className="form-control" id="amountCar" placeholder="Amount to add to cart" aria-label="Cart"
+                                            {...register('amountCar',{required:true})}/>
+                                            <button type ='submit' className="btn btn-dark btn-lg">add to Car</button>
+                                        </form>
                                         </div>
                                     </div>
 
                                     <br></br>
 
                                     <center>
+<<<<<<< Updated upstream
                                         <Link to= '/ReadWhiskeys' className="btn btn-light">Return</Link>    
+=======
+                                        <Link to= '/ReadWhiskeys' className="btn btn-light">Regresar</Link>     
+>>>>>>> Stashed changes
                                     </center>
                                     
                                 </div>

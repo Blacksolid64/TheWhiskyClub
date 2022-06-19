@@ -1,7 +1,11 @@
 const sql = require("mssql/msnodesqlv8");
+<<<<<<< Updated upstream
 const connections = []
 
 const conn1 = new sql.ConnectionPool( {
+=======
+const conn = new sql.ConnectionPool( {
+>>>>>>> Stashed changes
     server:'LAPTOP-140FDP4P',
     driver: 'msnodesqlv8',
     database:'WC_USA',
@@ -10,7 +14,7 @@ const conn1 = new sql.ConnectionPool( {
     }
 });
 
-const conn2 = new sql.ConnectionPool( {
+const conn1 = new sql.ConnectionPool( {
     server:'LAPTOP-RHFFFTGS',
     driver: 'msnodesqlv8',
     database:'WC_USA',
@@ -19,7 +23,7 @@ const conn2 = new sql.ConnectionPool( {
     }
 });
 
-const conn = new sql.ConnectionPool( {//Joshua
+const conn2 = new sql.ConnectionPool( {//Joshua
     server:'DESKTOP-U9I8H26\\SQLEXPRESS',
     driver: 'msnodesqlv8',
     database:'WC_USA',
