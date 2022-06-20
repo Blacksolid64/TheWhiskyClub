@@ -10,7 +10,7 @@ export function ManageMoneyForm({props}) {
                     <div className="card-body">
                         <h2 className="card-title text-dark">{props.title}</h2>
                         <p className="card-text">{props.body ? props.text : ""}</p>
-                        <MoneyCard props={{action:props.action, buttonTitle:props.buttonTitle}} />
+                        <MoneyCard props={{action:props.action, buttonTitle:props.buttonTitle,store:props.store}} />
                     </div>                                                       
                 </div>
             </div>

@@ -9,19 +9,21 @@ import emailjs from '@emailjs/browser';
 export function MoneyCreate() {
 
     const {register,handleSubmit} = useForm();
+    const {state} = useLocation();
+    const userStoreIDLogged = state.store
 
     const form = useRef();
 
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/AdmiMenu"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const onSubmit = async(data) =>{
 
         try{
-            axios.post('http://localhost:3001/money/createMoney',data).then((response) => {
+            axios.post('http://localhost:3001/money/createMoney',{data:data,store:userStoreIDLogged}).then((response) => {
             })
             moveTo()
             

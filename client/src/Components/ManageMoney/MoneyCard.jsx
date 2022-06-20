@@ -21,11 +21,11 @@ export function MoneyCard({props}) {
         }
         console.log('Aqui recibo')
         console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/money/moneyGet').then((response) => {
+        axios.get('http://localhost:3001/money/moneyGet',{params: {store:props.store}}).then((response) => {
             setTypeList(response.data)
         })
       },[]);
@@ -35,12 +35,12 @@ export function MoneyCard({props}) {
         try{
             if(props.action === 'delete'){
                 console.log(data)
-                axios.post('http://localhost:3001/money/deleteMoney',data).then((response) => {
+                axios.post('http://localhost:3001/money/deleteMoney',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/money/moneyOneget',data).then((response) => {
+                axios.post('http://localhost:3001/money/moneyOneget',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
               } 
