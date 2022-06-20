@@ -5,7 +5,7 @@ const router = require('express').Router();
 const sql = config.sql
 //const conn = config.conn
 var conn
-// CRUD Destiller
+// CRUD Money
 
 router.get("/moneyGet",async (req,res)=>{
     var store = req.query.store;

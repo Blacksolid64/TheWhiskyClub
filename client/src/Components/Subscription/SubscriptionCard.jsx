@@ -10,23 +10,24 @@ export function SubscriptionCard({props}) {
     const [SubscriptionList,setSubscription] = useState([]);
 
     let navigate = useNavigate()
-    const moveTo = (whiskyInfo) =>{
+    const moveTo = (subscriptionInfo) =>{
         let path 
         if(props.action === 'delete'){
             path = "/AdmiMenu"
         }else if(props.action === 'consult'){
-            path = "/SeeDistillery"
+            path = "/SubscriptionSee"
         }else{
-            path = "/ModifyDistillery"
+            path = "/SubscriptionModify"
         }
         console.log('Aqui recibo')
-        console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        console.log(subscriptionInfo)
+        navigate(path, {state:{subscriptionInfo:subscriptionInfo,store:props.store}})
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/DestileryWhisky').then((response) => {
-            SubscriptionList(response.data)
+        console.log(props.store)
+        axios.get('http://localhost:3001/subscription/SuscriptionGet',{params: {store:props.store}}).then((response) => {
+            setSubscription(response.data)
             console.log(response.data)
         })
       },[]);
@@ -35,12 +36,12 @@ export function SubscriptionCard({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                axios.post('http://localhost:3001/whisky/deleteDestilleryWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/subscription/SuscriptionDelete',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneDestilleryWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/subscription/getOneSuscription',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
               } 
@@ -55,10 +56,10 @@ export function SubscriptionCard({props}) {
         <Fragment>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('id',{required:true})}> 
-                <option value="DEFAULT" disabled>Presentation Whiskys</option>
-                {SubscriptionList.map((whisky) =>{
+                <option value="DEFAULT" disabled>Subscription Whiskys</option>
+                {SubscriptionList.map((subs) =>{
                     return (
-                            <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
+                            <option key={subs.id} value={subs.id}> {subs.name}</option>
                         );
                 })}
                 </select>

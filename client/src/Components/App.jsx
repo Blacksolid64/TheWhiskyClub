@@ -35,6 +35,13 @@ import { ManageMoney } from './ManageMoney/ManageMoney';
 import { MoneyCreate } from './ManageMoney/MoneyCreate';
 import { MoneyModify } from './ManageMoney/MoneyModify';
 import { MoneySee } from './ManageMoney/MoneySee';
+import { SubscriptionManager } from './Subscription/SubscriptionManager';
+import { SubscriptionCard } from './Subscription/SubscriptionCard';
+import { SubscriptionManagerForm } from './Subscription/SubscriptionManagerForm';
+import { SubscriptionSee } from './Subscription/SubscriptionSee';
+import { SubscriptionModify } from './Subscription/SubscriptionModify';
+import { SubscriptionCreate } from './Subscription/SubscriptionCreate';
+
 
 
 
@@ -104,6 +111,20 @@ export function App() {
                 <Route exact path="/MoneyModify" element={<MoneyModify />}/>
                 
                 <Route exact path="/MoneySee" element={<MoneySee />}/>
+
+                <Route exact path="/SubscriptionManager" element={<SubscriptionManager />}/>
+
+                <Route exact path="/SubscriptionCard" element={<SubscriptionCard />}/>
+
+                <Route exact path="/SubscriptionManagerForm" element={<SubscriptionManagerForm />}/>
+
+                <Route exact path="/SubscriptionSee" element={<SubscriptionSee />}/>
+
+                <Route exact path="/SubscriptionModify" element={<SubscriptionModify />}/>
+
+                <Route exact path="/SubscriptionCreate" element={<SubscriptionCreate />}/>
+
+                
                 
               </Routes>
                 

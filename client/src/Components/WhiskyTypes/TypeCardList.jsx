@@ -13,7 +13,7 @@ export function TypeCardList({props}) {
     const moveTo = (whiskyInfo) =>{
         let path 
         if(props.action === 'delete'){
-            path = "/TypeMenu"
+            path = "/AdmiMenu"
         }else if(props.action === 'consult'){
             path = "/TypeWhiskySee"
         }else{

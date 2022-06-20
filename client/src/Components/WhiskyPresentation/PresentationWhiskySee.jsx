@@ -13,8 +13,6 @@ export function PresentationWhiskySee() {
             <div style={{ backgroundImage: 'url(require("./images/genericBackground.png"))' }}>
                 <div className='container mx-auto'>
                     <div className="card bg-light w-100 mb-3  text-dark text-center" >                    
-                        <div className="row g-0">
-                            <div className="col-md-8">
                                 <div className="card-body">
                                     <h1 className="card-title text-center  text-dark">Presentation</h1>
                                     <br></br>
@@ -36,8 +34,6 @@ export function PresentationWhiskySee() {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </header>
       </Fragment>
     

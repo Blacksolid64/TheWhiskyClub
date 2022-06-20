@@ -28,7 +28,7 @@ export  function AdmiMenu() {
 
                             <PrincipalCard props={{title:"Manage distellery",buttonTitle:"See",redirectLink:"/DistilleryManage",store:userStoreIDLogged}} />
 
-                            <PrincipalCard props={{title:"Manage subscriptions",buttonTitle:"See",redirectLink:"/DistilleryManage",store:userStoreIDLogged}} />
+                            <PrincipalCard props={{title:"Manage subscriptions",buttonTitle:"See",redirectLink:"/SubscriptionManager",store:userStoreIDLogged}} />
 
                             <PrincipalCard props={{title:"Manage Money",buttonTitle:"See",redirectLink:"/ManageMoney",store:userStoreIDLogged}} />
                             

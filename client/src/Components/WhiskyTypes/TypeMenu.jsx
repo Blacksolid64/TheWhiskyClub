@@ -15,11 +15,10 @@ export  function TypeMenu() {
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
                     <div className='container mx-auto'>
                         <h1 className='text-center'>Type Manage</h1>
-                        <h1 className='text-center'>{userStoreIDLogged}</h1>
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Create Type Whisky",buttonTitle:"See",redirectLink:"/CreateWhiskytype"}} />
+                            <PrincipalCard props={{title:"Create Type Whisky",buttonTitle:"See",redirectLink:"/CreateWhiskytype",store:userStoreIDLogged}} />
                             
                             <TypeMenuForm props={{title:"Consult Type whisky",buttonTitle:"See",action:"consult",store:userStoreIDLogged}} />
                             
