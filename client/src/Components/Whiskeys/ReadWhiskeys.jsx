@@ -115,7 +115,7 @@ export  function ReadWhiskeys() {
 	                        <td>{item.quantity}</td>
 	                        <td><button type="button" className="btn btn-dark" 
 	                        onClick={(e) => (async () => {
-							    navigate("/WhiskyDetail", { state: {id: item.Whiskey_id, userId: state.user}})
+							    navigate("/WhiskyDetail", { state: {id: item.Whiskey_id, userId: state.user, store: state.store}})
 							  })()} 
 	                    	>Details</button></td>
 	                    </tr>

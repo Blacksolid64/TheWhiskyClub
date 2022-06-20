@@ -41,6 +41,7 @@ router.get("/whiskysSelectAll",async (req,res)=>{
 
 router.post("/selectWhiskeyDetailed",async (req,res)=>{
     var store = req.body.store;
+    //console.log("Store_below");
     console.log(store);
     switch (store.slice(0,2)){
         case 'US':
@@ -191,7 +192,25 @@ router.post("/payBag",async (req,res)=>{
 
 
 router.post("/getFilteredWhisky",async (req,res)=>{
-    
+    var store = req.body.store;
+    console.log(`store ${store}`);
+    switch (store.slice(0,2)){
+        case 'US':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case 'IR':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case 'SC':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     var whisky = {
         "user_id":req.body.userLogged,
         "name":req.body.name,
@@ -223,6 +242,8 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 
 router.get("/getWhisky",async (req,res)=>{
     var store = req.body.store;
+    
+    console.log('Get whiskies read');
     console.log(store);
     switch (req.query.store.slice(0,2)){
         case 'US':
@@ -248,8 +269,8 @@ router.get("/getWhisky",async (req,res)=>{
         //console.log(err);
         //console.log(result.recordset);
         //console.log(err);
-        res.send(result.recordset);
         //console.log(result.returnValue);
+        res.send(result.recordset);
         //console.log(result.output);
         })
     })
