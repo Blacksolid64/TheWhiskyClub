@@ -21,11 +21,11 @@ export function TypeCardList({props}) {
         }
         console.log('Aqui recibo')
         console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/typeWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/typeWhisky',{params: {store:props.store}}).then((response) => {
             setTypeList(response.data)
         })
       },[]);
@@ -35,12 +35,15 @@ export function TypeCardList({props}) {
         try{
             if(props.action === 'delete'){
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/deleteTypeWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/deleteTypeWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
+                console.log("here2")
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneTypeWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOneTypeWhisky',{data:data,store:props.store}).then((response) => {
+                console.log("response")
+                console.log(response.data)
                 moveTo(response.data)
                 })
               } 

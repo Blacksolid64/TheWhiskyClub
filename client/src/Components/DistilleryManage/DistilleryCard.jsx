@@ -21,11 +21,11 @@ export function DistilleryCard({props}) {
         }
         console.log('Aqui recibo')
         console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/DestileryWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/DestileryWhisky',{params: {store:props.store}}).then((response) => {
             setDistillery(response.data)
             console.log(response.data)
         })
@@ -35,12 +35,12 @@ export function DistilleryCard({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                axios.post('http://localhost:3001/whisky/deleteDestilleryWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/deleteDestilleryWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneDestilleryWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOneDestilleryWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
               } 

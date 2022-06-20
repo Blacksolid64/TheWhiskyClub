@@ -8,6 +8,8 @@ export function ModifyWhisky() {
 
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
+    const userStoreIDLogged = state.store
+    console.log(userStoreIDLogged)
     
     const {register,handleSubmit} = useForm();
 
@@ -22,20 +24,21 @@ export function ModifyWhisky() {
     const [PresentationList,setPresentationList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/typeWhisky').then((response) => {
+
+        axios.get('http://localhost:3001/whisky/typeWhisky',{params: {store:userStoreIDLogged}}).then((response) => {
             setTypeList(response.data)
         })
-        axios.get('http://localhost:3001/whisky/DestileryWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/DestileryWhisky',{params:{store:userStoreIDLogged}}).then((response) => {
             setDistillery(response.data)
         })
-        axios.get('http://localhost:3001/whisky/PresentationWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/PresentationWhisky',{params:{store:userStoreIDLogged}}).then((response) => {
             setPresentationList(response.data)
         })
       },[]);
 
       const onSubmit = async(data) =>{
         try{
-            axios.post('http://localhost:3001/parkings/updateByName',data).then((response) => {
+            axios.post('http://localhost:3001/parkings/updateByName',{data,store:userStoreIDLogged}).then((response) => {
             })
             console.log(data)
             //moveTo()

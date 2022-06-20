@@ -19,13 +19,11 @@ export function CardList({props}) {
         }else{
             path = "/ModifyWhisky"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
-    
+     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/getWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/getWhisky',{params: {store:props.store}}).then((response) => {
             setWhiskysList(response.data)
         })
       },[]);
@@ -34,12 +32,12 @@ export function CardList({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                axios.post('http://localhost:3001/whisky/deleteWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/deleteWhisky',{data:data,store:{store:props.store}}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOneWhisky',{data:data,store:{store:props.store}}).then((response) => {
                 moveTo(response.data)
                 })
               } 
@@ -48,8 +46,8 @@ export function CardList({props}) {
             alert('An error occurred')
         }
     }
-
-
+    console.log("here")
+    console.log(props.store)
   return (
     <Fragment>
         <form onSubmit={handleSubmit(onSubmit)}>

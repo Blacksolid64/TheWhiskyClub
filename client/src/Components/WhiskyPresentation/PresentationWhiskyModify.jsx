@@ -8,18 +8,19 @@ export function PresentationWhiskyModify() {
 
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
+    const userStoreIDLogged = state.store
     
     const {register,handleSubmit} = useForm();
 
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/PresentationMenu"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
       const onSubmit = async(data) =>{
         try{
-            axios.post('http://localhost:3001/whisky/ModifyPresentationWhisky',data).then((response) => {
+            axios.post('http://localhost:3001/whisky/ModifyPresentationWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
             console.log(data)
             moveTo()

@@ -9,19 +9,21 @@ import axios from 'axios';
 export function CreatePresentation() {
 
     const {register,handleSubmit} = useForm();
+    const {state} = useLocation();
+    const userStoreIDLogged = state.store
 
     const form = useRef();
 
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/PresentationMenu"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const onSubmit = async(data) =>{
 
         try{
-            axios.post('http://localhost:3001/whisky/createPresentarionWhisky',data).then((response) => {
+            axios.post('http://localhost:3001/whisky/createPresentarionWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
             moveTo()
             
@@ -29,9 +31,6 @@ export function CreatePresentation() {
             alert(err)
         }
     }
-
-
-//<img src={image} className="img-fluid rounded-start" alt="..."/>
   return (
     <Fragment>
         <header className="App-header">

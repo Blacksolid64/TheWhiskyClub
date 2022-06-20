@@ -21,11 +21,11 @@ export function PresentationardList({props}) {
         }
         console.log('Aqui recibo')
         console.log(whiskyInfo)
-        navigate(path, {state:{whiskyInfo:whiskyInfo}})
+        navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
     useEffect(() => {
-        axios.get('http://localhost:3001/whisky/PresentationWhisky').then((response) => {
+        axios.get('http://localhost:3001/whisky/PresentationWhisky',{params: {store:props.store}}).then((response) => {
             setPresentationList(response.data)
         })
       },[]);
@@ -35,12 +35,13 @@ export function PresentationardList({props}) {
         try{
             if(props.action === 'delete'){
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/deletePresentationWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/deletePresentationWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
+                console.log('hereee')
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOnePresentationWhisky',data).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOnePresentationWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
               } 

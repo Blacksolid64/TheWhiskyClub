@@ -7,22 +7,25 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
+
 export function CreateWhiskytype() {
 
     const {register,handleSubmit} = useForm();
+    const {state} = useLocation();
+    const userStoreIDLogged = state.store
 
     const form = useRef();
 
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/TypeMenu"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const onSubmit = async(data) =>{
 
         try{
-            axios.post('http://localhost:3001/whisky/createTypeWhisky',data).then((response) => {
+            axios.post('http://localhost:3001/whisky/createTypeWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
             moveTo()
             

@@ -10,7 +10,7 @@ export function WhiskysManageForm({props}) {
                     <div className="card-body">
                         <h2 className="card-title text-dark">{props.title}</h2>
                         <p className="card-text">{props.body ? props.text : ""}</p>
-                        <CardList props={{action:props.action, buttonTitle:props.buttonTitle}} />
+                        <CardList props={{action:props.action, buttonTitle:props.buttonTitle,store:props.store}} />
                     </div>                                                       
                 </div>
             </div>

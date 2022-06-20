@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
+import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function AdmiMenu() {
+    const {state} = useLocation();
+    console.log(state)
+    const userStoreIDLogged = state.store
     return (
         <Fragment>
             <header className="App-header">
@@ -10,26 +14,27 @@ export  function AdmiMenu() {
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
                     <div className='container mx-auto'>
                         <h1 className='text-center'>Menu</h1>
+                        <h1 className='text-center'>{userStoreIDLogged}</h1>
                         <br/>
                         <div className="row row-cols-4 row-cols-md-4 g-4">
   
-                            <PrincipalCard props={{title:"Manage whiskys",buttonTitle:"See",redirectLink:"/WhiskysManage"}} />
+                            <PrincipalCard props={{title:"Manage whiskys",buttonTitle:"See",redirectLink:"/WhiskysManage",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"Manage employee",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"Manage employee",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
   
-                            <PrincipalCard props={{title:"Manage type of whisky",buttonTitle:"See",redirectLink:"/TypeMenu"}} />
+                            <PrincipalCard props={{title:"Manage type of whisky",buttonTitle:"See",redirectLink:"/TypeMenu",store:userStoreIDLogged}} />
 
-                            <PrincipalCard props={{title:"Manage presentation of whisky",buttonTitle:"See",redirectLink:"/PresentationMenu"}} />
+                            <PrincipalCard props={{title:"Manage presentation of whisky",buttonTitle:"See",redirectLink:"/PresentationMenu",store:userStoreIDLogged}} />
 
-                            <PrincipalCard props={{title:"Manage distellery",buttonTitle:"See",redirectLink:"/DistilleryManage"}} />
+                            <PrincipalCard props={{title:"Manage distellery",buttonTitle:"See",redirectLink:"/DistilleryManage",store:userStoreIDLogged}} />
 
-                            <PrincipalCard props={{title:"Manage subscriptions",buttonTitle:"See",redirectLink:"/DistilleryManage"}} />
+                            <PrincipalCard props={{title:"Manage subscriptions",buttonTitle:"See",redirectLink:"/DistilleryManage",store:userStoreIDLogged}} />
 
-                            <PrincipalCard props={{title:"Manage Money",buttonTitle:"See",redirectLink:"/ManageMoney"}} />
+                            <PrincipalCard props={{title:"Manage Money",buttonTitle:"See",redirectLink:"/ManageMoney",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
                             
                             
                         </div>

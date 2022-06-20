@@ -8,18 +8,20 @@ export function TypeWhiskyModify() {
 
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
+    const userStoreIDLogged = state.store
     
     const {register,handleSubmit} = useForm();
 
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/TypeMenu"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
       const onSubmit = async(data) =>{
         try{
-            axios.post('http://localhost:3001/whisky/ModifyTypeWhisky',data).then((response) => {
+            console.log(userStoreIDLogged)
+            axios.post('http://localhost:3001/whisky/ModifyTypeWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
             console.log(data)
             moveTo()
