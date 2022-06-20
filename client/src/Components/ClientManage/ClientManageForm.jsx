@@ -1,15 +1,26 @@
-import React,{Fragment,useRef } from 'react'
-//import image from '../../images/tecSanJose.jpg'
+import React,{Fragment,useRef,useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
-import emailjs from '@emailjs/browser';
+import { MapContainer } from 'react-leaflet/MapContainer'
+import { TileLayer } from 'react-leaflet/TileLayer'
+import { LocationMarker } from '../OrdersMenu/Map'
 
-export function CreateWhisky() {
+export function ClientManageForm() {
 
     const {register,handleSubmit} = useForm();
+    const [lat, setLat] = useState("Latitude");
+    const [lng, setLng] = useState("Length");
+
+    const getLatitude = (data) => {
+        console.log(data)
+        setLat(data);
+    };
+    const getLength = (data) => {
+        setLng(data);
+    };
 
     const form = useRef();
 
@@ -37,15 +48,8 @@ export function CreateWhisky() {
 //<img src={image} className="img-fluid rounded-start" alt="..."/>
   return (
     <Fragment>
-        <header className="App-header">
-            <div style={{ backgroundImage: 'url(require("./images/genericBackground.png"))' }}>
-                <div className='container mx-auto'>
                     <div className="card bg-light w-100 mb-3  text-dark" >                    
                         <div className="row g-0">
-                            <div className="col-md-4">
-                                <h1>Hola</h1>
-                            </div>
-                            <div className="col-md-8">
                                 <div className="card-body">
                                     <br></br>
                                     <form onSubmit={handleSubmit(onSubmit)} >
@@ -57,42 +61,65 @@ export function CreateWhisky() {
                                         </div>
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Description</label>
+                                            <label htmlFor="text" className="form-label">Email</label>
                                             <input type="text" className="form-control" placeholder="Description" aria-label="Description" {...register('description',{required:true})}/>
                                         </div>
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Age in years</label>
+                                            <label htmlFor="text" className="form-label">Password</label>
                                             <input type="text" className="form-control" placeholder="Age in years" aria-label="Age in years" {...register('Age_in_years',{required:true})}/>
                                         </div>
 
-                                    </div>
-                                    <br></br>
-
-                                    <div className="row">
-                                        
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Image</label>
-                                            <input type="file" className="form-control" placeholder="Image" aria-label="Image" {...register('Image',{required:true})}/>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <br></br>
-                                    <div className="row">
-
-                                        <div className="col">
-                                            <label htmlFor="text" className="form-label">Distillery</label>
+                                            <label htmlFor="text" className="form-label">Username</label>
                                             <input type="text" className="form-control" placeholder="Distillery" aria-label="Distillery" {...register('Distillery',{required:true})}/>
                                         </div>
 
+                                    </div>
+                                    <br></br>
+                                    <div className="row">
+                                        
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Presentation</label>
+                                            <label htmlFor="text" className="form-label">Location</label>
+                                                <center>
+                                                    <MapContainer
+                                                        center={{ lat: 51.505, lng: -0.09 }}
+                                                        zoom={50}
+                                                        scrollWheelZoom={true}
+                                                        style={{ height: "50vh", width: "35vh" }}>
+                                                        <TileLayer
+                                                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
+                                                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                        />
+                                                        <LocationMarker getLatitude={getLatitude} getLength={getLength} />
+                                                    </MapContainer>
+                                                </center>
+                                              
+                                            </div>
+                                                <div className="col">
+                                                    <label htmlFor="text" className="form-label">Length</label>
+                                                    <input type="text" className="form-control" value = {lat} readOnly/>
+                                                </div>
+                                                <div className="col">
+                                                    <label htmlFor="text" className="form-label">Latitude</label>
+                                                    <input type="text" className="form-control" value = {lng} readOnly/>
+                                                </div>
+                                        </div>
+                                    <br></br>
+                                    <div className="row">
+
+                                        <div className="col">
+                                            <label htmlFor="text" className="form-label">Name</label>
                                             <input type="text" className="form-control" placeholder="Presentation" aria-label="Presentation" {...register('Presentation',{required:true})}/>
                                         </div>
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Type</label>
+                                            <label htmlFor="text" className="form-label">Last Name</label>
+                                            <input type="text" className="form-control" placeholder="Type" aria-label="Type" {...register('Type',{required:true})}/>
+                                        </div>
+
+                                        <div className="col">
+                                            <label htmlFor="text" className="form-label">Second Last Name</label>
                                             <input type="text" className="form-control" placeholder="Type" aria-label="Type" {...register('Type',{required:true})}/>
                                         </div>
 
@@ -129,10 +156,6 @@ export function CreateWhisky() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </header>
       </Fragment>
     
   )

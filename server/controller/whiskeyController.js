@@ -308,6 +308,13 @@ router.get("/createWhisky",async (req,res)=>{
             conn = config.conn[0];
             break;
     }
+    var whisky = {
+        "name":req.body.name,
+        "desciption":req.body.type,
+        "whiskeyType":req.body.price,
+        "popularity":req.body.popularity,
+        "distance":req.body.distance
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.execute('Wiskey_get', (err, result) =>{

@@ -41,6 +41,7 @@ import { SubscriptionManagerForm } from './Subscription/SubscriptionManagerForm'
 import { SubscriptionSee } from './Subscription/SubscriptionSee';
 import { SubscriptionModify } from './Subscription/SubscriptionModify';
 import { SubscriptionCreate } from './Subscription/SubscriptionCreate';
+import { ClientManage } from './ClientManage/ClientManage';
 
 
 
@@ -123,6 +124,8 @@ export function App() {
                 <Route exact path="/SubscriptionModify" element={<SubscriptionModify />}/>
 
                 <Route exact path="/SubscriptionCreate" element={<SubscriptionCreate />}/>
+
+                <Route exact path="/ClientManage" element={<ClientManage />}/>
 
                 
                 
