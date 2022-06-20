@@ -59,20 +59,15 @@ export function ClientManageForm() {
                                             <label htmlFor="text" className="form-label">Name</label>
                                             <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('name',{required:true})}/>
                                         </div>
-                                        
+
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Email</label>
-                                            <input type="text" className="form-control" placeholder="Description" aria-label="Description" {...register('description',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Last Name</label>
+                                            <input type="text" className="form-control" placeholder="Last Name" aria-label="Last Name" {...register('Last_Name',{required:true})}/>
                                         </div>
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Password</label>
-                                            <input type="text" className="form-control" placeholder="Age in years" aria-label="Age in years" {...register('Age_in_years',{required:true})}/>
-                                        </div>
-
-                                        <div className="col">
-                                            <label htmlFor="text" className="form-label">Username</label>
-                                            <input type="text" className="form-control" placeholder="Distillery" aria-label="Distillery" {...register('Distillery',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Second Last Name</label>
+                                            <input type="text" className="form-control" placeholder="Second Last Name" aria-label="Second Last Name" {...register('Second_Last_Name',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -98,29 +93,25 @@ export function ClientManageForm() {
                                             </div>
                                                 <div className="col">
                                                     <label htmlFor="text" className="form-label">Length</label>
-                                                    <input type="text" className="form-control" value = {lat} readOnly/>
+                                                    <input type="text" className="form-control" value = {lat} readOnly {...register('Length',{required:true})}/>
                                                 </div>
+
                                                 <div className="col">
                                                     <label htmlFor="text" className="form-label">Latitude</label>
-                                                    <input type="text" className="form-control" value = {lng} readOnly/>
+                                                    <input type="text" className="form-control" value = {lng} readOnly {...register('Latitude',{required:true})}/>
                                                 </div>
                                         </div>
                                     <br></br>
                                     <div className="row">
 
-                                        <div className="col">
-                                            <label htmlFor="text" className="form-label">Name</label>
-                                            <input type="text" className="form-control" placeholder="Presentation" aria-label="Presentation" {...register('Presentation',{required:true})}/>
-                                        </div>
-                                        
-                                        <div className="col">
-                                            <label htmlFor="text" className="form-label">Last Name</label>
-                                            <input type="text" className="form-control" placeholder="Type" aria-label="Type" {...register('Type',{required:true})}/>
+                                    <div className="col">
+                                            <label htmlFor="text" className="form-label">Email</label>
+                                            <input type="text" className="form-control" placeholder="Email" aria-label="Email" {...register('Email',{required:true})}/>
                                         </div>
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Second Last Name</label>
-                                            <input type="text" className="form-control" placeholder="Type" aria-label="Type" {...register('Type',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Password</label>
+                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('Password',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -130,18 +121,18 @@ export function ClientManageForm() {
                                     <div className="row">
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Quantity</label>
-                                            <input type="text" className="form-control" placeholder="Quantity" aria-label="Quantity" {...register('quantity',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Age</label>
+                                            <input type="text" className="form-control" placeholder="Age" aria-label="Age" {...register('Age',{required:true})}/>
                                         </div>
 
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Price by unit</label>
-                                            <input type="text" className="form-control" placeholder="Price By Unit" aria-label="Price By Unit" {...register('priceByUnit',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Phone number</label>
+                                            <input type="text" className="form-control" placeholder="Phone number" aria-label="Phone number" {...register('Phone_number',{required:true})}/>
                                         </div>
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Store Code</label>
-                                            <input type="text" className="form-control"  placeholder="Store id" aria-label="Store id" {...register('Store_id',{required:true})}/>
+                                            <label htmlFor="text" className="form-label">Store</label>
+                                            <input type="text" className="form-control"  placeholder="Store" aria-label="Store" {...register('Store_id',{required:true})}/>
                                         </div>
 
                                     </div>
