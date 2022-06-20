@@ -43,6 +43,7 @@ export  function ReadWhiskeys() {
         	if(data.popularity === "null"){
         		data.popularity = null;
         	}
+			data["store"] = state.store;
         	const response = await axios.post('http://localhost:3001/whisky/getFilteredWhisky', data);
 			console.log(response.data)
 			setwhiskys(response.data);
