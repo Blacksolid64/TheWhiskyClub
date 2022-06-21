@@ -1,4 +1,5 @@
 import React,{Fragment,useState, useEffect } from 'react'
+import {UncontrolledAccordion,AccordionItem,AccordionHeader,AccordionBody,Accordion,Label,Input} from 'reactstrap';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -9,6 +10,7 @@ export function WhiskyDetail() {
     const {state} = useLocation();
     const Whiskyid = state.id
     const Userid = state.userId
+    const varStore = state.store
     console.log(Whiskyid);
     const [whisky, setwhisky] = useState([]);
     async function getWhisky(){
@@ -25,6 +27,7 @@ export function WhiskyDetail() {
             //state
             data.Whiskyid = Whiskyid
             data.Userid = Userid
+            data.store = varStore
             const response = await axios.post('http://localhost:3001/whisky/addProductCart', data);
             alert("Whiskey added to cart");
         } catch(err){
@@ -112,6 +115,26 @@ export function WhiskyDetail() {
                     </div>
                 </div>
                 ))}
+                <center><Label style={{color: "white", backgroundColor: 'black'}}>Comentarios:</Label></center>
+                <center>
+                <div>
+                  <Accordion
+                    flush
+                    open="1"
+                    toggle={function noRefCheck(){}}
+                  >
+                    <AccordionItem>
+                      <AccordionHeader targetId="1">
+                        Accordion Item 1
+                      </AccordionHeader>
+                      <AccordionBody accordionId="1">
+                        though the transition does limit overflow.aaaaaaaaaaaaaaaaa
+                      </AccordionBody>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+                </center>
+                <center><Input bsSize="lg"/><button type ='submit' className="btn btn-dark btn-lg">Comentar</button></center>
             </div>
         </header>
       </Fragment>

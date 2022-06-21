@@ -9,6 +9,7 @@ export function TableCart() {
 
     async function getWhiskyBag(){
         console.log(state.user);
+        console.log(state.store);
         const responseTypes = await axios.post('http://localhost:3001/whisky/watchBag',state);
         if (whiskyBag.length===0)
             setWhiskyBag(responseTypes.data)

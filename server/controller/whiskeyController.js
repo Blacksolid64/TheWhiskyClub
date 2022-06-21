@@ -192,7 +192,7 @@ router.post("/payBag",async (req,res)=>{
 
 
 router.post("/getFilteredWhisky",async (req,res)=>{
-    //var store = req.body.store;
+    var store = req.body.store;
     console.log(store);
     switch (store.slice(0,2)){
         case 'US':

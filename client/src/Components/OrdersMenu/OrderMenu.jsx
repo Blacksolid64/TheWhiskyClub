@@ -7,7 +7,7 @@ export  function OrderMenu() {
     const {state} = useLocation();
     console.log(state)
     const userLogged = state.user
-    const Store = state.store
+    const store = state.store
     return (
         <Fragment>
             <header className="App-header">
@@ -18,14 +18,14 @@ export  function OrderMenu() {
                         <br/>
                         <div className="row row-cols-1 row-cols-md-3 g-3">
   
-                            <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/Order",userLogged,Store}} />
+                            <PrincipalCard props={{title:"Order whiskys",buttonTitle:"See",redirectLink:"/Order",userLogged:userLogged,store:store}} />
                             
                             <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged}} />
                             
                             <PrincipalCard props={{title:"History",buttonTitle:"See",redirectLink:"/"}} />
 
                             <h1>User logged: {userLogged}</h1>
-                            <h1>User logged: {Store}</h1>
+                            <h1>store id: {store}</h1>
                         </div>
                         
                     </div>
