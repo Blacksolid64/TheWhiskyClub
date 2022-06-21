@@ -115,7 +115,7 @@ export function WhiskyDetail() {
                     </div>
                 </div>
                 ))}
-                <center><Label style={{color: "white", backgroundColor: 'black'}}>Comentarios:</Label></center>
+                <center><Label style={{color: "white", backgroundColor: 'black'}}>Comments:</Label></center>
                 <center>
                 <div>
                   <Accordion
@@ -134,7 +134,7 @@ export function WhiskyDetail() {
                   </Accordion>
                 </div>
                 </center>
-                <center><Input bsSize="lg"/><button type ='submit' className="btn btn-dark btn-lg">Comentar</button></center>
+                <center><Input bsSize="lg"/><button type ='submit' className="btn btn-dark btn-lg">Comment</button></center>
             </div>
         </header>
       </Fragment>
