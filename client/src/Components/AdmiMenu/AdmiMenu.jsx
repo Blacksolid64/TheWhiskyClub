@@ -20,7 +20,7 @@ export  function AdmiMenu() {
   
                             <PrincipalCard props={{title:"Manage whiskys",buttonTitle:"See",redirectLink:"/WhiskysManage",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"Manage employee",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
+                            <PrincipalCard props={{title:"Manage employee",buttonTitle:"See",redirectLink:"/EmployeeManage",store:userStoreIDLogged}} />
   
                             <PrincipalCard props={{title:"Manage type of whisky",buttonTitle:"See",redirectLink:"/TypeMenu",store:userStoreIDLogged}} />
 

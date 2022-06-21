@@ -32,12 +32,12 @@ export function CardList({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                axios.post('http://localhost:3001/whisky/deleteWhisky',{data:data,store:{store:props.store}}).then((response) => {
+                axios.post('http://localhost:3001/whisky/deleteWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
                 console.log(data)
-                axios.post('http://localhost:3001/whisky/getOneWhisky',{data:data,store:{store:props.store}}).then((response) => {
+                axios.post('http://localhost:3001/whisky/getOneWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
               } 

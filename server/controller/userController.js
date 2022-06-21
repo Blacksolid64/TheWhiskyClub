@@ -96,4 +96,38 @@ router.post("/CreateUser",async (req,res)=>{
     //res.send("hello world");
 })
 
+router.get("/EmployeeGet",async (req,res)=>{
+    var store = req.query.store;
+    console.log("store");
+    console.log(store);
+    switch (store.slice(0,2)){
+        case 'US':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case 'IR':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case 'SC':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.execute('Employee_select_all', (err, result) =>{
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+
 module.exports = router;
