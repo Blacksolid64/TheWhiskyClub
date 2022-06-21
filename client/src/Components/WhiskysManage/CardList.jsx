@@ -26,7 +26,7 @@ export function CardList({props}) {
         axios.get('http://localhost:3001/whisky/getWhisky',{params: {store:props.store}}).then((response) => {
             setWhiskysList(response.data)
         })
-      },[]);
+      },[]); 
 
 
     const onSubmit = async(data) =>{

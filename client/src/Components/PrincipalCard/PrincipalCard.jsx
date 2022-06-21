@@ -22,7 +22,6 @@ export function PrincipalCard({props}) {
                     <h2 className="card-title">{props.title}</h2>
                     <p className="card-text">{props.body ? props.text : ""}</p>
                     <p className="card-text">{props.userLogged}</p>
-                    <p className="card-text">{props.store}</p>
                 </div>                                
                 <input type="submit" className="btn btn-dark btn-block" value = {props.buttonTitle} />                                
             </div>

@@ -18,7 +18,7 @@ export function CreateWhisky() {
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/WhiskysManage"
-        navigate(path)
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const [TypeList,setTypeList] = useState([]);
@@ -47,7 +47,7 @@ export function CreateWhisky() {
             axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
             })
             //send_email('data')
-            //moveTo()
+            moveTo()
             
         }catch(err){
             alert(err)
@@ -152,7 +152,19 @@ export function CreateWhisky() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Store Code</label>
-                                            <input type="text" className="form-control"  placeholder="Store id" aria-label="Store id" {...register('Store_id',{required:true})}/>
+                                            <select className="form-select" defaultValue="US" aria-label="Store"{...register('Store_id',{required:true})}> 
+                                                <option key={1000} value={1000} > USA </option>
+                                                <option key={2000} value={2000} > Irland</option>
+                                                <option key={3000} value={3000} > Scotland </option>
+                                            </select>
+                                        </div>
+
+                                        <div className="col">
+                                            <label htmlFor="text" className="form-label">Special</label>
+                                            <select className="form-select" defaultValue="Yes" aria-label="Special"{...register('special',{required:true})}> 
+                                                <option key={1} value={1} > Yes </option>
+                                                <option key={0} value={0} > No</option>
+                                            </select>
                                         </div>
 
                                     </div>

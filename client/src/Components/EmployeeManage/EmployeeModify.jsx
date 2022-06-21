@@ -37,7 +37,7 @@ export function EmployeeModify() {
                     <div className="card bg-light w-100 mb-3  text-dark" >                    
                         <div className="row g-0">
                                 <div className="card-body">
-                                    <h1 className="card-title text-center text-dark">Modify Presentation</h1>
+                                    <h1 className="card-title text-center text-dark">Modify Employee</h1>
                                     <br></br>
                                     
                                     <form onSubmit={handleSubmit(onSubmit)} >
@@ -66,21 +66,6 @@ export function EmployeeModify() {
                                         </div>
 
                                     </div>
-                                    <br></br>
-                                    <div className="row">
-
-                                    <div className="col">
-                                            <label htmlFor="text" className="form-label">Email</label>
-                                            <input type="text" className="form-control" placeholder="Email" aria-label="Email" {...register('Email',{required:true})}/>
-                                        </div>
-
-                                        <div className="col">
-                                            <label htmlFor="text" className="form-label">Password</label>
-                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('Password',{required:true})}/>
-                                        </div>
-
-                                    </div>
-
                                     <br></br>
 
                                     <div className="row">
