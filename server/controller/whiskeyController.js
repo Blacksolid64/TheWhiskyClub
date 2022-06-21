@@ -310,6 +310,59 @@ router.get("/getWhiskyTypes",async (req,res)=>{
     //res.send("hello world");
 })
 
+router.post("/modifyWhisky",async (req,res)=>{
+    var store = req.body.store;
+    console.log(store);
+    switch (store.slice(0,2)){
+        case 'US':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case 'IR':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case 'SC':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var whisky = {
+        "id":req.body.data.Whiskey_id,
+        "name":req.body.data.name,
+        "desciption":req.body.data.description,
+        "whiskeyType":req.body.data.Type,
+        "age":req.body.data.Age_in_years,
+        "distillery":req.body.data.Distillery,
+        "image":req.body.data.Image,
+        "presentation":req.body.data.Presentation
+    }
+    console.log("sera que si")
+    console.log(whisky)
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('whiskey_id_IN', whisky.id)
+        request.input('name_IN', whisky.name)
+        request.input('description_IN', whisky.desciption)
+        request.input('idWhiskeyTypeFK_IN', whisky.whiskeyType)
+        request.input('Age_IN', whisky.age)
+        request.input('Distillery_IN', whisky.distillery)
+        request.input('Image_IN', whisky.image)
+        request.input('Presentation_IN', whisky.presentation)
+        request.execute('Whiskey_update', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
 router.get("/createWhisky",async (req,res)=>{
     var store = req.body.store.toString();
     console.log(store);
@@ -351,11 +404,13 @@ router.get("/createWhisky",async (req,res)=>{
 })
 
 router.post("/getOneWhisky",async (req,res)=>{
+
     var store = req.body.store.toString();
     console.log("here")
     console.log(req.body.data.id);
     switch (req.query.store.toString().slice(0,1)){
         case '1':
+
             conn = config.conn[0];
             console.log('Logged into US');
             break;

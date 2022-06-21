@@ -15,8 +15,8 @@ export function ModifyWhisky() {
 
     let navigate = useNavigate()
     const moveTo = () =>{
-        let path = "/ManageParking"
-        navigate(path)
+        let path = "/WhiskysManage"
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const [TypeList,setTypeList] = useState([]);
@@ -38,10 +38,9 @@ export function ModifyWhisky() {
 
       const onSubmit = async(data) =>{
         try{
-            axios.post('http://localhost:3001/parkings/updateByName',{data,store:userStoreIDLogged}).then((response) => {
+            axios.post('http://localhost:3001/whisky/modifyWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
-            console.log(data)
-            //moveTo()
+            moveTo()
         }catch(err){
                 alert('Usuario invalido')
         }

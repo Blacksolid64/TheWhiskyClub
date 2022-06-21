@@ -42,6 +42,10 @@ import { SubscriptionSee } from './Subscription/SubscriptionSee';
 import { SubscriptionModify } from './Subscription/SubscriptionModify';
 import { SubscriptionCreate } from './Subscription/SubscriptionCreate';
 import { ClientManage } from './ClientManage/ClientManage';
+import { EmployeeManage } from './EmployeeManage/EmployeeManage';
+import { EmployeeCreate } from './EmployeeManage/EmployeeCreate';
+import { EmployeeModify } from './EmployeeManage/EmployeeModify';
+import { EmployeeSee } from './EmployeeManage/EmployeeSee';
 
 
 
@@ -127,8 +131,14 @@ export function App() {
 
                 <Route exact path="/ClientManage" element={<ClientManage />}/>
 
-                
-                
+                <Route exact path="/EmployeeManage" element={<EmployeeManage />}/>
+
+                <Route exact path="/EmployeeCreate" element={<EmployeeCreate />}/>
+
+                <Route exact path="/EmployeeModify" element={<EmployeeModify />}/>
+
+                <Route exact path="/EmployeeSee" element={<EmployeeSee />}/>
+          
               </Routes>
                 
             </div>
