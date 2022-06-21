@@ -19,7 +19,7 @@ export function SubscriptionCard({props}) {
         }else{
             path = "/SubscriptionModify"
         }
-        console.log('Aqui recibo')
+        console.log('I receive here')
         console.log(subscriptionInfo)
         navigate(path, {state:{subscriptionInfo:subscriptionInfo,store:props.store}})
     }
