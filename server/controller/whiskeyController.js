@@ -7,7 +7,8 @@ const sql = config.sql
 var conn
 
 router.get("/whiskysSelectAll",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.query.store;
+    console.log("store");
     console.log(store);
     switch (store.slice(0,2)){
         case 'US':
@@ -241,9 +242,7 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 // CRUD Whisky
 
 router.get("/getWhisky",async (req,res)=>{
-    var store = req.body.store;
-    
-    console.log('Get whiskies read');
+    var store = req.query.store;
     console.log(store);
     switch (req.query.store.slice(0,2)){
         case 'US':

@@ -51,6 +51,7 @@ export function CardList({props}) {
   return (
     <Fragment>
         <form onSubmit={handleSubmit(onSubmit)}>
+            <h1 className='text-center'>{props.store}</h1>
             <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('id',{required:true})}> 
             <option value="DEFAULT" disabled>Whiskys</option>
             {WhiskysList.map((whisky) =>{

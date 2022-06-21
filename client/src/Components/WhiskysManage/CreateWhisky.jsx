@@ -23,6 +23,7 @@ export function CreateWhisky() {
 
         try{
             data.image = data.image[0].name
+            console.log(data.image)
             axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
             })
             //send_email('data')
