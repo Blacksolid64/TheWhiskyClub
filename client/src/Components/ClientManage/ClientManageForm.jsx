@@ -26,17 +26,16 @@ export function ClientManageForm() {
 
     let navigate = useNavigate()
     const moveTo = () =>{
-        let path = "/WhiskysManage"
+        let path = "/"
         navigate(path)
     }
 
     const onSubmit = async(data) =>{
 
         try{
-            console.log(data)
             axios.post('http://localhost:3001/users/CreateUser',{data:data,lat:lat,lng:lng}).then((response) => {
             })
-            //moveTo()
+            moveTo()
             
         }catch(err){
             alert(err)
@@ -60,7 +59,7 @@ export function ClientManageForm() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Name</label>
-                                            <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('name',{required:true})}/>
+                                            <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('Uname',{required:true})}/>
                                         </div>
                                     </div>
                                     <br></br>
@@ -117,7 +116,7 @@ export function ClientManageForm() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Password</label>
-                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('Password',{required:true})}/>
+                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('UPassword',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -138,10 +137,10 @@ export function ClientManageForm() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Store</label>
-                                            <select className="form-select" defaultValue="US" aria-label="Whiskys"{...register('Store_id',{required:true})}> 
-                                                <option key={1} value={1} > USA </option>
-                                                <option key={2} value={2} > Irland</option>
-                                                <option key={3} value={3} > Scotland </option>
+                                            <select className="form-select" defaultValue="US" aria-label="Store"{...register('Store_id',{required:true})}> 
+                                                <option key={1000} value={1000} > USA </option>
+                                                <option key={2000} value={2000} > Irland</option>
+                                                <option key={3000} value={3000} > Scotland </option>
                                             </select>
                                         </div>
 

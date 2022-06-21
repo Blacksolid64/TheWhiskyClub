@@ -10,7 +10,7 @@ export  function EmployeeManage() {
     const userStoreIDLogged = state.store
     return (
         <Fragment>
-            <header className="App-header">
+            <header className="App-header"> 
                     
                 <div style={{ backgroundImage: 'url(require("./images/background.png"))' }}>
                     <div className='container mx-auto'>

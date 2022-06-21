@@ -47,7 +47,7 @@ const conn_SL = new sql.ConnectionPool( {//Joshua
 
     
 });
-connections.push(conn3);
+connections.push(conn);
 connections.push(conn_IR);
 connections.push(conn_SL);
 

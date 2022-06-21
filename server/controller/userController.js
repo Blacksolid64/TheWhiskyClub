@@ -1,5 +1,6 @@
 var config = require('../config.js')
 const router = require('express').Router();
+var CryptoJS = require("crypto-js");
 
 
 const sql = config.sql
@@ -26,10 +27,10 @@ router.post("/login",async (req,res)=>{
         request.input('email', user.username)
         request.input('password', user.password)
         request.execute('LogIn', (err, result) =>{
-        //console.log(err);
+        console.log(err);
         console.log(result.recordset);
         res.send(result.recordset);
-        //console.log(result.returnValue);
+        console.log(result.returnValue);
         //console.log(result.output);
         })
     })
@@ -38,7 +39,9 @@ router.post("/login",async (req,res)=>{
 })
 
 router.post("/CreateUser",async (req,res)=>{
-    console.log("hereee")
+    
+    var ciphertext = CryptoJS.AES.encrypt(req.body.data.UPassword, 'my-secret-key@123').toString();
+
     var store = req.body.Store_id;
     switch (store){
         case 1:
@@ -57,28 +60,29 @@ router.post("/CreateUser",async (req,res)=>{
             conn = config.conn[0];
             break;
     }
+    console.log(ciphertext)
     conn.connect().then(() =>{
         var user ={
             'id':req.body.data.id,
             'email':req.body.data.Email,
-            'password':req.body.data.Password,
+            'Upassword':ciphertext,
             'store':req.body.data.Store_id,
-            'name':req.body.data.name,
+            'Uname':req.body.data.Uname,
             'lastName':req.body.data.Last_Name,
             'secondlastName':req.body.data.Second_Last_Name,
             'age':req.body.data.Age,
             'latitude':req.body.lat,
             'longitude':req.body.lng,
             'phone':req.body.data.Phone_number
-        }
+        }    
         console.log("user.latitude")
         console.log(user.name)
         const request = new sql.Request(conn)
         request.input('identification_IN', user.id)
         request.input('email_IN', user.email)
-        request.input('password_IN ', user.password)
+        request.input('password_INN',user.UPassword)
         request.input('Store_IN', user.store)
-        request.input('name_IN', user.name)
+        request.input('name_INN', req.body.data.Uname)
         request.input('surname_1_IN', user.lastName)
         request.input('surname_2_IN', user.secondlastName)
         request.input('age_IN', user.age)
