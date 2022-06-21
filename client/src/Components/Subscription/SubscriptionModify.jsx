@@ -45,7 +45,7 @@ export function SubscriptionModify() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Subscription Id</label>
-                                            <input type="number" className="form-control" value = {subscriptionInfo.id}readOnly {...register('id',{required:true})}/>
+                                            <input type="number" min = "0" className="form-control" value = {subscriptionInfo.id}readOnly {...register('id',{required:true})}/>
                                         </div>
 
                                         <div className="col">
@@ -55,7 +55,7 @@ export function SubscriptionModify() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Price</label>
-                                            <input type="number" className="form-control" defaultValue = {subscriptionInfo.price} {...register('price',{required:true})}/>
+                                            <input type="number" min = "0" className="form-control" defaultValue = {subscriptionInfo.price} {...register('price',{required:true})}/>
                                         </div>
 
                                     </div>

@@ -363,10 +363,10 @@ router.post("/modifyWhisky",async (req,res)=>{
     //res.send("hello world");
 })
 
-router.get("/createWhisky",async (req,res)=>{
-    var store = req.body.store.toString();
-    console.log(store);
-    switch (req.query.store.toString().slice(0,1)){
+router.post("/createWhisky",async (req,res)=>{
+    var store = req.body.Store_id;
+    console.log(req.body);
+    switch (store.toString().slice(0,1)){
         case '1':
             conn = config.conn[0];
             console.log('Logged into US');
@@ -385,14 +385,30 @@ router.get("/createWhisky",async (req,res)=>{
     }
     var whisky = {
         "name":req.body.name,
-        "desciption":req.body.type,
-        "whiskeyType":req.body.price,
-        "popularity":req.body.popularity,
-        "distance":req.body.distance
+        "desciption":req.body.description,
+        "whiskeyType":req.body.Type,
+        "age":req.body.Age_in_years,
+        "distillery":req.body.Distillery,
+        "image":req.body.Image,
+        "presentation":req.body.Presentation,
+        "quantity":req.body.quantity,
+        "price_by_unit":req.body.priceByUnit,
+        "store":req.body.Store_id
     }
+    const img = "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn From OPENROWSET(BULK 'C:\\'"+req.body.Image+",SINGLE_BLOB) AS Imagen)";
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
-        request.execute('Wiskey_get', (err, result) =>{
+        request.input('name_IN', whisky.name)
+        request.input('description_IN', whisky.desciption)
+        request.input('idWhiskeyTypeFK_IN', whisky.whiskeyType)
+        request.input('Age_IN', whisky.age)
+        request.input('Distillery_IN', whisky.distillery)
+        request.input('Image_IN', img)
+        request.input('Presentation_IN', whisky.presentation)
+        request.input('Quantity_IN', whisky.quantity)
+        request.input('Price_by_unit_IN', whisky.price_by_unit)
+        request.input('IdStore_FK', whisky.store)
+        request.execute('Whiskey_insert', (err, result) =>{
         console.log(err);
         console.log(result.recordset);
         res.send(result.recordset);

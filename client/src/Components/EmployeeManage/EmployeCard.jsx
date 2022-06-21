@@ -7,7 +7,7 @@ import axios from 'axios'
 export function EmployeCard({props}) {
 
     const {register,handleSubmit} = useForm();
-    const [DistilleryList,setDistillery] = useState([]);
+    const [EmployeeList,setEmployee] = useState([]);
 
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
@@ -26,7 +26,7 @@ export function EmployeCard({props}) {
     
     useEffect(() => {
         axios.get('http://localhost:3001/users/EmployeeGet',{params: {store:props.store}}).then((response) => {
-            setDistillery(response.data)
+            setEmployee(response.data)
             console.log(response.data)
         })
       },[]);
@@ -56,9 +56,9 @@ export function EmployeCard({props}) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <select className="form-select" defaultValue={'DEFAULT'} aria-label="Whiskys"{...register('id',{required:true})}> 
                 <option value="DEFAULT" disabled>Presentation Whiskys</option>
-                {DistilleryList.map((whisky) =>{
+                {EmployeeList.map((employee) =>{
                     return (
-                            <option key={whisky.id} value={whisky.id}> {whisky.name}</option>
+                            <option key={employee.id} value={employee.id}> {employee.name}</option>
                         );
                 })}
                 </select>
