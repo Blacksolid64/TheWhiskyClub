@@ -1,5 +1,5 @@
 import React,{Fragment,useState, useEffect } from 'react'
-import {UncontrolledAccordion,AccordionItem,AccordionHeader,AccordionBody,Accordion,Label,Input} from 'reactstrap';
+import {UncontrolledAccordion,AccordionItem,AccordionHeader,AccordionBody,Accordion,Label,Input,Row,Col} from 'reactstrap';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,20 +7,35 @@ import {useForm} from 'react-hook-form';
 
 export function WhiskyDetail() {
     const {register,handleSubmit} = useForm();
+    const [commentary,setCommentary] = useState("");
     const {state} = useLocation();
     const Whiskyid = state.id
     const Userid = state.userId
     const varStore = state.store
     console.log(Whiskyid);
     const [whisky, setwhisky] = useState([]);
+    const [commentaries, setCommentaries] = useState([]);
     async function getWhisky(){
         const response  = await axios.post('http://localhost:3001/whisky/selectWhiskeyDetailed',state);
         if(whisky.length===0)
             setwhisky(response.data)
     }
+    async function sendCommentary(){
+        state.description = commentary
+        const response  = await axios.post('http://localhost:3001/claim/insertCommentary',state);
+        alert("Your commentary was sended")
+        getCommentaries()
+    };
+
+    async function getCommentaries(){
+        const response  = await axios.post('http://localhost:3001/claim/getCommentaries',state);
+        setCommentaries(response.data)
+        
+    }
     useEffect(() => {
         //Runs only on the first render
         getWhisky()
+        getCommentaries()
     }, []);
     const onSubmit = async(data) =>{
         try{
@@ -115,26 +130,37 @@ export function WhiskyDetail() {
                     </div>
                 </div>
                 ))}
-                <center><Label style={{color: "white", backgroundColor: 'black'}}>Comentarios:</Label></center>
+                <center><Label style={{color: "white", backgroundColor: 'black'}}>Reviews:</Label></center>
+                {commentaries.map((item, i) => (
                 <center>
+                <Row style={{backgroundColor:'black' ,padding: '5px 5px 5px 5px'}}>
+                Commentary date: {item.ReviewDate.slice(0, 10)}
+                
                 <div>
-                  <Accordion
-                    flush
-                    open="1"
-                    toggle={function noRefCheck(){}}
-                  >
+                  <UncontrolledAccordion defaultOpen="0">
                     <AccordionItem>
                       <AccordionHeader targetId="1">
-                        Accordion Item 1
+                        <strong>
+                            {`${item.name} ${item.surname_1} ${item.surname_2}`} 
+                        </strong>
                       </AccordionHeader>
                       <AccordionBody accordionId="1">
-                        though the transition does limit overflow.aaaaaaaaaaaaaaaaa
+                        {item.description}
                       </AccordionBody>
                     </AccordionItem>
-                  </Accordion>
+                    </UncontrolledAccordion>
                 </div>
+                </Row>
                 </center>
-                <center><Input bsSize="lg"/><button type ='submit' className="btn btn-dark btn-lg">Comentar</button></center>
+                ))}
+                <Row style={{padding: '20px 20px 20px 20px'}}>
+                    <Col>
+                        <Input bsSize="lg" onChange={(e) => setCommentary(e.target.value)}/>
+                    </Col>
+                    <Col sm={2}>
+                        <button type ='button' className="btn btn-dark btn-lg" onClick={sendCommentary}>Comentar</button>
+                    </Col>
+                </Row>
             </div>
         </header>
       </Fragment>

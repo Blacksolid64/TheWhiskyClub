@@ -34,7 +34,7 @@ export  function AdmiMenu() {
                             
                             <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
+                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/usersProblem",store:userStoreIDLogged}} />
                             
                             
                         </div>

@@ -42,6 +42,9 @@ import { SubscriptionSee } from './Subscription/SubscriptionSee';
 import { SubscriptionModify } from './Subscription/SubscriptionModify';
 import { SubscriptionCreate } from './Subscription/SubscriptionCreate';
 import { ClientManage } from './ClientManage/ClientManage';
+import { History } from './OrdersMenu/History';
+import { UsersProblem } from './userIssues/UsersProblem';
+import {Navbar,NavItem,NavLink,NavbarBrand,Nav,Collapse,NavbarText,NavbarToggler} from 'reactstrap';
 
 
 
@@ -126,6 +129,9 @@ export function App() {
                 <Route exact path="/SubscriptionCreate" element={<SubscriptionCreate />}/>
 
                 <Route exact path="/ClientManage" element={<ClientManage />}/>
+
+                <Route exact path="/History" element={<History/>}/>
+                <Route exact path="/UsersProblem" element={<UsersProblem/>}/>
 
                 
                 

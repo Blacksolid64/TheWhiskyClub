@@ -22,7 +22,7 @@ export  function OrderMenu() {
                             
                             <PrincipalCard props={{title:"Club subcription",buttonTitle:"See",redirectLink:"/SubscriptionPage",userLogged}} />
                             
-                            <PrincipalCard props={{title:"History",buttonTitle:"See",redirectLink:"/"}} />
+                            <PrincipalCard props={{title:"History",buttonTitle:"See",redirectLink:"/History",userLogged:userLogged,store:store}} />
 
                             <h1>User logged: {userLogged}</h1>
                             <h1>store id: {store}</h1>
