@@ -15,19 +15,16 @@ export function EmployeCard({props}) {
         if(props.action === 'delete'){
             path = "/AdmiMenu"
         }else if(props.action === 'consult'){
-            path = "/SeeDistillery"
+            path = "/EmployeeSee"
         }else{
-            path = "/ModifyDistillery"
+            path = "/EmployeeModify"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
         navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
-    useEffect(() => {
+    useEffect(() => { 
         axios.get('http://localhost:3001/users/EmployeeGet',{params: {store:props.store}}).then((response) => {
             setEmployee(response.data)
-            console.log(response.data)
         })
       },[]);
 

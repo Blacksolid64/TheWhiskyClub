@@ -102,18 +102,49 @@ router.post("/CreateUser",async (req,res)=>{
 
 router.get("/EmployeeGet",async (req,res)=>{
     var store = req.query.store;
-    console.log("store");
-    console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store){
+        case 1:
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case 2:
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case 3:
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    } 
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.execute('Employee_select_all', (err, result) =>{
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        //console.log(result.returnValue);
+        //console.log(result.output);
+        }) 
+    });
+    //res.send("hello world");
+})
+
+router.post("/getOneEmployee",async (req,res)=>{
+
+    var store = req.body.store.toString();
+    switch (store.toString().slice(0,1)){
+        case '1':
+
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case '2':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -122,16 +153,114 @@ router.get("/EmployeeGet",async (req,res)=>{
             break;
     }
     conn.connect().then(() =>{
+        var whisky ={
+            'id':req.body.data.id
+        }
         const request = new sql.Request(conn)
-        request.execute('Employee_select_all', (err, result) =>{
+        request.input('database_IN', store.toString().slice(0,1))
+        request.input('userID_IN', whisky.id)
+        request.execute('Employee_select_id', (err, result) =>{
+        //console.log(err);
         //console.log(result.recordset);
         res.send(result.recordset);
-        //console.log(result.returnValue);
+        console.log(result.returnValue);
         //console.log(result.output);
         })
     });
     //res.send("hello world");
 })
 
+router.post("/deleteEmployee",async (req,res)=>{
+    var store = req.body.store.toString();
+    switch (store.toString().slice(0,1)){
+        case '1':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case '2':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case '3':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    conn.connect().then(() =>{
+        var whisky ={
+            'id':req.body.data.id
+        }
+        const request = new sql.Request(conn)
+        request.input('database_IN', store.toString().slice(0,1))
+        request.input('userID_IN', whisky.id)
+        request.execute('Employee_delete', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+}) 
+
+router.post("/CreateEmployee",async (req,res)=>{
+    var store = req.body.Store_id;
+    console.log(req.body);
+    switch (store.toString().slice(0,1)){
+        case '1':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case '2':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case '3':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var whisky = {
+        "name":req.body.name,
+        "desciption":req.body.description,
+        "whiskeyType":req.body.Type,
+        "age":req.body.Age_in_years,
+        "distillery":req.body.Distillery,
+        "presentation":req.body.Presentation,
+        "quantity":req.body.quantity,
+        "price_by_unit":req.body.priceByUnit,
+        "store":req.body.Store_id,
+        "special":req.body.special
+    }
+    //const img = "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn From OPENROWSET(BULK 'C:\\'"+req.body.Image+",SINGLE_BLOB) AS Imagen)";
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('name_IN', whisky.name)
+        request.input('description_IN', whisky.desciption)
+        request.input('WhiskeyType_IN', whisky.whiskeyType)
+        request.input('Age_IN', whisky.age)
+        request.input('Distillery_IN', whisky.distillery)
+        request.input('Presentation_IN', whisky.presentation)
+        request.input('Quantity_IN', whisky.quantity)
+        request.input('Price_by_unit_IN', whisky.price_by_unit)
+        request.input('IdStore_FK', whisky.store)
+        request.input('Special_IN', whisky.special)
+        request.execute('Employee_insert', (err, result) =>{
+        console.log(err);
+        console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
 
 module.exports = router;

@@ -18,7 +18,7 @@ export  function EmployeeManage() {
                         <br/>
                         <div className="row row-cols-2 row-cols-md-2 g-2">
   
-                            <PrincipalCard props={{title:"Create Employee",buttonTitle:"See",redirectLink:"/CreateDistillery",store:userStoreIDLogged}} />
+                            <PrincipalCard props={{title:"Create Employee",buttonTitle:"See",redirectLink:"/EmployeeCreate",store:userStoreIDLogged}} />
                             
                             <EmployeeManageForm props={{title:"Consult Employee",buttonTitle:"See",action:"consult",store:userStoreIDLogged}} />
                             

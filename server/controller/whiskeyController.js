@@ -243,7 +243,7 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 router.get("/getWhisky",async (req,res)=>{
     var store = req.query.store.toString();
     console.log(store);
-    switch (req.query.store.toString().slice(0,1)){
+    switch (store.toString().slice(0,1)){
         case '1':
             conn = config.conn[0];
             console.log('Logged into US');
