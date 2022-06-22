@@ -65,7 +65,7 @@ router.post("/CreateUser",async (req,res)=>{
         var user ={
             'id':req.body.data.id,
             'email':req.body.data.Email,
-            'Upassword':ciphertext,
+            'Upassword':req.body.data.UPassword,
             'store':req.body.data.Store_id,
             'Uname':req.body.data.Uname,
             'lastName':req.body.data.Last_Name,
@@ -76,13 +76,13 @@ router.post("/CreateUser",async (req,res)=>{
             'phone':req.body.data.Phone_number
         }    
         console.log("user.latitude")
-        console.log(user.name)
+        console.log(user)
         const request = new sql.Request(conn)
         request.input('identification_IN', user.id)
         request.input('email_IN', user.email)
         request.input('password_INN',user.UPassword)
         request.input('Store_IN', user.store)
-        request.input('name_INN', req.body.data.Uname)
+        request.input('name_INN', user.Uname)
         request.input('surname_1_IN', user.lastName)
         request.input('surname_2_IN', user.secondlastName)
         request.input('age_IN', user.age)
@@ -228,30 +228,33 @@ router.post("/CreateEmployee",async (req,res)=>{
             break;
     }
     var whisky = {
-        "name":req.body.name,
-        "desciption":req.body.description,
-        "whiskeyType":req.body.Type,
-        "age":req.body.Age_in_years,
-        "distillery":req.body.Distillery,
-        "presentation":req.body.Presentation,
-        "quantity":req.body.quantity,
-        "price_by_unit":req.body.priceByUnit,
-        "store":req.body.Store_id,
-        "special":req.body.special
+        "identification":req.body.name,
+        "name":req.body.description,
+        "salary":req.body.Type,
+        "lastName":req.body.Age_in_years,
+        "SecondLastName":req.body.Distillery,
+        "Hiring_Date":req.body.Presentation,
+        "Age":req.body.quantity,
+        "phone":req.body.priceByUnit,
+        "address":req.body.Store_id,
+        "store":req.body.special,
+        "Shedule":req.body.special,
+        "position":req.body.special
     }
-    //const img = "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn From OPENROWSET(BULK 'C:\\'"+req.body.Image+",SINGLE_BLOB) AS Imagen)";
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
-        request.input('name_IN', whisky.name)
-        request.input('description_IN', whisky.desciption)
-        request.input('WhiskeyType_IN', whisky.whiskeyType)
-        request.input('Age_IN', whisky.age)
-        request.input('Distillery_IN', whisky.distillery)
-        request.input('Presentation_IN', whisky.presentation)
-        request.input('Quantity_IN', whisky.quantity)
-        request.input('Price_by_unit_IN', whisky.price_by_unit)
-        request.input('IdStore_FK', whisky.store)
-        request.input('Special_IN', whisky.special)
+        request.input('name_IN', whisky.identification)
+        request.input('description_IN', whisky.name)
+        request.input('WhiskeyType_IN', whisky.salary)
+        request.input('Age_IN', whisky.lastName)
+        request.input('Distillery_IN', whisky.SecondLastName)
+        request.input('Presentation_IN', whisky.Hiring_Date)
+        request.input('Quantity_IN', whisky.Age)
+        request.input('Price_by_unit_IN', whisky.phone)
+        request.input('IdStore_FK', whisky.address)
+        request.input('Special_IN', whisky.store)
+        request.input('Special_IN', whisky.Shedule)
+        request.input('Special_IN', whisky.position)
         request.execute('Employee_insert', (err, result) =>{
         console.log(err);
         console.log(result.recordset);

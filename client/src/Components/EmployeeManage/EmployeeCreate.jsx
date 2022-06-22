@@ -14,7 +14,7 @@ export function EmployeeCreate() {
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/AdmiMenu"
-        navigate(path,{state:{store:userStoreIDLogged}})
+        navigate(path,{state:{store:userStoreIDLogged}}) 
     }
 
       const onSubmit = async(data) =>{

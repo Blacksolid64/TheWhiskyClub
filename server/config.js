@@ -29,7 +29,7 @@ const conn3 = new sql.ConnectionPool( {//Joshua
 });
 
 const conn_IR = new sql.ConnectionPool( {//Joshua
-    server:'DESKTOP-U9I8H26\\SQLEXPRESS',
+    server:'LAPTOP-RHFFFTGS',
     driver: 'msnodesqlv8',
     database:'WC_IR',
     options:{
@@ -38,7 +38,7 @@ const conn_IR = new sql.ConnectionPool( {//Joshua
 });
 
 const conn_SL = new sql.ConnectionPool( {//Joshua
-    server:'DESKTOP-U9I8H26\\SQLEXPRESS',
+    server:'LAPTOP-RHFFFTGS',
     driver: 'msnodesqlv8',
     database:'WC_SC',
     options:{

@@ -12,7 +12,7 @@ export function ExternalPage() {
                       <br/>
                       <div className="row row-cols-1 row-cols-md-2 g-2">
 
-                          <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys"}} />
+                          <PrincipalCard props={{title:"Whiskys",buttonTitle:"See",redirectLink:"/ReadWhiskeys",store:1}} />
                           
                           <PrincipalCard props={{title:"Sign In",buttonTitle:"Sign In",redirectLink:"/LoginPage"}} />
 

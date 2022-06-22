@@ -9,16 +9,16 @@ var conn
 router.post("/insertCommentary",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -50,16 +50,16 @@ router.post("/insertCommentary",async (req,res)=>{
 router.post("/getCommentaries",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -85,16 +85,16 @@ router.post("/getCommentaries",async (req,res)=>{
 router.post("/getUserSales",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -120,16 +120,16 @@ router.post("/getUserSales",async (req,res)=>{
 router.post("/getUserClaims",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -153,16 +153,16 @@ router.post("/getUserClaims",async (req,res)=>{
 router.post("/insertClaim",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
