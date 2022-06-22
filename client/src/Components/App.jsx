@@ -42,10 +42,14 @@ import { SubscriptionSee } from './Subscription/SubscriptionSee';
 import { SubscriptionModify } from './Subscription/SubscriptionModify';
 import { SubscriptionCreate } from './Subscription/SubscriptionCreate';
 import { ClientManage } from './ClientManage/ClientManage';
+import { History } from './OrdersMenu/History';
+import { UsersProblem } from './userIssues/UsersProblem';
+import {Navbar,NavItem,NavLink,NavbarBrand,Nav,Collapse,NavbarText,NavbarToggler} from 'reactstrap';
 import { EmployeeManage } from './EmployeeManage/EmployeeManage';
 import { EmployeeCreate } from './EmployeeManage/EmployeeCreate';
 import { EmployeeModify } from './EmployeeManage/EmployeeModify';
 import { EmployeeSee } from './EmployeeManage/EmployeeSee';
+
 
 
 
@@ -130,7 +134,8 @@ export function App() {
                 <Route exact path="/SubscriptionCreate" element={<SubscriptionCreate />}/>
 
                 <Route exact path="/ClientManage" element={<ClientManage />}/>
-
+                <Route exact path="/History" element={<History/>}/>
+                <Route exact path="/UsersProblem" element={<UsersProblem/>}/>
                 <Route exact path="/EmployeeManage" element={<EmployeeManage />}/>
 
                 <Route exact path="/EmployeeCreate" element={<EmployeeCreate />}/>
@@ -138,7 +143,6 @@ export function App() {
                 <Route exact path="/EmployeeModify" element={<EmployeeModify />}/>
 
                 <Route exact path="/EmployeeSee" element={<EmployeeSee />}/>
-          
               </Routes>
                 
             </div>

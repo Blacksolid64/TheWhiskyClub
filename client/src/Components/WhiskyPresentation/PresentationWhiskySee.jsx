@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 export function PresentationWhiskySee() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo =state.whiskyInfo[0];
 
@@ -27,7 +27,7 @@ export function PresentationWhiskySee() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/PresentationMenu' className="btn btn-dark">Regresar</Link>    
+                                        <Link to= '/PresentationMenu' className="btn btn-dark">Back</Link>    
                                     </center>
                                     
                                 </div>

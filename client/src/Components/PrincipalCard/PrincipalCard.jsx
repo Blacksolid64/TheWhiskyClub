@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
 import {useForm} from 'react-hook-form';
-
+//This is the model of cards for the program
 export function PrincipalCard({props}) {
   const {register,handleSubmit} = useForm();
-    
+  
   let navigate = useNavigate()
   const next = (userLogged,userStoreIDLogged) =>{ 
       navigate(props.redirectLink,{state:{user:userLogged,store:userStoreIDLogged}})

@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 
 export function TypeWhiskySee() {
 
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo =state.whiskyInfo[0];
-    //console.log('Aqui recibo')
-    console.log(whiskyInfo)
 
   return (
     <Fragment>
@@ -29,7 +28,7 @@ export function TypeWhiskySee() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/TypeMenu' className="btn btn-dark">Regresar</Link>    
+                                        <Link to= '/TypeMenu' className="btn btn-dark">Back</Link>    
                                     </center>
                                     
                                 </div>

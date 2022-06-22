@@ -8,13 +8,13 @@ import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
 export function CreateWhisky() {
-
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const {state} = useLocation();
     const userStoreIDLogged = state.store
 
     const form = useRef();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/WhiskysManage"
@@ -42,11 +42,8 @@ export function CreateWhisky() {
 
         try{
             data.Image = data.Image[0].name
-            console.log("data")
-            console.log(data)
             axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
             })
-            //send_email('data')
             moveTo()
             
         }catch(err){
@@ -54,8 +51,6 @@ export function CreateWhisky() {
         }
     }
 
-
-//<img src={image} className="img-fluid rounded-start" alt="..."/>
   return (
     <Fragment>
         <header className="App-header">

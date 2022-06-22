@@ -6,9 +6,10 @@ import axios from 'axios'
 
 export function TypeCardList({props}) {
 
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const [TypeList,setTypeList] = useState([]);
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
@@ -19,8 +20,6 @@ export function TypeCardList({props}) {
         }else{
             path = "/TypeWhiskyModify"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
         navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
@@ -34,16 +33,11 @@ export function TypeCardList({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                console.log(data)
                 axios.post('http://localhost:3001/whisky/deleteTypeWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
-                console.log("here2")
-                console.log(data)
                 axios.post('http://localhost:3001/whisky/getOneTypeWhisky',{data:data,store:props.store}).then((response) => {
-                console.log("response")
-                console.log(response.data)
                 moveTo(response.data)
                 })
               } 

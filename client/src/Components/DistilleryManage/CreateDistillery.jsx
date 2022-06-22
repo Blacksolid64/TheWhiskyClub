@@ -7,13 +7,15 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 
 export function CreateDistillery() {
-
+    
     const {register,handleSubmit} = useForm();
+    //receives parameters from another window
     const {state} = useLocation();
     const userStoreIDLogged = state.store
 
     const form = useRef();
-
+    
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/DistilleryManage"
@@ -41,10 +43,6 @@ export function CreateDistillery() {
                 <div className='container mx-auto'>
                     <div className="card bg-light w-100 mb-3  text-dark" >  
                     <center><h1>Create new distellery</h1></center>                
-                        <div className="row g-0">
-                            <div className="col-md-4">
-                                <h1>Hola</h1>
-                            </div>
                             <div className="col-md-8">
                                 <div className="card-body">
                                     <br></br>
@@ -70,7 +68,6 @@ export function CreateDistillery() {
                         </div>
                     </div>
                 </div>
-            </div>
         </header>
       </Fragment>
     

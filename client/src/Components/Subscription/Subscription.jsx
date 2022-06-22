@@ -13,7 +13,7 @@ export  function SubscriptionPage() {
                         <br/>
                         <div className="row row-cols-1 row-cols-md-3 g-3">
   
-                            <SubscriptionTier props={{title:"Tier Short Glass",body:"Any new product entered will be notified by mail. \n5% discount on purchases",buttonTitle:"Subscription",action:'1'}} />
+                            <SubscriptionTier props={{title:"Tier Short Glass",body:"Any new product entered will be notified by mail. \n5% discount on purchases",buttonTitle:"Subscription",action:'1',}} />
                             
                             <SubscriptionTier props={{title:"Tier Gleincairn",body: "Access to exclusive Whiskies catalog.10% discount on purchases and 20% discount on shipping costs. Any new product introduced will be notified by mail.",buttonTitle:"Subscription",action:"2"}} />
                             

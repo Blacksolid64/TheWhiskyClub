@@ -5,12 +5,12 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 export function SubscriptionCreate() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const userStoreIDLogged = state.store
     
     const {register,handleSubmit} = useForm();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/SubscriptionManager"
@@ -25,7 +25,7 @@ export function SubscriptionCreate() {
             console.log(data)
             moveTo()
         }catch(err){
-                alert('Invalid user')
+                alert('An error occurred')
         }
     }
 

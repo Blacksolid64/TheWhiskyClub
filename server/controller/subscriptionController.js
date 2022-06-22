@@ -12,8 +12,9 @@ router.post("/Subscription",async (req,res)=>{
         "username":req.body.userLogged,
         "subscription":req.body.subscrit
     }
-    var store = req.body.store;
-    //console.log(store);
+    var store = req.body.store.toString();
+    console.log("aqui toy");
+    console.log(store);
     switch (store.slice(0,1)){
         case '1':
             conn = config.conn[0];
@@ -37,6 +38,7 @@ router.post("/Subscription",async (req,res)=>{
         request.input('idSubscriptionFK_IN', user.subscription)
         request.execute('User_update', (err, result) =>{
         //console.log(result.recordset);
+        console.log(err);
         res.send(result.recordset);
         //console.log(result.returnValue);
         //console.log(result.output);

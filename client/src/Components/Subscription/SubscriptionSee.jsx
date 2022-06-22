@@ -3,11 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 export function SubscriptionSee() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const subscriptionInfo =state.subscriptionInfo[0];
-    console.log('Aqui recibo')
-    console.log(subscriptionInfo[0])
 
   return (
     <Fragment>
@@ -77,7 +75,7 @@ export function SubscriptionSee() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/SubscriptionManager' className="btn btn-dark">Regresar</Link>    
+                                        <Link to= '/SubscriptionManager' className="btn btn-dark">Back</Link>    
                                     </center>
                                     
                                 </div>

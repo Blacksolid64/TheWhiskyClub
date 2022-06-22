@@ -5,10 +5,11 @@ import axios from 'axios'
 
 
 export function CardList({props}) {
-
+    //parameters for system use
     const {register,handleSubmit} = useForm();
     const [WhiskysList,setWhiskysList] = useState([]);
 
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
@@ -36,7 +37,6 @@ export function CardList({props}) {
                 moveTo(response.data)
                 })
             }else{
-                console.log(data)
                 axios.post('http://localhost:3001/whisky/getOneWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })

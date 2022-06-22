@@ -4,8 +4,8 @@ import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
 import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function AdmiMenu() {
+    //receives parameters from another window
     const {state} = useLocation();
-    console.log(state)
     const userStoreIDLogged = state.store
     return (
         <Fragment>
@@ -34,7 +34,7 @@ export  function AdmiMenu() {
                             
                             <PrincipalCard props={{title:"Reports",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
                             
-                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/",store:userStoreIDLogged}} />
+                            <PrincipalCard props={{title:"User issues",buttonTitle:"See",redirectLink:"/usersProblem",store:userStoreIDLogged}} />
                             
                             
                         </div>

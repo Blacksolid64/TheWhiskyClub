@@ -1,19 +1,18 @@
 import React,{Fragment,useRef } from 'react'
 //import image from '../../images/tecSanJose.jpg'
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 
 export function CreatePresentation() {
-
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const {state} = useLocation();
     const userStoreIDLogged = state.store
 
     const form = useRef();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/PresentationMenu"

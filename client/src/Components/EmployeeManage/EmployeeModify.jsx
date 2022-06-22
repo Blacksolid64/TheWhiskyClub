@@ -44,26 +44,38 @@ export function EmployeeModify() {
                                     <div className="row">
                                     <div className="col">
                                             <label htmlFor="text" className="form-label">Identification</label>
-                                            <input type="text" className="form-control" placeholder="Identification" aria-label="Identification" {...register('id',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.identification} {...register('id',{required:true})}/>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Name</label>
-                                            <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('name',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.name} {...register('name',{required:true})}/>
                                         </div>
+
+                                        <div className="col">
+                                            <label htmlFor="text" className="form-label">Salary</label>
+                                            <input type="text" className="form-control" value = {whiskyInfo.salary} {...register('salary',{required:true})}/>
+                                        </div>
+
                                     </div>
                                     <br></br>
                                     <div className="row">
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Last Name</label>
-                                            <input type="text" className="form-control" placeholder="Last Name" aria-label="Last Name" {...register('Last_Name',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.surname_1}{...register('Last_Name',{required:true})}/>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Second Last Name</label>
-                                            <input type="text" className="form-control" placeholder="Second Last Name" aria-label="Second Last Name" {...register('Second_Last_Name',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.surname_2} {...register('Second_Last_Name',{required:true})}/>
                                         </div>
+                                        
+                                        <div className="col">
+                                            <label htmlFor="text" className="form-label">Hiring Date</label>
+                                            <input type="date" className="form-control" value = {whiskyInfo.hiring_date}{...register('hiring_date',{required:true})}/>
+                                        </div>
+
 
                                     </div>
                                     <br></br>
@@ -72,21 +84,17 @@ export function EmployeeModify() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Age</label>
-                                            <input type="number" className="form-control" placeholder="Age" aria-label="Age" {...register('Age',{required:true})}/>
+                                            <input type="number" className="form-control" value = {whiskyInfo.age} {...register('Age',{required:true})}/>
                                         </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Phone number</label>
-                                            <input type="text" className="form-control" placeholder="Phone number" aria-label="Phone number" {...register('Phone_number',{required:true})}/>
+                                            <input type="text" className="form-control" value = {whiskyInfo.phone} aria-label="Phone number" {...register('Phone_number',{required:true})}/>
                                         </div>
                                         
                                         <div className="col">
-                                            <label htmlFor="text" className="form-label">Store</label>
-                                            <select className="form-select" defaultValue="US" aria-label="Whiskys"{...register('Store_id',{required:true})}> 
-                                                <option key={1} value={1} > USA </option>
-                                                <option key={2} value={2} > Irland</option>
-                                                <option key={3} value={3} > Scotland </option>
-                                            </select>
+                                            <label htmlFor="text" className="form-label">address</label>
+                                            <input type="text" className="form-control" value = {whiskyInfo.address} {...register('address',{required:true})}/>
                                         </div>
 
                                     </div>

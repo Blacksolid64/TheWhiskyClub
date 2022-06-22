@@ -9,21 +9,23 @@ import { TileLayer } from 'react-leaflet/TileLayer'
 import { LocationMarker } from '../OrdersMenu/Map'
 
 export function ClientManageForm() {
-
+    //parameters for system use
     const {register,handleSubmit} = useForm();
     const [lat, setLat] = useState("Latitude");
     const [lng, setLng] = useState("Length");
 
+    //get latitude the map
     const getLatitude = (data) => {
         console.log(data)
         setLat(data);
     };
+    //get Length the map
     const getLength = (data) => {
         setLng(data);
     };
 
     const form = useRef();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/"
@@ -42,8 +44,6 @@ export function ClientManageForm() {
         }
     }
 
-
-//<img src={image} className="img-fluid rounded-start" alt="..."/>
   return (
     <Fragment>
                     <div className="card bg-light w-100 mb-3  text-dark" >                    

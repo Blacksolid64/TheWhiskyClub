@@ -5,10 +5,11 @@ import axios from 'axios'
 
 
 export function MoneyCard({props}) {
-
+    //parameters for system use
     const {register,handleSubmit} = useForm();
     const [TypeList,setTypeList] = useState([]);
-
+    
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
@@ -19,8 +20,6 @@ export function MoneyCard({props}) {
         }else{
             path = "/MoneyModify"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
         navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     

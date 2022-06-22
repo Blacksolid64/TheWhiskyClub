@@ -2,11 +2,11 @@ import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { PresentationMenuForm } from './PresentationMenuForm'
 import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export  function PresentationMenu() {
+    //receives parameters from another window
     const {state} = useLocation();
-    console.log(state)
     const userStoreIDLogged = state.store
     return (
         <Fragment>
