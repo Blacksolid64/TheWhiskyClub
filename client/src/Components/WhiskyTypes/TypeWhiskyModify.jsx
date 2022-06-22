@@ -6,12 +6,14 @@ import axios from 'axios'
 
 export function TypeWhiskyModify() {
 
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
     const userStoreIDLogged = state.store
     
     const {register,handleSubmit} = useForm();
 
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/TypeMenu"
@@ -23,7 +25,6 @@ export function TypeWhiskyModify() {
             console.log(userStoreIDLogged)
             axios.post('http://localhost:3001/whisky/ModifyTypeWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
-            console.log(data)
             moveTo()
         }catch(err){
                 alert('Invalid user')

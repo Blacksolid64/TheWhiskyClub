@@ -1,7 +1,7 @@
 const sql = require("mssql/msnodesqlv8");
 
 const connections = []
-const conn = new sql.ConnectionPool( {
+const conn1 = new sql.ConnectionPool( {
     server:'LAPTOP-140FDP4P',
     driver: 'msnodesqlv8',
     database:'WC_USA',
@@ -10,7 +10,7 @@ const conn = new sql.ConnectionPool( {
     }
 });
 
-const conn1 = new sql.ConnectionPool( {
+const conn = new sql.ConnectionPool( {
     server:'LAPTOP-RHFFFTGS',
     driver: 'msnodesqlv8',
     database:'WC_USA',

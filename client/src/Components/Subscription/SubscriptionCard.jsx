@@ -5,10 +5,10 @@ import axios from 'axios'
 
 
 export function SubscriptionCard({props}) {
-
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const [SubscriptionList,setSubscription] = useState([]);
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (subscriptionInfo) =>{
         let path 
@@ -19,8 +19,6 @@ export function SubscriptionCard({props}) {
         }else{
             path = "/SubscriptionModify"
         }
-        console.log('Aqui recibo')
-        console.log(subscriptionInfo)
         navigate(path, {state:{subscriptionInfo:subscriptionInfo,store:props.store}})
     }
     

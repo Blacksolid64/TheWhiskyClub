@@ -9,34 +9,34 @@ import { TileLayer } from 'react-leaflet/TileLayer'
 import { LocationMarker } from '../OrdersMenu/Map'
 
 export function ClientManageForm() {
-
+    //parameters for system use
     const {register,handleSubmit} = useForm();
     const [lat, setLat] = useState("Latitude");
     const [lng, setLng] = useState("Length");
 
+    //get latitude the map
     const getLatitude = (data) => {
         console.log(data)
         setLat(data);
     };
+    //get Length the map
     const getLength = (data) => {
         setLng(data);
     };
 
     const form = useRef();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
-        let path = "/WhiskysManage"
+        let path = "/"
         navigate(path)
     }
 
     const onSubmit = async(data) =>{
 
         try{
-            data.image = data.image[0].name
-            axios.post('http://localhost:3001/whisky/createWhisky',data).then((response) => {
+            axios.post('http://localhost:3001/users/CreateUser',{data:data,lat:lat,lng:lng}).then((response) => {
             })
-            //send_email('data')
             moveTo()
             
         }catch(err){
@@ -44,8 +44,6 @@ export function ClientManageForm() {
         }
     }
 
-
-//<img src={image} className="img-fluid rounded-start" alt="..."/>
   return (
     <Fragment>
                     <div className="card bg-light w-100 mb-3  text-dark" >                    
@@ -54,11 +52,18 @@ export function ClientManageForm() {
                                     <br></br>
                                     <form onSubmit={handleSubmit(onSubmit)} >
                                     <div className="row">
+                                    <div className="col">
+                                            <label htmlFor="text" className="form-label">Identification</label>
+                                            <input type="text" className="form-control" placeholder="Identification" aria-label="Identification" {...register('id',{required:true})}/>
+                                        </div>
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Name</label>
-                                            <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('name',{required:true})}/>
+                                            <input type="text" className="form-control" placeholder="Name" aria-label="Name" {...register('Uname',{required:true})}/>
                                         </div>
+                                    </div>
+                                    <br></br>
+                                    <div className="row">
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Last Name</label>
@@ -93,12 +98,12 @@ export function ClientManageForm() {
                                             </div>
                                                 <div className="col">
                                                     <label htmlFor="text" className="form-label">Length</label>
-                                                    <input type="text" className="form-control" value = {lat} readOnly {...register('Length',{required:true})}/>
+                                                    <input type="text" className="form-control" value = {lat} readOnly/>
                                                 </div>
 
                                                 <div className="col">
                                                     <label htmlFor="text" className="form-label">Latitude</label>
-                                                    <input type="text" className="form-control" value = {lng} readOnly {...register('Latitude',{required:true})}/>
+                                                    <input type="text" className="form-control" value = {lng} readOnly/>
                                                 </div>
                                         </div>
                                     <br></br>
@@ -111,7 +116,7 @@ export function ClientManageForm() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Password</label>
-                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('Password',{required:true})}/>
+                                            <input type="text" className="form-control" placeholder="Password" aria-label="Password" {...register('UPassword',{required:true})}/>
                                         </div>
 
                                     </div>
@@ -122,7 +127,7 @@ export function ClientManageForm() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Age</label>
-                                            <input type="text" className="form-control" placeholder="Age" aria-label="Age" {...register('Age',{required:true})}/>
+                                            <input type="number" className="form-control" placeholder="Age" aria-label="Age" {...register('Age',{required:true})}/>
                                         </div>
 
                                         <div className="col">
@@ -132,7 +137,11 @@ export function ClientManageForm() {
                                         
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Store</label>
-                                            <input type="text" className="form-control"  placeholder="Store" aria-label="Store" {...register('Store_id',{required:true})}/>
+                                            <select className="form-select" defaultValue="US" aria-label="Store"{...register('Store_id',{required:true})}> 
+                                                <option key={1000} value={1000} > USA </option>
+                                                <option key={2000} value={2000} > Irland</option>
+                                                <option key={3000} value={3000} > Scotland </option>
+                                            </select>
                                         </div>
 
                                     </div>

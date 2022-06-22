@@ -7,9 +7,14 @@ const userControllerRoute = require('./controller/userController')
 const whiskeyControllerRoute = require('./controller/whiskeyController')
 const subscriptionController = require('./controller/subscriptionController')
 const moneyController = require('./controller/moneyController')
+<<<<<<< HEAD
 const claimController = require('./controller/claimController')
+=======
+const storeController = require('./controller/storeController')
+>>>>>>> 7c100d08b31e6cde97ff251fab253380938be17f
 const cors = require('cors')
 app.use(cors())
+
 
 
 app.use(express.json({limit: "50mb"}))
@@ -17,7 +22,12 @@ app.use('/users',userControllerRoute)
 app.use('/whisky',whiskeyControllerRoute)
 app.use('/subscription',subscriptionController)
 app.use('/money',moneyController)
+<<<<<<< HEAD
 app.use('/claim',claimController)
+=======
+app.use('/store',storeController)
+
+>>>>>>> 7c100d08b31e6cde97ff251fab253380938be17f
 app.listen(PORT, () =>{
 	console.log(`Server is listening at http://localhost:${PORT}`)
 })

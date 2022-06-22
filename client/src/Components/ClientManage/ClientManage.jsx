@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import { ClientManageForm } from './ClientManageForm'
-import { useLocation,useNavigate } from 'react-router-dom';
-
+//is the base card of the functionality
 export  function ClientManage() {
     return (
         <Fragment>

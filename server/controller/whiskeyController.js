@@ -4,21 +4,21 @@ const router = require('express').Router();
 
 const sql = config.sql
 //const conn = config.conn
-var conn
 
 router.get("/whiskysSelectAll",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.query.store.toString();
+    console.log("store");
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -40,19 +40,19 @@ router.get("/whiskysSelectAll",async (req,res)=>{
 
 
 router.post("/selectWhiskeyDetailed",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString().toString();
     //console.log("Store_below");
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -77,18 +77,18 @@ router.post("/selectWhiskeyDetailed",async (req,res)=>{
 
 
 router.post("/addProductCart",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -116,18 +116,18 @@ router.post("/addProductCart",async (req,res)=>{
 })
 
 router.post("/watchBag",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -152,18 +152,18 @@ router.post("/watchBag",async (req,res)=>{
 
 
 router.post("/payBag",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(`store ${store}`);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -192,18 +192,18 @@ router.post("/payBag",async (req,res)=>{
 
 
 router.post("/getFilteredWhisky",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -241,20 +241,18 @@ router.post("/getFilteredWhisky",async (req,res)=>{
 // CRUD Whisky
 
 router.get("/getWhisky",async (req,res)=>{
-    var store = req.body.store;
-    
-    console.log('Get whiskies read');
+    var store = req.query.store.toString();
     console.log(store);
-    switch (req.query.store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -279,17 +277,17 @@ router.get("/getWhisky",async (req,res)=>{
 })
 
 router.get("/getWhiskyTypes",async (req,res)=>{
-    var store = req.body.store;
-    switch (req.query.store.slice(0,2)){
-        case 'US':
+   // var store = req.body.store.toString();
+    switch (req.query.store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -312,19 +310,72 @@ router.get("/getWhiskyTypes",async (req,res)=>{
     //res.send("hello world");
 })
 
-router.get("/createWhisky",async (req,res)=>{
+router.post("/modifyWhisky",async (req,res)=>{
     var store = req.body.store;
     console.log(store);
-    switch (req.query.store.slice(0,2)){
-        case 'US':
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
+    var whisky = {
+        "id":req.body.data.Whiskey_id,
+        "name":req.body.data.name,
+        "desciption":req.body.data.description,
+        "whiskeyType":req.body.data.Type,
+        "age":req.body.data.Age_in_years,
+        "distillery":req.body.data.Distillery,
+        "image":req.body.data.Image,
+        "presentation":req.body.data.Presentation
+    }
+    console.log("sera que si")
+    console.log(whisky)
+    conn.connect().then(() =>{
+        const request = new sql.Request(conn)
+        request.input('whiskey_id_IN', whisky.id)
+        request.input('name_IN', whisky.name)
+        request.input('description_IN', whisky.desciption)
+        request.input('idWhiskeyTypeFK_IN', whisky.whiskeyType)
+        request.input('Age_IN', whisky.age)
+        request.input('Distillery_IN', whisky.distillery)
+        request.input('Image_IN', whisky.image)
+        request.input('Presentation_IN', whisky.presentation)
+        request.execute('Whiskey_update', (err, result) =>{
+        console.log(err);
+        //console.log(result.recordset);
+        res.send(result.recordset);
+        console.log(result.returnValue);
+        console.log(result.output);
+        })
+    });
+    //res.send("hello world");
+})
+
+router.post("/createWhisky",async (req,res)=>{
+    var store = req.body.Store_id;
+    console.log(req.body);
+    switch (store.toString().slice(0,1)){
+        case '1':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case '2':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -334,14 +385,30 @@ router.get("/createWhisky",async (req,res)=>{
     }
     var whisky = {
         "name":req.body.name,
-        "desciption":req.body.type,
-        "whiskeyType":req.body.price,
-        "popularity":req.body.popularity,
-        "distance":req.body.distance
+        "desciption":req.body.description,
+        "whiskeyType":req.body.Type,
+        "age":req.body.Age_in_years,
+        "distillery":req.body.Distillery,
+        "presentation":req.body.Presentation,
+        "quantity":req.body.quantity,
+        "price_by_unit":req.body.priceByUnit,
+        "store":req.body.Store_id,
+        "special":req.body.special
     }
+    //const img = "DECLARE @img VARBINARY(MAX) = (SELECT BulkColumn From OPENROWSET(BULK 'C:\\'"+req.body.Image+",SINGLE_BLOB) AS Imagen)";
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
-        request.execute('Wiskey_get', (err, result) =>{
+        request.input('name_IN', whisky.name)
+        request.input('description_IN', whisky.desciption)
+        request.input('WhiskeyType_IN', whisky.whiskeyType)
+        request.input('Age_IN', whisky.age)
+        request.input('Distillery_IN', whisky.distillery)
+        request.input('Presentation_IN', whisky.presentation)
+        request.input('Quantity_IN', whisky.quantity)
+        request.input('Price_by_unit_IN', whisky.price_by_unit)
+        request.input('IdStore_FK', whisky.store)
+        request.input('Special_IN', whisky.special)
+        request.execute('Whiskey_insert', (err, result) =>{
         console.log(err);
         console.log(result.recordset);
         res.send(result.recordset);
@@ -353,19 +420,19 @@ router.get("/createWhisky",async (req,res)=>{
 })
 
 router.post("/getOneWhisky",async (req,res)=>{
-    var store = req.body.store;
-    console.log("here")
-    console.log(req.body.data.id);
-    switch (req.query.store.slice(0,2)){
-        case 'US':
+
+    var store = req.body.store.toString();
+    switch (store.toString().slice(0,1)){
+        case '1':
+
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -391,18 +458,17 @@ router.post("/getOneWhisky",async (req,res)=>{
 })
 
 router.post("/deleteWhisky",async (req,res)=>{
-    var store = req.body.store;
-    console.log(store);
-    switch (req.query.store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.toString().slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -412,7 +478,7 @@ router.post("/deleteWhisky",async (req,res)=>{
     }
     conn.connect().then(() =>{
         var whisky ={
-            'id':req.body.id
+            'id':req.body.data.id
         }
         const request = new sql.Request(conn)
         request.input('id_IN', whisky.id)
@@ -420,8 +486,8 @@ router.post("/deleteWhisky",async (req,res)=>{
         //console.log(err);
         //console.log(result.recordset);
         res.send(result.recordset);
-        //console.log(result.returnValue);
-        //console.log(result.output);
+        console.log(result.returnValue);
+        console.log(result.output);
         })
     });
     //res.send("hello world");
@@ -430,18 +496,18 @@ router.post("/deleteWhisky",async (req,res)=>{
 //CRUD Type whisky
 
 router.get("/typeWhisky",async (req,res)=>{
-    var store = req.query.store;
+    var store = req.query.store.toString();
     
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -463,17 +529,17 @@ router.get("/typeWhisky",async (req,res)=>{
 })
 
 router.post("/getOneTypeWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -501,17 +567,17 @@ router.post("/getOneTypeWhisky",async (req,res)=>{
 })
 
 router.post("/ModifyTypeWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -539,18 +605,18 @@ router.post("/ModifyTypeWhisky",async (req,res)=>{
 })
 
 router.post("/deleteTypeWhisky",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -577,18 +643,18 @@ router.post("/deleteTypeWhisky",async (req,res)=>{
 
 
 router.post("/createTypeWhisky",async (req,res)=>{
-    var store = req.body.store;
+    var store = req.body.store.toString();
     console.log(store);
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -603,16 +669,16 @@ router.post("/createTypeWhisky",async (req,res)=>{
         const request = new sql.Request(conn)
         request.input('name_IN', whisky.name)
         request.execute('Whiskey_type_insert', (err, result) =>{
-            switch (store.slice(0,2)){
-                case 'US':
+            switch (store.slice(0,1)){
+                case '1':
                     conn = config.conn[0];
                     console.log('Logged into US');
                     break;
-                case 'IR':
+                case '2':
                     conn = config.conn[1];
                     console.log('Logged into Ireland');
                     break;
-                case 'SC':
+                case '3':
                     conn = config.conn[2];
                     console.log('Logged into Scotland');
                     break;
@@ -635,17 +701,17 @@ router.post("/createTypeWhisky",async (req,res)=>{
 
 
 router.post("/getOnePresentationWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -671,17 +737,17 @@ router.post("/getOnePresentationWhisky",async (req,res)=>{
 })
 
 router.post("/deletePresentationWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -707,17 +773,17 @@ router.post("/deletePresentationWhisky",async (req,res)=>{
 })
 
 router.get("/PresentationWhisky",async (req,res)=>{
-    var store = req.query.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.query.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -739,17 +805,17 @@ router.get("/PresentationWhisky",async (req,res)=>{
 })
 
 router.post("/createPresentarionWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -775,17 +841,17 @@ router.post("/createPresentarionWhisky",async (req,res)=>{
 })
 
 router.post("/ModifyPresentationWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -815,17 +881,17 @@ router.post("/ModifyPresentationWhisky",async (req,res)=>{
 // CRUD Destiller
 
 router.get("/DestileryWhisky",async (req,res)=>{
-    var store = req.query.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.query.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -847,17 +913,17 @@ router.get("/DestileryWhisky",async (req,res)=>{
 })
 
 router.post("/getOneDestilleryWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -883,17 +949,17 @@ router.post("/getOneDestilleryWhisky",async (req,res)=>{
 })
 
 router.post("/deleteDestilleryWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -919,17 +985,17 @@ router.post("/deleteDestilleryWhisky",async (req,res)=>{
 })
 
 router.post("/createDestilleryWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -955,17 +1021,17 @@ router.post("/createDestilleryWhisky",async (req,res)=>{
 })
 
 router.post("/ModifyDestilleryWhisky",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;

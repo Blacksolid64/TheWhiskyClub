@@ -8,17 +8,17 @@ var conn
 // CRUD Money
 
 router.get("/moneyGet",async (req,res)=>{
-    var store = req.query.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.query.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -40,17 +40,17 @@ router.get("/moneyGet",async (req,res)=>{
 })
 
 router.post("/moneyOneget",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -76,17 +76,17 @@ router.post("/moneyOneget",async (req,res)=>{
 })
 
 router.post("/deleteMoney",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -112,17 +112,17 @@ router.post("/deleteMoney",async (req,res)=>{
 })
 
 router.post("/createMoney",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -150,17 +150,17 @@ router.post("/createMoney",async (req,res)=>{
 })
 
 router.post("/ModifyMoney",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;

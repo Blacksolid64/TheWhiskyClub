@@ -16,6 +16,8 @@ export function ExternalPage() {
                           
                           <PrincipalCard props={{title:"Sign In",buttonTitle:"Sign In",redirectLink:"/LoginPage"}} />
 
+                          <PrincipalCard props={{title:"Sign Up",buttonTitle:"Sign Up",redirectLink:"/ClientManage"}} />
+
                       </div>
                   </div>
               </div>

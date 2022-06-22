@@ -9,26 +9,28 @@ export function SubscriptionTier({props}) {
 
     const {state} = useLocation();
     const userLogged = state.user
+    const store = state.store
     const subscrit = state.subscription
     const {register,handleSubmit} = useForm();
 
     let navigate = useNavigate()
     const backMenu = (userLogged) =>{
-        navigate("/ClientMenu",{state:{user:userLogged}})
+        console.log(store)
+        navigate("/ClientMenu",{state:{user:userLogged,store:store}})
     }
 
 
     const onSubmit = async(data) =>{
         try{
             if(props.action === '1'){
-                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:1})
+                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:1,store:store})
                 alert('Congratulations, now you are Tier Short Glass')
                 
             }else if(props.action === '2'){
-                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:2})
+                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:2,store:store})
                 alert('Congratulations, now you are Tier Gleincairn')
             }else{
-                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:4});
+                axios.post('http://localhost:3001/subscription/Subscription',{data:data,userLogged:userLogged,subscrit:4,store:store});
                 alert('Congratulations, now you are Tier Master Destiller')
             } 
             backMenu(userLogged)

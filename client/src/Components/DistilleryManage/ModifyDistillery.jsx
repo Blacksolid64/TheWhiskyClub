@@ -5,13 +5,13 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 export function ModifyDistillery() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
     const userStoreIDLogged = state.store
-    
+    //parameters for system use
     const {register,handleSubmit} = useForm();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/AdmiMenu"
@@ -25,7 +25,7 @@ export function ModifyDistillery() {
             console.log(data)
             moveTo()
         }catch(err){
-                alert('Usuario invalido')
+                alert('An error occurred')
         }
     }
 

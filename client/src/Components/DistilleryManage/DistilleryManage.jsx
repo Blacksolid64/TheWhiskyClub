@@ -5,9 +5,10 @@ import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
 import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function DistilleryManage() {
+    //receives parameters from another window
     const {state} = useLocation();
-    console.log(state)
     const userStoreIDLogged = state.store
+    
     return (
         <Fragment>
             <header className="App-header">

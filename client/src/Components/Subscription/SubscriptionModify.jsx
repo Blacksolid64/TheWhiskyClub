@@ -5,13 +5,13 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 export function SubscriptionModify() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const subscriptionInfo = state.subscriptionInfo[0];
     const userStoreIDLogged = state.store
     
     const {register,handleSubmit} = useForm();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/SubscriptionManager"
@@ -26,7 +26,7 @@ export function SubscriptionModify() {
             console.log(data)
             moveTo()
         }catch(err){
-                alert('Invalid user')
+                alert('An error occurred')
         }
     }
 
@@ -45,7 +45,7 @@ export function SubscriptionModify() {
                                     <div className="row">
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Subscription Id</label>
-                                            <input type="number" className="form-control" value = {subscriptionInfo.id}readOnly {...register('id',{required:true})}/>
+                                            <input type="number" min = "0" className="form-control" value = {subscriptionInfo.id}readOnly {...register('id',{required:true})}/>
                                         </div>
 
                                         <div className="col">
@@ -55,7 +55,7 @@ export function SubscriptionModify() {
 
                                         <div className="col">
                                             <label htmlFor="text" className="form-label">Price</label>
-                                            <input type="number" className="form-control" defaultValue = {subscriptionInfo.price} {...register('price',{required:true})}/>
+                                            <input type="number" min = "0" className="form-control" defaultValue = {subscriptionInfo.price} {...register('price',{required:true})}/>
                                         </div>
 
                                     </div>

@@ -5,18 +5,17 @@ import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 
 export function ModifyWhisky() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo = state.whiskyInfo[0];
     const userStoreIDLogged = state.store
-    console.log(userStoreIDLogged)
     
     const {register,handleSubmit} = useForm();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
-        let path = "/ManageParking"
-        navigate(path)
+        let path = "/WhiskysManage"
+        navigate(path,{state:{store:userStoreIDLogged}})
     }
 
     const [TypeList,setTypeList] = useState([]);
@@ -38,12 +37,11 @@ export function ModifyWhisky() {
 
       const onSubmit = async(data) =>{
         try{
-            axios.post('http://localhost:3001/parkings/updateByName',{data,store:userStoreIDLogged}).then((response) => {
+            axios.post('http://localhost:3001/whisky/modifyWhisky',{data:data,store:userStoreIDLogged}).then((response) => {
             })
-            console.log(data)
-            //moveTo()
+            moveTo()
         }catch(err){
-                alert('Usuario invalido')
+                alert('An error occurred')
         }
     }
 
@@ -165,7 +163,7 @@ export function ModifyWhisky() {
                                     <br></br>
 
                                     <center>
-                                            <button type="submit" className= "btn btn-dark text-center" >Modificar información</button>    
+                                            <button type="submit" className= "btn btn-dark text-center" >Modify información</button>    
                                     </center>
                                     </form>
                                 </div>

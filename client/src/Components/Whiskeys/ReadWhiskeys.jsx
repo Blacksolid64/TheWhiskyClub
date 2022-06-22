@@ -14,11 +14,13 @@ export  function ReadWhiskeys() {
     
 
     async function getWhiskys(){
+		console.log("peto?")
     	const response  = await axios.get('http://localhost:3001/whisky/getWhisky',{params: {store:state.store}});
     	if(whiskys.length===0)
     		setwhiskys(response.data)
     }
 	async function getWhiskyType(){
+		console.log("Nopeto?")
 		const responseTypes = await axios.get('http://localhost:3001/whisky/getWhiskyTypes',{params: {store:state.store}});
 		if (whiskyTypes.length===0)
 			setwhiskyTypes(responseTypes.data)

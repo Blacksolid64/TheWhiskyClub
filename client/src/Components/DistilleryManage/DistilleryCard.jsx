@@ -5,10 +5,10 @@ import axios from 'axios'
 
 
 export function DistilleryCard({props}) {
-
+    //parameters for system use
     const {register,handleSubmit} = useForm();
     const [DistilleryList,setDistillery] = useState([]);
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
@@ -19,15 +19,13 @@ export function DistilleryCard({props}) {
         }else{
             path = "/ModifyDistillery"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
+
         navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
     useEffect(() => {
         axios.get('http://localhost:3001/whisky/DestileryWhisky',{params: {store:props.store}}).then((response) => {
             setDistillery(response.data)
-            console.log(response.data)
         })
       },[]);
 

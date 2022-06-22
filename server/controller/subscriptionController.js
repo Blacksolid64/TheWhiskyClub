@@ -12,13 +12,33 @@ router.post("/Subscription",async (req,res)=>{
         "username":req.body.userLogged,
         "subscription":req.body.subscrit
     }
-    console.log(req.body)
+    var store = req.body.store.toString();
+    console.log("aqui toy");
+    console.log(store);
+    switch (store.slice(0,1)){
+        case '1':
+            conn = config.conn[0];
+            console.log('Logged into US');
+            break;
+        case '2':
+            conn = config.conn[1];
+            console.log('Logged into Ireland');
+            break;
+        case '3':
+            conn = config.conn[2];
+            console.log('Logged into Scotland');
+            break;
+        default:
+            conn = config.conn[0];
+            break;
+    }
     conn.connect().then(() =>{
         const request = new sql.Request(conn)
         request.input('identification_IN', user.username)
         request.input('idSubscriptionFK_IN', user.subscription)
         request.execute('User_update', (err, result) =>{
         //console.log(result.recordset);
+        console.log(err);
         res.send(result.recordset);
         //console.log(result.returnValue);
         //console.log(result.output);
@@ -29,19 +49,19 @@ router.post("/Subscription",async (req,res)=>{
 
 
 router.get("/SuscriptionGet",async (req,res)=>{
-    var store = req.query.store;
+    var store = req.query.store.toString();
     console.log("Datas")
     console.log(store)
-    switch (store.slice(0,2)){
-        case 'US':
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -64,17 +84,17 @@ router.get("/SuscriptionGet",async (req,res)=>{
 })
 
 router.post("/getOneSuscription",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -100,17 +120,17 @@ router.post("/getOneSuscription",async (req,res)=>{
 })
 
 router.post("/SuscriptionDelete",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -136,17 +156,17 @@ router.post("/SuscriptionDelete",async (req,res)=>{
 })
 
 router.post("/createSubscription",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
@@ -189,17 +209,17 @@ router.post("/createSubscription",async (req,res)=>{
 })
 
 router.post("/ModifySubscription",async (req,res)=>{
-    var store = req.body.store;
-    switch (store.slice(0,2)){
-        case 'US':
+    var store = req.body.store.toString();
+    switch (store.slice(0,1)){
+        case '1':
             conn = config.conn[0];
             console.log('Logged into US');
             break;
-        case 'IR':
+        case '2':
             conn = config.conn[1];
             console.log('Logged into Ireland');
             break;
-        case 'SC':
+        case '3':
             conn = config.conn[2];
             console.log('Logged into Scotland');
             break;
