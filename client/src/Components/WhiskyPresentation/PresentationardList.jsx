@@ -5,10 +5,10 @@ import axios from 'axios'
 
 
 export function PresentationardList({props}) {
-
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const [PresentationList,setPresentationList] = useState([]);
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = (whiskyInfo) =>{
         let path 
@@ -19,8 +19,6 @@ export function PresentationardList({props}) {
         }else{
             path = "/PresentationWhiskyModify"
         }
-        console.log('Aqui recibo')
-        console.log(whiskyInfo)
         navigate(path, {state:{whiskyInfo:whiskyInfo,store:props.store}})
     }
     
@@ -34,13 +32,10 @@ export function PresentationardList({props}) {
     const onSubmit = async(data) =>{
         try{
             if(props.action === 'delete'){
-                console.log(data)
                 axios.post('http://localhost:3001/whisky/deletePresentationWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })
             }else{
-                console.log('hereee')
-                console.log(data)
                 axios.post('http://localhost:3001/whisky/getOnePresentationWhisky',{data:data,store:props.store}).then((response) => {
                 moveTo(response.data)
                 })

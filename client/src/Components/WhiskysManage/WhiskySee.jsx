@@ -3,11 +3,9 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 export function WhiskySee() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo =state.whiskyInfo[0];
-    console.log('Aqui recibo')
-    console.log(whiskyInfo)
 
   return (
     <Fragment>
@@ -87,7 +85,7 @@ export function WhiskySee() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/WhiskysManage' className="btn btn-dark">Regresar</Link>    
+                                        <Link to= '/WhiskysManage' className="btn btn-dark">Back</Link>    
                                     </center>
                                     
                                 </div>

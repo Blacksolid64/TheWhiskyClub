@@ -3,8 +3,9 @@ import {useForm} from 'react-hook-form';
 import {useNavigate} from "react-router-dom"
 import axios from 'axios';
 export  function LoginForm() {
+    //parameters for system use
     const {register,handleSubmit} = useForm();
-    
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const loggedIn = (userLogged,userType,userStoreID) =>{
         let adminPath

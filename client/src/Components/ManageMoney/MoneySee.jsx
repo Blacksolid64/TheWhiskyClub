@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 export function MoneySee() {
-
+    //receives parameters from another window
     const {state} = useLocation();
     const whiskyInfo =state.whiskyInfo[0];
-    console.log('Aqui recibo')
-    console.log(whiskyInfo)
+
 
   return (
     <Fragment>
@@ -34,7 +33,7 @@ export function MoneySee() {
                                     <br></br>
 
                                     <center>
-                                        <Link to= '/ManageMoney' className="btn btn-dark">Regresar</Link>    
+                                        <Link to= '/ManageMoney' className="btn btn-dark">Back</Link>    
                                     </center>
                                     
                                 </div>

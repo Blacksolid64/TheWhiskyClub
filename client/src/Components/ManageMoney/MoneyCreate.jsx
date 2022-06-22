@@ -7,13 +7,13 @@ import axios from 'axios';
 import emailjs from '@emailjs/browser';
 
 export function MoneyCreate() {
-
+    //receives parameters from another window
     const {register,handleSubmit} = useForm();
     const {state} = useLocation();
     const userStoreIDLogged = state.store
 
     const form = useRef();
-
+    //sends parameters to and manages another system
     let navigate = useNavigate()
     const moveTo = () =>{
         let path = "/AdmiMenu"

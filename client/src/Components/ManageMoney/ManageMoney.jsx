@@ -5,8 +5,8 @@ import { PrincipalCard } from '../PrincipalCard/PrincipalCard'
 import { useLocation,useNavigate } from 'react-router-dom';
 
 export  function ManageMoney() {
+    //sends parameters to and manages another system
     const {state} = useLocation();
-    console.log(state)
     const userStoreIDLogged = state.store
     return (
         <Fragment>
